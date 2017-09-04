@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2017-04-19T10:24:45+02:00"
+          product-name="dena_charts">
+        <header/>
+        <body>
+            <trans-unit id="TCA.type.denacharts_chart" xml:space="preserve">
+                <source>Chart</source>
+            </trans-unit>
+            <trans-unit id="wizards.newContentElement.chartTitle" xml:space="preserve">
+                <source>Chart</source>
+            </trans-unit>
+            <trans-unit id="tabs.chart" xml:space="preserve">
+                <source>Chart</source>
+            </trans-unit>
+            <trans-unit id="wizards.newContentElement.chartDescription" xml:space="preserve">
+                <source>Display data sets in charts</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

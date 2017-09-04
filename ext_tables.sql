@@ -1,0 +1,5 @@
+CREATE TABLE tt_content (
+denacharts_data_file int(11) unsigned DEFAULT '0' NOT NULL,
+denacharts_type tinytext
+);
+
