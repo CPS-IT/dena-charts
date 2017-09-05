@@ -19,8 +19,8 @@ namespace CPSIT\DenaCharts\DataProcessing;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -42,6 +42,21 @@ class ChartProcessor implements DataProcessorInterface
     const CHART_TYPE_LINE = 'line';
 
     /**
+     * Type 'Doughnut Chart'
+     */
+    const CHART_TYPE_DOUGHNUT = 'doughnut';
+
+    /**
+     * Type 'Pie Chart'
+     */
+    const CHART_TYPE_PIE = 'pie';
+
+    /**
+     * Type 'Radar Chart'
+     */
+    const CHART_TYPE_RADAR = 'radar';
+
+    /**
      * @var FileRepository
      */
     protected $fileRepository;
@@ -56,10 +71,29 @@ class ChartProcessor implements DataProcessorInterface
      */
     const DEFAULT_LIBRARY_PROVIDER = 'chartjs.org';
 
+    /**
+     * Name of the data file field (containing a reference to a CSV file)
+     */
+    const DATA_FILE_FIELD = 'denacharts_data_file';
+
+    /**
+     * Prefix for the canvas id property
+     */
     const CANVAS_ID_PREFIX = 'tx-dena-charts-canvas-';
+
+    /**
+     * Prefix for the variable name in which the chart object is saved
+     */
     const CHART_VARIABLE_PREFIX = 'txDenaChartsChart';
 
+    /**
+     * Template for the canvas tag
+     */
     const CANVAS_TEMPLATE = '<canvas id="%1s" width="%2$u" height="%3$u"></canvas>';
+
+    /**
+     * Template for the JavaScript tag
+     */
     const CHART_JS_TEMPLATE = '<script type="text/javascript"> 
     var ctx = document.getElementById("%1s").getContext("2d");
     
@@ -70,6 +104,9 @@ class ChartProcessor implements DataProcessorInterface
     });
     </script>';
 
+    /**
+     * ChartProcessor constructor.
+     */
     public function __construct()
     {
         $this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
@@ -104,14 +141,14 @@ class ChartProcessor implements DataProcessorInterface
 
         $dataSets = [];
         foreach ($csvData as $index => $row) {
-            // todo add backgroundColor, borderColor etc. to each data set
             $set = [
+                // label might not be appropriate for all chart types
                 'label' => $contentElementData['header'],
                 'data' => $row
             ];
+            // add configuration for backgroundColor, borderColor etc. for each data set
             if (!empty($configuration['default'][$type]['datasets'][$index]
-            && is_array($configuration['default'][$type]['datasets'][$index])))
-            {
+                && is_array($configuration['default'][$type]['datasets'][$index]))) {
                 foreach ($configuration['default'][$type]['datasets'][$index] as $key => $value) {
                     if (strpos($value, '|') !== false) {
                         $value = GeneralUtility::trimExplode('|', $value);
@@ -148,13 +185,16 @@ class ChartProcessor implements DataProcessorInterface
     }
 
     /**
+     * Returns a canvas tag for the chart.
+     *
      * @param $contentElementData
-     * @return string
+     * @return string canvas HTML tag
      */
     protected function getCanvasTag($contentElementData)
     {
-        $canvasWidth = $contentElementData['imagewidth'];
-        $canvasHeight = $contentElementData['imageheight'];
+        $ratio = GeneralUtility::trimExplode(':', $contentElementData['denacharts_aspect_ratio'], true);
+        $canvasWidth = $ratio[0];
+        $canvasHeight = $ratio[1];
         $canvasId = static::CANVAS_ID_PREFIX . $contentElementData['uid'];
 
         $canvas = sprintf(static::CANVAS_TEMPLATE, $canvasId, $canvasWidth, $canvasHeight);
@@ -162,14 +202,20 @@ class ChartProcessor implements DataProcessorInterface
     }
 
     /**
+     * Returns the raw data from the data file (a CSV file) as array
+     *
      * @param $contentElementData
-     * @return array
+     * @return array Array of records. First row contains headers.
      */
     protected function getData($contentElementData)
     {
-        $resourceFactory = ResourceFactory::getInstance();
-        $file = $resourceFactory->getFileObject($contentElementData['denacharts_data_file']);
-        $fileContent = rtrim($file->getContents());
+        $fileContent = '';
+        $files = $this->fileRepository->findByRelation('tt_content', 'denacharts_data_file', $contentElementData['uid']);
+        if (!empty($files)) {
+            /** @var FileReference $file */
+            $file = $files[0];
+            $fileContent = rtrim($file->getContents());
+        }
         $delimiter = ',';
         $enclosure = '"';
         $escape = "\\";

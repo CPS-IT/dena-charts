@@ -37,25 +37,46 @@ $tempColumns = [
             'items' => [
                 ['bar', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_BAR],
                 ['line', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_LINE],
+                ['pie', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_PIE],
+                ['doughnut', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_DOUGHNUT],
+                ['radar', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_RADAR],
             ],
             'default' => \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_BAR,
             'eval' => 'required'
         ],
     ],
+    'denacharts_aspect_ratio' => [
+        'exclude' => 0,
+        'label' => 'aspect ratio',
+        'config' => [
+            'type' => 'input',
+            'default' => '16:9',
+            'eval' => 'required'
+        ]
+    ],
+    'denacharts_container_width' => [
+        'exclude' => 0,
+        'label' => 'container width',
+        'config' => [
+            'type' => 'input',
+            'default' => '100%',
+            'eval' => 'required'
+        ]
+    ]
 ];
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
     'tt_content', $tempColumns
 );
 // Configure the default backend fields for the chart content element
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] =[
-    'showitem' => 'imagewidth;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imagewidth_formlabel, imageheight;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageheight_formlabel,'
+    'showitem' => 'denacharts_aspect_ratio,denacharts_container_width'
 ];
 $GLOBALS['TCA']['tt_content']['types']['denacharts_chart'] = [
     'showitem' => '
          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.general;general,
          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.header;header,
       --div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chart,
-        denacharts_data_file,denacharts_type,
+        denacharts_type,denacharts_data_file,
         --palette--;;chart_imagesize,
       --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,
