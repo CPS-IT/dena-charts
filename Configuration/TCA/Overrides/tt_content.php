@@ -35,13 +35,13 @@ $tempColumns = [
         'config' => [
             'type' => 'radio',
             'items' => [
-                ['bar', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_BAR],
-                ['line', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_LINE],
-                ['pie', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_PIE],
-                ['doughnut', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_DOUGHNUT],
-                ['radar', \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_RADAR],
+                ['bar', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR],
+                ['line', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE],
+                ['pie', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_PIE],
+                ['doughnut', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_DOUGHNUT],
+                ['radar', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_RADAR],
             ],
-            'default' => \CPSIT\DenaCharts\DataProcessing\ChartProcessor::CHART_TYPE_BAR,
+            'default' => \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR,
             'eval' => 'required'
         ],
     ],

@@ -1,0 +1,2 @@
+# cat=basic/enable/101; type=boolean; label=Include extension JavaScript:If set extension JavaScript is automatically included.
+includeJavaScript = 1

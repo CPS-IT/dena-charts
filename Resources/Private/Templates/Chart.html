@@ -1,4 +1,9 @@
 <div class="tx-dena-charts chart" style="width: {elementData.denacharts_container_width}">
-    <f:format.raw>{canvas}</f:format.raw>
-    <f:format.raw>{chartScript}</f:format.raw>
+    <canvas
+            class="tx-dena-charts-canvas"
+            id="tx-dena-charts-canvas-{elementData.uid}"
+            data-type="{chart.type}"
+            data-options="{chart.options}"
+            data-data="{chart.data}"
+    ></canvas>
 </div>
