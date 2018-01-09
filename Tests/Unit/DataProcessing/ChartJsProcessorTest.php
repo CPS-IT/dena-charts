@@ -107,13 +107,36 @@ class ChartJsProcessorTest extends UnitTestCase
      * provides data for processing
      */
     public function processGetsChartDataFromCSVDataProvider() {
-        return [];
+        return [
+            'empty CSV data' => [
+                ['csvData' => []],
+                ['options' => 'foo'],
+                '@todo'
+            ]
+        ];
     }
 
     /**
      * @test
+     * @param array $processedData
+     * @param array $localConfiguration
+     * @param string $expectedChartData
+     * @dataProvider processGetsChartDataFromCSVDataProvider
      */
-    public function processGetsChartDataFromCSV() {
+    public function processGetsChartDataFromCSV($processedData, $localConfiguration, $expectedChartData) {
+        $contentObjectConfiguration = [];
+        $processorConfiguration = [];
 
+        $this->typoScriptService->expects($this->once())
+            ->method('convertTypoScriptArrayToPlainArray')
+            ->with($processorConfiguration)
+            ->will($this->returnValue($processorConfiguration));
+
+        $this->subject->process(
+            $this->contentObjectRenderer,
+            $contentObjectConfiguration,
+            $processorConfiguration,
+            $processedData
+        );
     }
 }

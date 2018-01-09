@@ -10,7 +10,7 @@ tt_content.denacharts_chart {
 
     dataProcessing {
         10 = CPSIT\DenaCharts\DataProcessing\FileReaderCSV
-        30 = CPSIT\DenaCharts\DataProcessing\ChartProcessorChartJs
+        30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
         30 {
             bar {
                 type = bar
