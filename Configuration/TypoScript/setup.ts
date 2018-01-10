@@ -10,6 +10,10 @@ tt_content.denacharts_chart {
 
     dataProcessing {
         10 = CPSIT\DenaCharts\DataProcessing\FileReaderCSV
+        20 = CPSIT\DenaCharts\DataProcessing\DataTableFromArray
+        20 {
+            labelFromFirstColumn = 1
+        }
         30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
         30 {
             bar {
@@ -135,7 +139,7 @@ tt_content.denacharts_chart {
                     0 {
                         # percentage of cutout in the middle of chart
                         # default: 50
-                        #cutoutPercentage = 20
+                        cutoutPercentage = 20
 
                         # starting angle to draw arcs from
                         # default: -0.5 + Math.Pi

@@ -20,6 +20,9 @@ namespace CPSIT\DenaCharts\DataProcessing;
  ***************************************************************/
 
 use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
+use CPSIT\DenaCharts\Domain\Model\DataColumn;
+use CPSIT\DenaCharts\Domain\Model\DataRow;
+use CPSIT\DenaCharts\Domain\Model\DataTable;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -85,13 +88,12 @@ class ChartJsProcessor implements DataProcessorInterface
             $processorConfiguration
         );
         $contentElementData = $processedData['data'];
-
         $type = $contentElementData['denacharts_type'];
-        $localConfiguration = $configuration[$type];
+        $chartConfiguration = $configuration[$type];
 
-        $data = $this->getChartData($processedData, $localConfiguration);
-        $options = json_encode($localConfiguration['options']);
-        $chartType = $localConfiguration['type'];
+        $data = $this->getChartData($processedData, $chartConfiguration);
+        $options = json_encode($chartConfiguration['options']);
+        $chartType = $chartConfiguration['type'];
 
         $processedData = [
             'chart' => [
@@ -107,43 +109,81 @@ class ChartJsProcessor implements DataProcessorInterface
 
     /**
      * @param $processedData
-     * @param $localConfiguration
+     * @param $configuration
      * @return string
      */
-    protected function getChartData($processedData, $localConfiguration)
+    protected function getChartData($processedData, $configuration)
     {
-        $csvData = [];
-        if (!empty($processedData['csvData'])) {
-            $csvData = $processedData['csvData'];
+        $data = '';
+
+        if (!empty($processedData[DataTableFromArray::DATA_TABLE_KEY] && $processedData[DataTableFromArray::DATA_TABLE_KEY] instanceof DataTable)) {
+            /** @var DataTable $dataTable */
+            $dataTable = $processedData[DataTableFromArray::DATA_TABLE_KEY];
+            $dataSets = $this->createDataSets($dataTable);
+
+            if (!empty($configuration['datasets'] && is_array($configuration['datasets']))) {
+                $dataSets = $this->applyDataSetConfiguration($dataSets, $configuration['datasets']);
+            }
+
+            $headers = [];
+            /** @var DataColumn $column */
+            foreach ($dataTable->getColumns() as $column) {
+                $headers[] = $column->getLabel();
+            }
+
+            $data = json_encode([
+                'labels' => $headers,
+                'datasets' => $dataSets,
+            ]);
         }
 
-        $headers = $csvData[0];
-        array_shift($csvData);
+        return $data;
+    }
 
+    /**
+     * Creates data sets from data rows
+     *
+     * @param DataTable $dataTable
+     * @return array
+     */
+    protected function createDataSets($dataTable)
+    {
+        $dataRows = $dataTable->getRows();
         $dataSets = [];
-        foreach ($csvData as $index => $row) {
-            $set = [
+        /**
+         * @var  $row DataRow
+         */
+        foreach ($dataRows as $row) {
+            $dataSets[] = [
                 // label might not be appropriate for all chart types
-                'label' => $processedData['data']['header'],
-                'data' => $row
+                'label' => $row->getLabel(),
+                'data' => $row->getData()
             ];
+        }
+
+        return $dataSets;
+    }
+
+    /**
+     * @param $dataSets
+     * @param $configuration
+     * @return mixed
+     * @internal param $set
+     */
+    protected function applyDataSetConfiguration($dataSets, $configuration)
+    {
+        foreach ($dataSets as $index => &$set) {
             // add configuration for backgroundColor, borderColor etc. for each data set
-            if (!empty($localConfiguration['datasets'][$index]
-                && is_array($localConfiguration['datasets'][$index]))) {
-                foreach ($localConfiguration['datasets'][$index] as $key => $value) {
+            if (!empty($configuration[$index]
+                && is_array($configuration[$index]))) {
+                foreach ($configuration[$index] as $key => $value) {
                     if (strpos($value, '|') !== false) {
                         $value = GeneralUtility::trimExplode('|', $value);
                     }
                     $set[$key] = $value;
                 }
             }
-            $dataSets[] = $set;
         }
-        $data = json_encode([
-            'labels' => $headers,
-            'datasets' => $dataSets,
-        ]);
-
-        return $data;
+        return $dataSets;
     }
 }

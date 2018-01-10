@@ -66,7 +66,7 @@ class DataTableFactoryTest extends UnitTestCase
         $columns = $dataTable->getColumns();
 
         $this->assertCount(
-            count($firstRow),
+            count($firstRow)-1,
             $columns
         );
         /** @var DataColumn $column */

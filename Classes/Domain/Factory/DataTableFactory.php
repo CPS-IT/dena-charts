@@ -40,6 +40,7 @@ class DataTableFactory
 
         if (!empty($data)) {
             $headers = array_shift($data);
+            array_shift($headers);
 
             foreach ($headers as $header) {
                 $column = new DataColumn();

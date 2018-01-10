@@ -37,6 +37,7 @@ class FileReaderCSV implements DataProcessorInterface
 
     const DEFAULT_RELATION_TABLE = 'tt_content';
     const DEFAULT_FIELD_NAME = 'denacharts_data_file';
+    const CSV_DATA_KEY = 'csvData';
 
     /**
      * @var FileRepository
@@ -83,7 +84,7 @@ class FileReaderCSV implements DataProcessorInterface
             $processorConfiguration
         );
         $contentElementData = $processedData['data'];
-        $processedData['csvData'] = $this->getData($contentElementData, $configuration);
+        $processedData[static::CSV_DATA_KEY] = $this->getData($contentElementData, $configuration);
 
         return $processedData;
     }
