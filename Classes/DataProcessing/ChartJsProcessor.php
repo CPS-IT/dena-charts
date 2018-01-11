@@ -142,6 +142,8 @@ class ChartJsProcessor implements DataProcessorInterface
 
     /**
      * Creates data sets from data rows
+     * Data sets are array build from DataRow objects.
+     * There structure is specific for Chartjs
      *
      * @param DataTable $dataTable
      * @return array
@@ -165,10 +167,11 @@ class ChartJsProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param $dataSets
-     * @param $configuration
-     * @return mixed
-     * @internal param $set
+     * Applies a configuration to data sets
+     *
+     * @param array $dataSets Array of arrays
+     * @param array $configuration
+     * @return array Array of DataSet objects
      */
     protected function applyDataSetConfiguration($dataSets, $configuration)
     {
@@ -184,6 +187,7 @@ class ChartJsProcessor implements DataProcessorInterface
                 }
             }
         }
+
         return $dataSets;
     }
 }

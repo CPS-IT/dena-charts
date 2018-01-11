@@ -55,14 +55,14 @@ class DataTableFromArray implements DataProcessorInterface
      *
      * @param DataTableFactory $dataTableFactory
      */
-    public function injectDataTableFactory(DataTableFactory $dataTableFactory) {
+    public function injectDataTableFactory(DataTableFactory $dataTableFactory)
+    {
         $this->dataTableFactory = $dataTableFactory;
     }
 
     /**
-     * Process data: Reads CSV data from a file relation
-     * Per default a single file will be retrieved from file repository determined by
-     *
+     * Process data: Reads CSV data from processedData array, builds a DataTable object from it and
+     * stores it under a new key in the processedData
      *
      * @param ContentObjectRenderer $cObj The data of the content element or page
      * @param array $contentObjectConfiguration The configuration of Content Object
@@ -77,7 +77,10 @@ class DataTableFromArray implements DataProcessorInterface
         array $processedData
     )
     {
-        if (!empty($processedData[FileReaderCSV::CSV_DATA_KEY] && is_array($processedData[FileReaderCSV::CSV_DATA_KEY]))) {
+        if (
+            !empty($processedData[FileReaderCSV::CSV_DATA_KEY])
+            && is_array($processedData[FileReaderCSV::CSV_DATA_KEY])
+        ) {
             $configuration = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
                 $processorConfiguration
             );
