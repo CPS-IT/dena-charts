@@ -5,7 +5,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\DataProcessing;
 use CPSIT\DenaCharts\DataProcessing\ChartJsProcessor;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /***************************************************************

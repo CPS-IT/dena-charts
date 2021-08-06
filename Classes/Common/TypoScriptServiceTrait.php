@@ -19,7 +19,7 @@ namespace CPSIT\DenaCharts\Common;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 
 /**
  * Trait TypoScriptServiceTrait

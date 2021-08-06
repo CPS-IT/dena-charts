@@ -4,7 +4,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\DataProcessing;
 
 use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 
 /***************************************************************
  *  Copyright notice

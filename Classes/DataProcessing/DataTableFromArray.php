@@ -22,7 +22,7 @@ namespace CPSIT\DenaCharts\DataProcessing;
 use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 

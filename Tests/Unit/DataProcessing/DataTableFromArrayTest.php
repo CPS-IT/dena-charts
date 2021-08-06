@@ -7,7 +7,7 @@ use CPSIT\DenaCharts\DataProcessing\FileReaderCSV;
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /***************************************************************
