@@ -1,12 +1,10 @@
-lib.fluidContent {
+tt_content.denacharts_chart < lib.contentElement
+tt_content.denacharts_chart {
+  templateName = Chart
+
   templateRootPaths {
     200 = EXT:dena_charts/Resources/Private/Templates/
   }
-}
-
-tt_content.denacharts_chart < lib.fluidContent
-tt_content.denacharts_chart {
-  templateName = Chart
 
   dataProcessing {
     10 = CPSIT\DenaCharts\DataProcessing\FileReaderCSV

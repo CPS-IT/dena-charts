@@ -1,9 +1,14 @@
-<div class="tx-dena-charts chart" style="width: {elementData.denacharts_container_width}">
-    <canvas
-        class="tx-dena-charts-canvas"
-        id="tx-dena-charts-canvas-{elementData.uid}"
-        data-type="{chart.type}"
-        data-options="{chart.options}"
-        data-data="{chart.data}"
-    ></canvas>
-</div>
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+    <div class="tx-dena-charts chart" style="width: {elementData.denacharts_container_width}">
+        <canvas
+            class="tx-dena-charts-canvas"
+            id="tx-dena-charts-canvas-{elementData.uid}"
+            data-type="{chart.type}"
+            data-options="{chart.options}"
+            data-data="{chart.data}"
+        ></canvas>
+    </div>
+</f:section>
+</html>

@@ -95,14 +95,14 @@ class ChartJsProcessor implements DataProcessorInterface
         $options = json_encode($chartConfiguration['options']);
         $chartType = $chartConfiguration['type'];
 
-        $processedData = [
+        $processedData = array_replace_recursive($processedData, [
             'chart' => [
                 'data' => $data,
                 'options' => $options,
                 'type' => $chartType
             ],
             'elementData' => $contentElementData,
-        ];
+        ]);
 
         return $processedData;
     }
