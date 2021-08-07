@@ -43,9 +43,13 @@ class DataTableFactory
             $headers = array_shift($data);
             array_shift($headers);
 
-            foreach ($headers as $header) {
+            foreach ($headers as $columnIndex => $header) {
                 $column = new DataColumn();
                 $column->setLabel($header);
+
+                $dataColumn = array_column($data, $columnIndex + 1);
+                $column->setData($dataColumn);
+
                 $dataTable->addColumn($column);
             }
 

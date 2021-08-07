@@ -123,9 +123,9 @@ class ChartJsProcessor implements DataProcessorInterface
             }
 
             $headers = [];
-            /** @var DataColumn $column */
-            foreach ($dataTable->getColumns() as $column) {
-                $headers[] = $column->getLabel();
+            /** @var DataColumn $rows */
+            foreach ($dataTable->getRows() as $rows) {
+                $headers[] = $rows->getLabel();
             }
 
             $data = json_encode([
@@ -147,16 +147,16 @@ class ChartJsProcessor implements DataProcessorInterface
      */
     protected function createDataSets(DataTable $dataTable): array
     {
-        $dataRows = $dataTable->getRows();
+        $dataColumns = $dataTable->getColumns();
         $dataSets = [];
         /**
-         * @var  $row DataRow
+         * @var  $column DataRow
          */
-        foreach ($dataRows as $row) {
+        foreach ($dataColumns as $column) {
             $dataSets[] = [
                 // label might not be appropriate for all chart types
-                'label' => $row->getLabel(),
-                'data' => $row->getData()
+                'label' => $column->getLabel(),
+                'data' => $column->getData()
             ];
         }
 

@@ -23,6 +23,13 @@ class DataColumn
 {
     protected string $label = '';
 
+    /**
+     * Data
+     *
+     * @var array
+     */
+    protected $data = [];
+
     public function getLabel(): string
     {
         return $this->label;
@@ -31,5 +38,15 @@ class DataColumn
     public function setLabel(string $label)
     {
         $this->label = $label;
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    public function setData(array $data)
+    {
+        $this->data = $data;
     }
 }
