@@ -102,7 +102,8 @@ class FileReaderCSV implements DataProcessorInterface
         if (!empty($files)) {
             /** @var FileReference $file */
             $file = $files[0];
-            $fileContent = rtrim($file->getContents());
+            $fileContentRaw = rtrim($file->getContents());
+            $fileContent = $this->fixEncoding($fileContentRaw);
         }
         $delimiter = ',';
         $enclosure = '"';
@@ -115,5 +116,16 @@ class FileReaderCSV implements DataProcessorInterface
         }, $rows);
 
         return $records;
+    }
+
+    /**
+     * @param string $fileContentRaw
+     * @return string UTF-8 encoded string
+     */
+    protected function fixEncoding(string $fileContentRaw)
+    {
+        $encoding = mb_detect_encoding($fileContentRaw, 'UTF-8, ISO-8859-1', true);
+        $fileContent = mb_convert_encoding($fileContentRaw, 'UTF-8', $encoding);
+        return $fileContent;
     }
 }
