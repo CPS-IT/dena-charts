@@ -22,6 +22,7 @@ namespace CPSIT\DenaCharts\Domain\Factory;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
+use NumberFormatter;
 
 /**
  * Class DataTableFactory
@@ -48,7 +49,11 @@ class DataTableFactory
                 $column->setLabel($header);
 
                 $dataColumn = array_column($data, $columnIndex + 1);
-                $column->setData($dataColumn);
+                $numberFormatter = NumberFormatter::create('de_DE', NumberFormatter::DECIMAL);
+                $parsedDataColumn = array_map(function($formattedValue) use ($numberFormatter) {
+                    return $numberFormatter->parse($formattedValue);
+                }, $dataColumn);
+                $column->setData($parsedDataColumn);
 
                 $dataTable->addColumn($column);
             }
