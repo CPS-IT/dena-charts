@@ -105,7 +105,7 @@ class FileReaderCSV implements DataProcessorInterface
             $fileContentRaw = rtrim($file->getContents());
             $fileContent = $this->fixEncoding($fileContentRaw);
         }
-        $delimiter = ',';
+        $delimiter = ';';
         $enclosure = '"';
         $escape = "\\";
 
