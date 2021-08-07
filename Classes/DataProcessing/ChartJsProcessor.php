@@ -33,7 +33,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class ChartJsProcessor implements DataProcessorInterface
 {
-    use TypoScriptServiceTrait;
+    protected TypoScriptService $typoScriptService;
 
     /**
      * Type 'Bar Chart'
@@ -60,12 +60,9 @@ class ChartJsProcessor implements DataProcessorInterface
      */
     const CHART_TYPE_RADAR = 'radar';
 
-    /**
-     * ChartProcessor constructor.
-     */
-    public function __construct()
+    public function __construct(TypoScriptService $typoScriptService)
     {
-        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
+        $this->typoScriptService = $typoScriptService;
     }
 
     /**

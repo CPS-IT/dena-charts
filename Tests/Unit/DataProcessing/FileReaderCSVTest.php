@@ -7,6 +7,7 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /***************************************************************
@@ -56,57 +57,17 @@ class FileReaderCSVTest extends UnitTestCase
             ->disableOriginalConstructor()
             ->setMethods(['findByRelation'])
             ->getMock();
-        $this->subject = $this->getMockBuilder(FileReaderCSV::class)
-            ->setConstructorArgs([$this->fileRepository])
-            ->setMethods(['dummy'])
-            ->getMock();
         $this->typoScriptService = $this->getMockBuilder(TypoScriptService::class)
             ->disableOriginalConstructor()
             ->setMethods(['convertTypoScriptArrayToPlainArray'])
             ->getMock();
-        $this->subject->injectTypoScriptService($this->typoScriptService);
+        $this->subject = $this->getMockBuilder(FileReaderCSV::class)
+            ->setConstructorArgs([$this->typoScriptService, $this->fileRepository])
+            ->setMethods(['dummy'])
+            ->getMock();
 
         $this->contentObjectRenderer = $this->getMockBuilder(ContentObjectRenderer::class)
             ->disableOriginalConstructor()->getMock();
-    }
-
-    /**
-     * @test
-     */
-    public function constructorInstantiatesFileRepository()
-    {
-        $this->assertAttributeInstanceOf(
-            FileRepository::class,
-            'fileRepository',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function constructorInstantiatesTypoScriptService()
-    {
-        $this->assertAttributeInstanceOf(
-            TypoScriptService::class,
-            'typoScriptService',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function typoScriptServiceCanBeInjected()
-    {
-        $this->subject = new FileReaderCSV($this->fileRepository);
-
-        $this->subject->injectTypoScriptService($this->typoScriptService);
-        $this->assertAttributeSame(
-            $this->typoScriptService,
-            'typoScriptService',
-            $this->subject
-        );
     }
 
     /**

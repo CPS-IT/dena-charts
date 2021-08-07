@@ -19,9 +19,7 @@ namespace CPSIT\DenaCharts\DataProcessing;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -32,14 +30,18 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class DataTableFromArray implements DataProcessorInterface
 {
-    use TypoScriptServiceTrait;
-
     const DATA_TABLE_KEY = 'dataTable';
+
+    protected TypoScriptService $typoScriptService;
 
     protected DataTableFactory $dataTableFactory;
 
-    public function __construct(DataTableFactory $dataTableFactory)
+    public function __construct(
+        TypoScriptService $typoScriptService,
+        DataTableFactory $dataTableFactory
+    )
     {
+        $this->typoScriptService = $typoScriptService;
         $this->dataTableFactory = $dataTableFactory;
     }
 

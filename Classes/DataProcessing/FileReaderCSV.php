@@ -19,10 +19,8 @@ namespace CPSIT\DenaCharts\DataProcessing;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -33,29 +31,19 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class FileReaderCSV implements DataProcessorInterface
 {
-    use TypoScriptServiceTrait;
-
     const DEFAULT_RELATION_TABLE = 'tt_content';
     const DEFAULT_FIELD_NAME = 'denacharts_data_file';
     const CSV_DATA_KEY = 'csvData';
 
+    protected TypoScriptService $typoScriptService;
     protected FileRepository $fileRepository;
 
-    /**
-     * FileReaderCSV constructor.
-     */
-    public function __construct()
+    public function __construct(
+        TypoScriptService $typoScriptService,
+        FileRepository $fileRepository
+    )
     {
-        $this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-    }
-
-    /**
-     * Injects the file repository
-     *
-     * @param FileRepository $fileRepository
-     */
-    public function injectFileRepository(FileRepository $fileRepository) {
+        $this->typoScriptService = $typoScriptService;
         $this->fileRepository = $fileRepository;
     }
 
