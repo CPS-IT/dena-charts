@@ -39,10 +39,7 @@ class FileReaderCSV implements DataProcessorInterface
     const DEFAULT_FIELD_NAME = 'denacharts_data_file';
     const CSV_DATA_KEY = 'csvData';
 
-    /**
-     * @var FileRepository
-     */
-    protected $fileRepository;
+    protected FileRepository $fileRepository;
 
     /**
      * FileReaderCSV constructor.
@@ -92,11 +89,11 @@ class FileReaderCSV implements DataProcessorInterface
     /**
      * Returns the raw data from the data file (a CSV file) as array
      *
-     * @param $contentElementData
-     * @param $configuration
+     * @param array $contentElementData
+     * @param array $configuration
      * @return array Array of records. First row contains headers.
      */
-    protected function getData($contentElementData, $configuration)
+    protected function getData(array $contentElementData, array $configuration): array
     {
         $tableName = static::DEFAULT_RELATION_TABLE;
         $fieldName = static::DEFAULT_FIELD_NAME;

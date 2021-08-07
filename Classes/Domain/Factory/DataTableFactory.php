@@ -35,7 +35,8 @@ class DataTableFactory
      * @param array $configuration Optional configuration
      * @return DataTable
      */
-    public function fromArray(array $data, $configuration = []) {
+    public function fromArray(array $data, array $configuration = []): DataTable
+    {
         $dataTable = new DataTable();
 
         if (!empty($data)) {

@@ -27,10 +27,7 @@ use TYPO3\CMS\Core\TypoScript\TypoScriptService;
  */
 trait TypoScriptServiceTrait
 {
-    /**
-     * @var TypoScriptService
-     */
-    protected $typoScriptService;
+    protected TypoScriptService $typoScriptService;
 
     /**
      * Injects the TypoScriptService

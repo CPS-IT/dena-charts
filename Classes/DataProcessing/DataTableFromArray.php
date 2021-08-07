@@ -36,26 +36,9 @@ class DataTableFromArray implements DataProcessorInterface
 
     const DATA_TABLE_KEY = 'dataTable';
 
-    /**
-     * @var DataTableFactory
-     */
-    protected $dataTableFactory;
+    protected DataTableFactory $dataTableFactory;
 
-    /**
-     * DataTableFromArray constructor.
-     */
-    public function __construct()
-    {
-        $this->dataTableFactory = GeneralUtility::makeInstance(DataTableFactory::class);
-        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-    }
-
-    /**
-     * Injects the file repository
-     *
-     * @param DataTableFactory $dataTableFactory
-     */
-    public function injectDataTableFactory(DataTableFactory $dataTableFactory)
+    public function __construct(DataTableFactory $dataTableFactory)
     {
         $this->dataTableFactory = $dataTableFactory;
     }
@@ -75,7 +58,7 @@ class DataTableFromArray implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    )
+    ): array
     {
         if (
             !empty($processedData[FileReaderCSV::CSV_DATA_KEY])

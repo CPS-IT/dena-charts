@@ -29,12 +29,12 @@ class DataTable
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<CPSIT\DenaCharts\Domain\Model\DataRow>
      */
-    protected $rows;
+    protected ObjectStorage $rows;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<CPSIT\DenaCharts\Domain\Model\DataColumn>
      */
-    protected $columns;
+    protected ObjectStorage $columns;
 
     /**
      * Constructor

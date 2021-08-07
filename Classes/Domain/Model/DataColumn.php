@@ -21,24 +21,14 @@ namespace CPSIT\DenaCharts\Domain\Model;
 
 class DataColumn
 {
-    /**
-     * Label
-     * @var string
-     */
-    protected $label = '';
+    protected string $label = '';
 
-    /**
-     * @return string
-     */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     */
-    public function setLabel($label)
+    public function setLabel(string $label)
     {
         $this->label = $label;
     }

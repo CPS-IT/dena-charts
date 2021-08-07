@@ -82,7 +82,7 @@ class ChartJsProcessor implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    )
+    ): array
     {
         $configuration = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
             $processorConfiguration
@@ -108,11 +108,11 @@ class ChartJsProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param $processedData
-     * @param $configuration
+     * @param array $processedData
+     * @param array $configuration
      * @return string
      */
-    protected function getChartData($processedData, $configuration)
+    protected function getChartData(array $processedData, ?array $configuration): string
     {
         $data = '';
 
@@ -148,7 +148,7 @@ class ChartJsProcessor implements DataProcessorInterface
      * @param DataTable $dataTable
      * @return array
      */
-    protected function createDataSets($dataTable)
+    protected function createDataSets(DataTable $dataTable): array
     {
         $dataRows = $dataTable->getRows();
         $dataSets = [];
@@ -173,7 +173,7 @@ class ChartJsProcessor implements DataProcessorInterface
      * @param array $configuration
      * @return array Array of DataSet objects
      */
-    protected function applyDataSetConfiguration($dataSets, $configuration)
+    protected function applyDataSetConfiguration(array $dataSets, array $configuration): array
     {
         foreach ($dataSets as $index => &$set) {
             // add configuration for backgroundColor, borderColor etc. for each data set
