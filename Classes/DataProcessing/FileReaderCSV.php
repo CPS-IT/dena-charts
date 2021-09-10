@@ -19,11 +19,9 @@ namespace CPSIT\DenaCharts\DataProcessing;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -33,32 +31,19 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class FileReaderCSV implements DataProcessorInterface
 {
-    use TypoScriptServiceTrait;
-
     const DEFAULT_RELATION_TABLE = 'tt_content';
     const DEFAULT_FIELD_NAME = 'denacharts_data_file';
     const CSV_DATA_KEY = 'csvData';
 
-    /**
-     * @var FileRepository
-     */
-    protected $fileRepository;
+    protected TypoScriptService $typoScriptService;
+    protected FileRepository $fileRepository;
 
-    /**
-     * FileReaderCSV constructor.
-     */
-    public function __construct()
+    public function __construct(
+        TypoScriptService $typoScriptService,
+        FileRepository $fileRepository
+    )
     {
-        $this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-    }
-
-    /**
-     * Injects the file repository
-     *
-     * @param FileRepository $fileRepository
-     */
-    public function injectFileRepository(FileRepository $fileRepository) {
+        $this->typoScriptService = $typoScriptService;
         $this->fileRepository = $fileRepository;
     }
 
@@ -92,11 +77,11 @@ class FileReaderCSV implements DataProcessorInterface
     /**
      * Returns the raw data from the data file (a CSV file) as array
      *
-     * @param $contentElementData
-     * @param $configuration
+     * @param array $contentElementData
+     * @param array $configuration
      * @return array Array of records. First row contains headers.
      */
-    protected function getData($contentElementData, $configuration)
+    protected function getData(array $contentElementData, array $configuration): array
     {
         $tableName = static::DEFAULT_RELATION_TABLE;
         $fieldName = static::DEFAULT_FIELD_NAME;

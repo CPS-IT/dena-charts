@@ -5,11 +5,11 @@ $load = function ($_EXTKEY) {
     $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
     if (!empty($settings['includeJavaScript'])) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
-            '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Resources/Private/TypoScript/javaScript.ts">');
+            '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Resources/Private/TypoScript/javaScript.typoscript">');
     }
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT:source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/NewContentElementWizard.ts">'
+        '<INCLUDE_TYPOSCRIPT:source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/NewContentElementWizard.typoscript">'
     );
 };
 

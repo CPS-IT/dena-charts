@@ -7,7 +7,7 @@ use CPSIT\DenaCharts\DataProcessing\FileReaderCSV;
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /***************************************************************
@@ -53,75 +53,18 @@ class DataTableFromArrayTest extends UnitTestCase
      */
     public function setUp()
     {
-        $this->subject = $this->getMockBuilder(DataTableFromArray::class)
-            ->setMethods(['dummy'])
+        $this->dataTableFactory = $this->getMockBuilder(DataTableFactory::class)
+            ->setMethods(['fromArray'])
             ->getMock();
         $this->typoScriptService = $this->getMockBuilder(TypoScriptService::class)
             ->disableOriginalConstructor()
             ->setMethods(['convertTypoScriptArrayToPlainArray'])
             ->getMock();
-        $this->subject->injectTypoScriptService($this->typoScriptService);
-
-        $this->dataTableFactory = $this->getMockBuilder(DataTableFactory::class)
-            ->setMethods(['fromArray'])
-            ->getMock();
-        $this->subject->injectDataTableFactory($this->dataTableFactory);
+        $this->subject = $this->getMockBuilder(DataTableFromArray::class)
+            ->setConstructorArgs([$this->typoScriptService, $this->dataTableFactory])
+            ->setMethods(['dummy'])->getMock();
         $this->contentObjectRenderer = $this->getMockBuilder(ContentObjectRenderer::class)
             ->disableOriginalConstructor()->getMock();
-    }
-
-    /**
-     * @test
-     */
-    public function constructorInstantiatesDataTableFactory()
-    {
-        $this->assertAttributeInstanceOf(
-            DataTableFactory::class,
-            'dataTableFactory',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function constructorInstantiatesTypoScriptService()
-    {
-        $this->assertAttributeInstanceOf(
-            TypoScriptService::class,
-            'typoScriptService',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function typoScriptServiceCanBeInjected()
-    {
-        $this->subject = new DataTableFromArray();
-
-        $this->subject->injectTypoScriptService($this->typoScriptService);
-        $this->assertAttributeSame(
-            $this->typoScriptService,
-            'typoScriptService',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function dataTableFactoryCanBeInjected()
-    {
-        $this->subject = new DataTableFromArray();
-
-        $this->subject->injectDataTableFactory($this->dataTableFactory);
-        $this->assertAttributeSame(
-            $this->dataTableFactory,
-            'dataTableFactory',
-            $this->subject
-        );
     }
 
     /**

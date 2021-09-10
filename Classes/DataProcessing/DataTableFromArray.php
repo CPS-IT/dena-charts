@@ -19,10 +19,8 @@ namespace CPSIT\DenaCharts\DataProcessing;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -32,31 +30,18 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class DataTableFromArray implements DataProcessorInterface
 {
-    use TypoScriptServiceTrait;
-
     const DATA_TABLE_KEY = 'dataTable';
 
-    /**
-     * @var DataTableFactory
-     */
-    protected $dataTableFactory;
+    protected TypoScriptService $typoScriptService;
 
-    /**
-     * DataTableFromArray constructor.
-     */
-    public function __construct()
-    {
-        $this->dataTableFactory = GeneralUtility::makeInstance(DataTableFactory::class);
-        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-    }
+    protected DataTableFactory $dataTableFactory;
 
-    /**
-     * Injects the file repository
-     *
-     * @param DataTableFactory $dataTableFactory
-     */
-    public function injectDataTableFactory(DataTableFactory $dataTableFactory)
+    public function __construct(
+        TypoScriptService $typoScriptService,
+        DataTableFactory $dataTableFactory
+    )
     {
+        $this->typoScriptService = $typoScriptService;
         $this->dataTableFactory = $dataTableFactory;
     }
 
@@ -75,7 +60,7 @@ class DataTableFromArray implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    )
+    ): array
     {
         if (
             !empty($processedData[FileReaderCSV::CSV_DATA_KEY])

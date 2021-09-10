@@ -6,7 +6,8 @@ use CPSIT\DenaCharts\DataProcessing\FileReaderCSV;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /***************************************************************
@@ -52,76 +53,21 @@ class FileReaderCSVTest extends UnitTestCase
      */
     public function setUp()
     {
-        $this->subject = $this->getMockBuilder(FileReaderCSV::class)
-            ->setMethods(['dummy'])
+        $this->fileRepository = $this->getMockBuilder(FileRepository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['findByRelation'])
             ->getMock();
         $this->typoScriptService = $this->getMockBuilder(TypoScriptService::class)
             ->disableOriginalConstructor()
             ->setMethods(['convertTypoScriptArrayToPlainArray'])
             ->getMock();
-        $this->subject->injectTypoScriptService($this->typoScriptService);
-
-        $this->fileRepository = $this->getMockBuilder(FileRepository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['findByRelation'])
+        $this->subject = $this->getMockBuilder(FileReaderCSV::class)
+            ->setConstructorArgs([$this->typoScriptService, $this->fileRepository])
+            ->setMethods(['dummy'])
             ->getMock();
-        $this->subject->injectFileRepository($this->fileRepository);
+
         $this->contentObjectRenderer = $this->getMockBuilder(ContentObjectRenderer::class)
             ->disableOriginalConstructor()->getMock();
-    }
-
-    /**
-     * @test
-     */
-    public function constructorInstantiatesFileRepository()
-    {
-        $this->assertAttributeInstanceOf(
-            FileRepository::class,
-            'fileRepository',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function constructorInstantiatesTypoScriptService()
-    {
-        $this->assertAttributeInstanceOf(
-            TypoScriptService::class,
-            'typoScriptService',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function typoScriptServiceCanBeInjected()
-    {
-        $this->subject = new FileReaderCSV();
-
-        $this->subject->injectTypoScriptService($this->typoScriptService);
-        $this->assertAttributeSame(
-            $this->typoScriptService,
-            'typoScriptService',
-            $this->subject
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function fileRepositoryCanBeInjected()
-    {
-        $this->subject = new FileReaderCSV();
-
-        $this->subject->injectFileRepository($this->fileRepository);
-        $this->assertAttributeSame(
-            $this->fileRepository,
-            'fileRepository',
-            $this->subject
-        );
     }
 
     /**
@@ -137,7 +83,7 @@ class FileReaderCSVTest extends UnitTestCase
             $this->contentObjectRenderer,
             [],
             $typoScript,
-            []
+            ['data' => []],
         );
     }
 

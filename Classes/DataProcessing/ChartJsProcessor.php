@@ -24,7 +24,7 @@ use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -33,7 +33,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class ChartJsProcessor implements DataProcessorInterface
 {
-    use TypoScriptServiceTrait;
+    protected TypoScriptService $typoScriptService;
 
     /**
      * Type 'Bar Chart'
@@ -60,12 +60,9 @@ class ChartJsProcessor implements DataProcessorInterface
      */
     const CHART_TYPE_RADAR = 'radar';
 
-    /**
-     * ChartProcessor constructor.
-     */
-    public function __construct()
+    public function __construct(TypoScriptService $typoScriptService)
     {
-        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
+        $this->typoScriptService = $typoScriptService;
     }
 
     /**
@@ -82,7 +79,7 @@ class ChartJsProcessor implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    )
+    ): array
     {
         $configuration = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
             $processorConfiguration
@@ -95,24 +92,24 @@ class ChartJsProcessor implements DataProcessorInterface
         $options = json_encode($chartConfiguration['options']);
         $chartType = $chartConfiguration['type'];
 
-        $processedData = [
+        $processedData = array_replace_recursive($processedData, [
             'chart' => [
                 'data' => $data,
                 'options' => $options,
                 'type' => $chartType
             ],
             'elementData' => $contentElementData,
-        ];
+        ]);
 
         return $processedData;
     }
 
     /**
-     * @param $processedData
-     * @param $configuration
+     * @param array $processedData
+     * @param array $configuration
      * @return string
      */
-    protected function getChartData($processedData, $configuration)
+    protected function getChartData(array $processedData, ?array $configuration): string
     {
         $data = '';
 
@@ -148,7 +145,7 @@ class ChartJsProcessor implements DataProcessorInterface
      * @param DataTable $dataTable
      * @return array
      */
-    protected function createDataSets($dataTable)
+    protected function createDataSets(DataTable $dataTable): array
     {
         $dataRows = $dataTable->getRows();
         $dataSets = [];
@@ -173,7 +170,7 @@ class ChartJsProcessor implements DataProcessorInterface
      * @param array $configuration
      * @return array Array of DataSet objects
      */
-    protected function applyDataSetConfiguration($dataSets, $configuration)
+    protected function applyDataSetConfiguration(array $dataSets, array $configuration): array
     {
         foreach ($dataSets as $index => &$set) {
             // add configuration for backgroundColor, borderColor etc. for each data set

@@ -1,0 +1,17 @@
+# Configuration/Services.yaml
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  CPSIT\DenaCharts\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor:
+    public: true
+  CPSIT\DenaCharts\DataProcessing\DataTableFromArray:
+    public: true
+  CPSIT\DenaCharts\DataProcessing\FileReaderCSV:
+    public: true
