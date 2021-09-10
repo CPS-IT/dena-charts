@@ -19,14 +19,38 @@ tt_content.denacharts_chart {
         type = bar
         datasets {
           0 {
-            backgroundColor (
-                            rgba(255, 99, 132, 0.2)|rgba(54, 162, 235, 0.2)|rgba(255, 206, 86, 0.2)|
-                            rgba(75, 192, 192, 0.2)|rgba(153, 102, 255, 0.2)|rgba(255, 159, 64, 0.2)
-            )
-            borderColor (
-                            rgb(255,99,132)|rgb(54,162,235)|rgb(255,206,86)|
-                            rgb(75,192,192)|rgb(153,102,255)|rgb(199,159,64)
-            )
+            backgroundColor = rgba(255, 99, 132, 0.2)
+            borderColor = rgb(255,99,132)
+            borderWidth = 3
+          }
+          1 {
+            backgroundColor = rgba(54, 162, 235, 0.2)
+            borderColor = rgb(54,162,235)
+            borderWidth = 3
+          }
+          2 {
+            backgroundColor = rgba(255, 206, 86, 0.2)
+            borderColor = rgb(255,206,86)
+            borderWidth = 3
+          }
+          3 {
+            backgroundColor = rgba(75, 192, 192, 0.2)
+            borderColor = rgb(75,192,192)
+            borderWidth = 3
+          }
+          4 {
+            backgroundColor = rgba(153, 102, 255, 0.2)
+            borderColor = rgb(153,102,255)
+            borderWidth = 3
+          }
+          5 {
+            backgroundColor = rgba(255, 159, 64, 0.2)
+            borderColor = rgb(199,159,64)
+            borderWidth = 3
+          }
+          6 {
+            backgroundColor = rgba(227, 106, 101, 0.2)
+            borderColor = rgb(227,106,101)
             borderWidth = 3
           }
         }
@@ -64,8 +88,43 @@ tt_content.denacharts_chart {
           0 {
             fill = false
             lineTension = 0.2
-            #backgroundColor = rgb(75, 192, 192)
-            borderColor = rgb(75, 192, 192)
+            borderColor = rgb(255,99,132)
+            borderWidth = 3
+          }
+          1 {
+            fill = false
+            lineTension = 0.2
+            borderColor = rgb(54,162,235)
+            borderWidth = 3
+          }
+          2 {
+            fill = false
+            lineTension = 0.2
+            borderColor = rgb(255,206,86)
+            borderWidth = 3
+          }
+          3 {
+            fill = false
+            lineTension = 0.2
+            borderColor = rgb(75,192,192)
+            borderWidth = 3
+          }
+          4 {
+            fill = false
+            lineTension = 0.2
+            borderColor = rgb(153,102,255)
+            borderWidth = 3
+          }
+          5 {
+            fill = false
+            lineTension = 0.2
+            borderColor = rgb(199,159,64)
+            borderWidth = 3
+          }
+          6 {
+            fill = false
+            lineTension = 0.2
+            borderColor = rgb(227,106,101)
             borderWidth = 3
           }
         }
