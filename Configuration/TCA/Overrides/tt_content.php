@@ -36,6 +36,7 @@ $tempColumns = [
             'type' => 'radio',
             'items' => [
                 ['bar', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR],
+                ['column', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_COLUMN],
                 ['line', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE],
                 ['pie', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_PIE],
                 ['doughnut', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_DOUGHNUT],

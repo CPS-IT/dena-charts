@@ -16,7 +16,7 @@ tt_content.denacharts_chart {
     30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
     30 {
       bar {
-        type = bar
+        type = horizontalBar
         datasets {
           0 {
             backgroundColor = rgba(255, 99, 132, 0.2)
@@ -81,6 +81,9 @@ tt_content.denacharts_chart {
           }
         }
       }
+
+      column <.bar
+      column.type = bar
 
       line {
         type = line

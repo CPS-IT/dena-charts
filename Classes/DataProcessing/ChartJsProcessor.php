@@ -36,6 +36,11 @@ class ChartJsProcessor implements DataProcessorInterface
     protected TypoScriptService $typoScriptService;
 
     /**
+     * Type 'Column Chart'
+     */
+    const CHART_TYPE_COLUMN = 'column';
+
+    /**
      * Type 'Bar Chart'
      */
     const CHART_TYPE_BAR = 'bar';
