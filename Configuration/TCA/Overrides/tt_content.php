@@ -17,15 +17,16 @@
     'DENA Charts'
 );
 
-$tempColumns = [
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', [
     'denacharts_data_file' => [
         'label' => 'Data File',
         'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-            'denacharts_data_file', [
-            'minitems' => 1,
-            'maxitems' => 1,
-            'eval' => 'required'
-        ],
+            'denacharts_data_file',
+            [
+                'minitems' => 1,
+                'maxitems' => 1,
+                'eval' => 'required'
+            ],
             'csv'
         )
     ],
@@ -64,10 +65,8 @@ $tempColumns = [
             'eval' => 'required'
         ]
     ]
-];
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
-    'tt_content', $tempColumns
-);
+]);
+
 // Configure the default backend fields for the chart content element
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] =[
     'showitem' => 'denacharts_aspect_ratio,denacharts_container_width'
