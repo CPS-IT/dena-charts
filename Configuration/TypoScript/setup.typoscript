@@ -16,7 +16,7 @@ tt_content.denacharts_chart {
     30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
     30 {
       bar {
-        type = horizontalBar
+        type = bar
         datasets {
           0 {
             backgroundColor = rgba(255, 99, 132, 0.2)
@@ -60,30 +60,37 @@ tt_content.denacharts_chart {
           #categoryPercentage =
           #barThickness =
           #maxBarThickness =
-          gridLines.offsetGridLines = false
-          legend {
-            # default: true, allowed: true, false
-            # display = false
+          grid.offset = false
+          plugins {
+            legend {
+              # default: true, allowed: true, false
+              # display = false
 
-            # default: top, allowed: top, bottom, left, right
-            position = bottom
+              # default: top, allowed: top, bottom, left, right
+              position = bottom
 
-            # box takes full canvas width, pushing other boxes down
-            # default: true, allowed: true, false
-            # fullWidth = true
+              # box takes full canvas width, pushing other boxes down
+              # default: true, allowed: true, false
+              # fullWidth = true
 
-            # data sets in reverse order
-            # default: false, allowed: true,false
-            # reverse = true
-            #labels {
-            #
-            #}
+              # data sets in reverse order
+              # default: false, allowed: true,false
+              # reverse = true
+              #labels {
+              #
+              #}
+            }
           }
+          indexAxis = y
         }
       }
 
       column <.bar
-      column.type = bar
+      column {
+        options {
+          indexAxis >
+        }
+      }
 
       line {
         type = line
@@ -137,7 +144,7 @@ tt_content.denacharts_chart {
           #categoryPercentage =
           #barThickness =
           #maxBarThickness =
-          gridLines.offsetGridLines = false
+          options.grid.offset = false
         }
       }
 
@@ -158,7 +165,7 @@ tt_content.denacharts_chart {
           #categoryPercentage =
           #barThickness =
           #maxBarThickness =
-          gridLines.offsetGridLines = false
+          options.grid.offset = false
         }
       }
 
@@ -190,7 +197,7 @@ tt_content.denacharts_chart {
           #categoryPercentage =
           #barThickness =
           #maxBarThickness =
-          gridLines.offsetGridLines = false
+          options.grid.offset = false
         }
       }
 
@@ -222,7 +229,7 @@ tt_content.denacharts_chart {
           #categoryPercentage =
           #barThickness =
           #maxBarThickness =
-          gridLines.offsetGridLines = false
+          options.grid.offset = false
         }
       }
     }
