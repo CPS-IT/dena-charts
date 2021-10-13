@@ -36,24 +36,24 @@ class ChartJsProcessor implements DataProcessorInterface
     protected TypoScriptService $typoScriptService;
 
     /**
-     * Type 'Column Chart'
-     */
-    const CHART_TYPE_COLUMN = 'column';
-
-    /**
      * Type 'Bar Chart'
      */
     const CHART_TYPE_BAR = 'bar';
 
     /**
-     * Type 'Line Chart'
+     * Type 'Column Chart'
      */
-    const CHART_TYPE_LINE = 'line';
+    const CHART_TYPE_COLUMN = 'column';
 
     /**
      * Type 'Doughnut Chart'
      */
     const CHART_TYPE_DOUGHNUT = 'doughnut';
+
+    /**
+     * Type 'Line Chart'
+     */
+    const CHART_TYPE_LINE = 'line';
 
     /**
      * Type 'Pie Chart'
@@ -64,6 +64,15 @@ class ChartJsProcessor implements DataProcessorInterface
      * Type 'Radar Chart'
      */
     const CHART_TYPE_RADAR = 'radar';
+
+    const CHART_TYPES = [
+        self::CHART_TYPE_BAR,
+        self::CHART_TYPE_COLUMN,
+        self::CHART_TYPE_DOUGHNUT,
+        self::CHART_TYPE_LINE,
+        self::CHART_TYPE_PIE,
+        self::CHART_TYPE_RADAR,
+    ];
 
     public function __construct(TypoScriptService $typoScriptService)
     {
@@ -90,8 +99,7 @@ class ChartJsProcessor implements DataProcessorInterface
             $processorConfiguration
         );
         $contentElementData = $processedData['data'];
-        $type = $contentElementData['denacharts_type'];
-        $chartConfiguration = $configuration[$type];
+        $chartConfiguration = $configuration;
 
         $data = $this->getChartData($processedData, $chartConfiguration);
         $options = json_encode($chartConfiguration['options']);

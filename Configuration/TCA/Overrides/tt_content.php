@@ -1,16 +1,5 @@
 <?php
 
-// Adds the content element to the "Type" dropdown
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
-    [
-        'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:TCA.type.denacharts_chart',
-        'denacharts_chart',
-        'EXT:dena_charts/Resources/Public/Icons/ContentElements/chart.gif'
-    ],
-    'CType',
-    'dena_charts'
-);
-
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
     'dena_charts',
     'Configuration/TypoScript/',
@@ -29,23 +18,6 @@
             ],
             'csv'
         )
-    ],
-    'denacharts_type' => [
-        'exclude' => 0,
-        'label' => 'Chart Type',
-        'config' => [
-            'type' => 'radio',
-            'items' => [
-                ['bar', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR],
-                ['column', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_COLUMN],
-                ['line', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE],
-                ['pie', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_PIE],
-                ['doughnut', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_DOUGHNUT],
-                ['radar', \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_RADAR],
-            ],
-            'default' => \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR,
-            'eval' => 'required'
-        ],
     ],
     'denacharts_aspect_ratio' => [
         'exclude' => 0,
@@ -67,21 +39,37 @@
     ]
 ]);
 
-// Configure the default backend fields for the chart content element
-$GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] =[
-    'showitem' => 'denacharts_aspect_ratio,denacharts_container_width'
+// Configure the default palettes for the chart content element
+$GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] = [
+    'showitem' => 'denacharts_aspect_ratio,denacharts_container_width',
 ];
-$GLOBALS['TCA']['tt_content']['types']['denacharts_chart'] = [
-    'showitem' => '
-         --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.general;general,
-         --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.header;header,
-      --div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chart,
-        denacharts_type,denacharts_data_file,
-        --palette--;;chart_imagesize,
-      --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
-         --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,
-      --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.access,
-         --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.visibility;visibility,
-         --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.access;access,
-      --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.extended
-'];
+
+// Register separate CTypes for all chart types
+foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chartType) {
+    $cType = 'denacharts_chart_' . $chartType;
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
+        [
+            'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.CType.I.' . $cType,
+            $cType,
+            'dena_charts-ctype-' . $cType,
+        ],
+        'CType',
+        'dena_charts'
+    );
+
+    $GLOBALS['TCA']['tt_content']['types'][$cType] = [
+        'showitem' => '
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.general;general,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.header;header,
+          --div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chart,
+            denacharts_data_file,
+            --palette--;;chart_imagesize,
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.access,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.visibility;visibility,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.access;access,
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.extended
+        ',
+    ];
+}
