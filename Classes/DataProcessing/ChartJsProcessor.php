@@ -196,7 +196,7 @@ class ChartJsProcessor implements DataProcessorInterface
         return $dataSets;
     }
 
-    protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration)
+    protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration): ChartJsChart
     {
         return $chart;
     }

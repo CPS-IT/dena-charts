@@ -15,7 +15,7 @@ class LineChartProcessor extends ChartJsProcessor
         parent::__construct($typoScriptService);
     }
 
-    protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration)
+    protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration): ChartJsChart
     {
         $showPoints = isset($contentObject['denacharts_show_points']) && (bool) $contentObject['denacharts_show_points'];
         $chart->setShowPoints($showPoints);
