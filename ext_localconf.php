@@ -1,13 +1,7 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-$load = function ($_EXTKEY) {
-    $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
-    if (!empty($settings['includeJavaScript'])) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
-            '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Resources/Private/TypoScript/javaScript.typoscript">');
-    }
-
+(function(string $extKey) {
     // register backend icons
     (function(string $extKey) {
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
@@ -23,9 +17,5 @@ $load = function ($_EXTKEY) {
                 );
             }
         }
-    })('dena_charts');
-};
-
-$load($_EXTKEY);
-unset($load);
-
+    })($extKey);
+})('dena_charts');

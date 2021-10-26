@@ -1,6 +1,9 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 <f:section name="Main">
+    <f:asset.script
+        identifier="dena_charts-rendercharts"
+        src="EXT:dena_charts/Resources/Public/JavaScript/renderCharts.js" />
     <div class="tx-dena-charts chart" style="width: {elementData.denacharts_container_width}">
         <canvas
             class="tx-dena-charts-canvas"
