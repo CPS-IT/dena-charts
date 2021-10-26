@@ -19,8 +19,7 @@ namespace CPSIT\DenaCharts\DataProcessing;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use CPSIT\DenaCharts\Common\TypoScriptServiceTrait;
-use CPSIT\DenaCharts\Domain\Model\DataColumn;
+use CPSIT\DenaCharts\Domain\Model\ChartJsChart;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -98,56 +97,52 @@ class ChartJsProcessor implements DataProcessorInterface
         $configuration = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
             $processorConfiguration
         );
-        $contentElementData = $processedData['data'];
-        $chartConfiguration = $configuration;
 
-        $data = $this->getChartData($processedData, $chartConfiguration);
-        $options = json_encode($chartConfiguration['options']);
-        $chartType = $chartConfiguration['type'];
+        $dataTable = $this->getDataTable($processedData);
+        $data = $this->getChartData($dataTable, $configuration);
+
+        $chart = new ChartJsChart($data, $configuration['options'] ?? [], $configuration['type']);
+        $chart = $this->processChart($chart, $processedData['data'], $configuration);
 
         $processedData = array_replace_recursive($processedData, [
-            'chart' => [
-                'data' => $data,
-                'options' => $options,
-                'type' => $chartType
-            ],
-            'elementData' => $contentElementData,
+            'chart' => $chart,
+            'elementData' => $processedData['data'],
         ]);
 
         return $processedData;
     }
 
-    /**
-     * @param array $processedData
-     * @param array $configuration
-     * @return string
-     */
-    protected function getChartData(array $processedData, ?array $configuration): string
+    protected function getDataTable(array $processedData): DataTable
     {
-        $data = '';
-
-        if (!empty($processedData[DataTableFromArray::DATA_TABLE_KEY] && $processedData[DataTableFromArray::DATA_TABLE_KEY] instanceof DataTable)) {
-            /** @var DataTable $dataTable */
-            $dataTable = $processedData[DataTableFromArray::DATA_TABLE_KEY];
-            $dataSets = $this->createDataSets($dataTable);
-
-            if (!empty($configuration['datasets'] && is_array($configuration['datasets']))) {
-                $dataSets = $this->applyDataSetConfiguration($dataSets, $configuration['datasets']);
-            }
-
-            $headers = [];
-            /** @var DataColumn $rows */
-            foreach ($dataTable->getRows() as $rows) {
-                $headers[] = $rows->getLabel();
-            }
-
-            $data = json_encode([
-                'labels' => $headers,
-                'datasets' => $dataSets,
-            ]);
+        if (!isset($processedData[DataTableFromArray::DATA_TABLE_KEY])) {
+            throw new \RuntimeException('Unable to find chart data', 1635256017998);
         }
 
-        return $data;
+        $dataTable = $processedData[DataTableFromArray::DATA_TABLE_KEY];
+        if (!$dataTable instanceof DataTable) {
+            throw new \RuntimeException('Chart data is of invalid type', 1635255396185);
+        }
+
+        return $dataTable;
+    }
+
+    protected function getChartData(DataTable $dataTable, array $configuration): array
+    {
+        $dataSets = $this->createDataSets($dataTable);
+
+        if (!empty($configuration['datasets'] && is_array($configuration['datasets']))) {
+            $dataSets = $this->applyDataSetConfiguration($dataSets, $configuration['datasets']);
+        }
+
+        $headers = [];
+        foreach ($dataTable->getRows() as $rows) {
+            $headers[] = $rows->getLabel();
+        }
+
+        return [
+            'labels' => $headers,
+            'datasets' => $dataSets,
+        ];
     }
 
     /**
@@ -199,5 +194,10 @@ class ChartJsProcessor implements DataProcessorInterface
         }
 
         return $dataSets;
+    }
+
+    protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration)
+    {
+        return $chart;
     }
 }

@@ -9,8 +9,8 @@
             class="tx-dena-charts-canvas"
             id="tx-dena-charts-canvas-{elementData.uid}"
             data-type="{chart.type}"
-            data-options="{chart.options}"
-            data-data="{chart.data}"
+            data-options="{f:format.json(value: chart.options)}"
+            data-data="{f:format.json(value: chart.data)}"
         ></canvas>
     </div>
 </f:section>

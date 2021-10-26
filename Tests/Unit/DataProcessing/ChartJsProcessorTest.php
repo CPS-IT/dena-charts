@@ -3,6 +3,8 @@
 namespace CPSIT\DenaCharts\Tests\Unit\DataProcessing;
 
 use CPSIT\DenaCharts\DataProcessing\ChartJsProcessor;
+use CPSIT\DenaCharts\DataProcessing\DataTableFromArray;
+use CPSIT\DenaCharts\Domain\Model\DataTable;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -63,15 +65,19 @@ class ChartJsProcessorTest extends UnitTestCase
      */
     public function processConvertsTypoScriptArrayToPlainArray()
     {
-        $typoScript = ['foo'];
+        $typoScript = ['foo', 'type' => 'pie'];
         $this->typoScriptService->expects($this->once())
             ->method('convertTypoScriptArrayToPlainArray')
-            ->with($typoScript);
+            ->with($typoScript)
+            ->willReturn($typoScript);
         $this->subject->process(
             $this->contentObjectRenderer,
             [],
             $typoScript,
-            []
+            [
+                'data' => [],
+                DataTableFromArray::DATA_TABLE_KEY => new DataTable(),
+            ]
         );
     }
 
@@ -81,7 +87,10 @@ class ChartJsProcessorTest extends UnitTestCase
     public function processGetsChartDataFromCSVDataProvider() {
         return [
             'empty CSV data' => [
-                ['csvData' => []],
+                [
+                    'data' => [],
+                    DataTableFromArray::DATA_TABLE_KEY => new DataTable(),
+                ],
                 ['options' => 'foo'],
                 '@todo'
             ]
@@ -97,7 +106,7 @@ class ChartJsProcessorTest extends UnitTestCase
      */
     public function processGetsChartDataFromCSV($processedData, $localConfiguration, $expectedChartData) {
         $contentObjectConfiguration = [];
-        $processorConfiguration = [];
+        $processorConfiguration = ['type' => 'pie'];
 
         $this->typoScriptService->expects($this->once())
             ->method('convertTypoScriptArrayToPlainArray')
