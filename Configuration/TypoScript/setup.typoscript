@@ -96,6 +96,7 @@ tt_content.denacharts_chart_column.dataProcessing.30 {
 }
 
 tt_content.denacharts_chart_line < temp.denacharts_chart
+tt_content.denacharts_chart_line.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\LineChartProcessor
 tt_content.denacharts_chart_line.dataProcessing.30 {
   type = line
   datasets {

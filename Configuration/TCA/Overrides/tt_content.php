@@ -36,7 +36,16 @@
             'default' => '100%',
             'eval' => 'required'
         ]
-    ]
+    ],
+    'denacharts_show_points' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_show_points',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [[0 => '', 1 => '',]],
+        ]
+    ],
 ]);
 
 // Configure the default palettes for the chart content element
@@ -73,3 +82,10 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
         ',
     ];
 }
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    'denacharts_show_points',
+    'denacharts_chart_' . \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE,
+    'after:--palette--;;chart_imagesize',
+);

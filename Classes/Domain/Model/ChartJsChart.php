@@ -31,4 +31,13 @@ class ChartJsChart
     {
         return $this->type;
     }
+
+    public function setShowPoints(bool $showPoints)
+    {
+        if ($showPoints) {
+            unset($this->options['pointRadius']);
+        } else {
+            $this->options['pointRadius'] = 0;
+        }
+    }
 }
