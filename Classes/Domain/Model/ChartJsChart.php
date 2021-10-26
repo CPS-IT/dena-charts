@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Model;
 
+use TYPO3\CMS\Core\Utility\ArrayUtility;
+
 class ChartJsChart
 {
     protected array $data;
@@ -38,6 +40,13 @@ class ChartJsChart
             unset($this->options['pointRadius']);
         } else {
             $this->options['pointRadius'] = 0;
+        }
+    }
+
+    public function setStacked(bool $stacked)
+    {
+        foreach(['x', 'y'] as $axis) {
+            $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'stacked'], $stacked);
         }
     }
 }

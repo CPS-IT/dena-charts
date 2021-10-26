@@ -26,6 +26,9 @@
 			<trans-unit id="tt_content.denacharts_show_points">
 				<source>Show data points</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_stack">
+				<source>Stack</source>
+			</trans-unit>
 
             <trans-unit id="wizards.newContentElement.chartsTabTitle" xml:space="preserve">
 				<source>Charts</source>

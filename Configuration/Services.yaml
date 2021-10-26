@@ -11,6 +11,10 @@ services:
 
   CPSIT\DenaCharts\DataProcessing\ChartJsProcessor:
     public: true
+  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\BarChartProcessor:
+    public: true
+  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColumnChartProcessor:
+    public: true
   CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\LineChartProcessor:
     public: true
   CPSIT\DenaCharts\DataProcessing\DataTableFromArray:

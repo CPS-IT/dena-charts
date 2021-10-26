@@ -18,6 +18,7 @@ temp.denacharts_chart {
 }
 
 tt_content.denacharts_chart_bar < temp.denacharts_chart
+tt_content.denacharts_chart_bar.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\BarChartProcessor
 tt_content.denacharts_chart_bar.dataProcessing.30 {
   type = bar
   datasets {
@@ -89,6 +90,7 @@ tt_content.denacharts_chart_bar.dataProcessing.30 {
 }
 
 tt_content.denacharts_chart_column < tt_content.denacharts_chart_bar
+tt_content.denacharts_chart_column.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColumnChartProcessor
 tt_content.denacharts_chart_column.dataProcessing.30 {
   options {
     indexAxis >
