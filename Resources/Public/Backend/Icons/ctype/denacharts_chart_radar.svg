@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="66px" height="66px" viewBox="0 0 66 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
-    <title>Page 1</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="Rectangle" stroke="#979797" fill="#D8D8D8" x="1" y="1" width="64" height="64"></rect>
-        <text id="pie" font-family="ArialMT, Arial" font-size="20" font-weight="normal" fill="#000000">
-            <tspan x="20" y="40">radar</tspan>
-        </text>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.805,7.193,12.512.793A1.393,1.393,0,0,0,11.293,0H4.705A1.391,1.391,0,0,0,3.487.792L.193,7.192a1.792,1.792,0,0,0,0,1.617l3.294,6.4A1.392,1.392,0,0,0,4.705,16h6.588a1.393,1.393,0,0,0,1.22-.792l3.294-6.4A1.776,1.776,0,0,0,15.805,7.193Zm-4.843,6.521H5.037L2.1,7.968,5.037,2.286h5.925L13.9,7.968ZM9.39,5.722a1.044,1.044,0,0,0,.193-.6,1.252,1.252,0,0,0-1.25-1.25,1.235,1.235,0,0,0-1.25,1.25,1.2,1.2,0,0,0,.067.328L5.333,7.875h0a1.25,1.25,0,0,0,0,2.5,1.232,1.232,0,0,0,.817-.322l3.07.614a1.24,1.24,0,1,0,1.448-1.724Zm-2.741,2.9L8.133,6.641l.991,2.476Z"/></svg>
