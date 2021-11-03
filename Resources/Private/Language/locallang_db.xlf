@@ -23,6 +23,12 @@
 				<source>Radar chart</source>
 			</trans-unit>
 
+			<trans-unit id="tt_content.denacharts_color_scheme">
+				<source>Color scheme</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_colors">
+				<source>Colors</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_points">
 				<source>Show data points</source>
 			</trans-unit>

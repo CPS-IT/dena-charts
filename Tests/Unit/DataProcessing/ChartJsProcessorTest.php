@@ -3,6 +3,7 @@
 namespace CPSIT\DenaCharts\Tests\Unit\DataProcessing;
 
 use CPSIT\DenaCharts\DataProcessing\ChartJsProcessor;
+use CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColorsProcessor;
 use CPSIT\DenaCharts\DataProcessing\DataTableFromArray;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
@@ -51,10 +52,14 @@ class ChartJsProcessorTest extends UnitTestCase
             ->disableOriginalConstructor()
             ->setMethods(['convertTypoScriptArrayToPlainArray'])
             ->getMock();
-        $this->subject = $this->getMockBuilder(ChartJsProcessor::class)
-            ->setConstructorArgs([$this->typoScriptService])
-            ->setMethods(['dummy'])
+
+        $this->colorsProcessor = $this->getMockBuilder(ColorsProcessor::class)
+            ->disableOriginalConstructor()
             ->getMock();
+
+        $this->subject = new ChartJsProcessor();
+        $this->subject->injectTypoScriptService($this->typoScriptService);
+        $this->subject->injectColorsProcessor($this->colorsProcessor);
 
         $this->contentObjectRenderer = $this->getMockBuilder(ContentObjectRenderer::class)
             ->disableOriginalConstructor()->getMock();

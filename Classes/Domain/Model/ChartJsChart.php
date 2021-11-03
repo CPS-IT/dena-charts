@@ -49,4 +49,23 @@ class ChartJsChart
             $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'stacked'], $stacked);
         }
     }
+
+    /**
+     * @param Color[] $colors
+     */
+    public function applyColors(array $colors): void
+    {
+        $nColors = count($colors);
+        foreach($this->data['datasets'] as $index => &$dataset) {
+            $color = $colors[$index % $nColors];
+            $value = $color->getValue();
+            $update = [
+                'backgroundColor' => $value,
+                'borderColor' => $value,
+            ];
+            foreach($update as $key => $updateValue) {
+                $dataset[$key] = $updateValue;
+            }
+        }
+    }
 }

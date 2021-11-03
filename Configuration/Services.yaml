@@ -17,7 +17,12 @@ services:
     public: true
   CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\LineChartProcessor:
     public: true
+  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor:
+    public: true
   CPSIT\DenaCharts\DataProcessing\DataTableFromArray:
     public: true
   CPSIT\DenaCharts\DataProcessing\FileReaderCSV:
+    public: true
+
+  CPSIT\DenaCharts\Form\ColorSchemeSelectorItemProvider:
     public: true

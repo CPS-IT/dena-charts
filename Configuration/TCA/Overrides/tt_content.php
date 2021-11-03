@@ -55,6 +55,26 @@
             'items' => [[0 => '', 1 => '',]],
         ]
     ],
+    'denacharts_color_scheme' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_color_scheme',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'itemsProcFunc' => \CPSIT\DenaCharts\Form\ColorSchemeSelectorItemProvider::class . '->provideColorSchemeSelectorItems',
+        ],
+        'onChange' => 'reload',
+    ],
+    'denacharts_colors' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_colors',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectMultipleSideBySide',
+            'itemsProcFunc' => \CPSIT\DenaCharts\Form\ColorSchemeSelectorItemProvider::class . '->provideColorSelectorItems',
+            'multiple' => true,
+        ],
+    ],
 ]);
 
 // Configure the default palettes for the chart content element
@@ -81,6 +101,8 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.header;header,
           --div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chart,
             denacharts_data_file,
+            denacharts_color_scheme,
+            denacharts_colors,
             --palette--;;chart_imagesize,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,

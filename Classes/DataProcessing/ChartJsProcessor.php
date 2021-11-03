@@ -19,6 +19,7 @@ namespace CPSIT\DenaCharts\DataProcessing;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColorsProcessor;
 use CPSIT\DenaCharts\Domain\Model\ChartJsChart;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
@@ -32,7 +33,11 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class ChartJsProcessor implements DataProcessorInterface
 {
+    protected ColorsProcessor $colorsProcessor;
+
     protected TypoScriptService $typoScriptService;
+
+    protected string $chartClass = ChartJsChart::class;
 
     /**
      * Type 'Bar Chart'
@@ -73,9 +78,14 @@ class ChartJsProcessor implements DataProcessorInterface
         self::CHART_TYPE_RADAR,
     ];
 
-    public function __construct(TypoScriptService $typoScriptService)
+    public function injectTypoScriptService(TypoScriptService $typoScriptService)
     {
         $this->typoScriptService = $typoScriptService;
+    }
+
+    public function injectColorsProcessor(ColorsProcessor $colorsProcessor)
+    {
+        $this->colorsProcessor = $colorsProcessor;
     }
 
     /**
@@ -101,7 +111,13 @@ class ChartJsProcessor implements DataProcessorInterface
         $dataTable = $this->getDataTable($processedData);
         $data = $this->getChartData($dataTable, $configuration);
 
-        $chart = new ChartJsChart($data, $configuration['options'] ?? [], $configuration['type']);
+        /** @var ChartJsChart $chart */
+        $chart = GeneralUtility::makeInstance(
+            $this->chartClass,
+            $data,
+            $configuration['options'] ?? [],
+            $configuration['type']
+        );
         $chart = $this->processChart($chart, $processedData['data'], $configuration);
 
         $processedData = array_replace_recursive($processedData, [
@@ -198,6 +214,7 @@ class ChartJsProcessor implements DataProcessorInterface
 
     protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration): ChartJsChart
     {
+        $this->colorsProcessor->processColors($chart, $contentObject);
         return $chart;
     }
 }
