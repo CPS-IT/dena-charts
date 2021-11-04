@@ -44,6 +44,7 @@
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'items' => [[0 => '', 1 => '',]],
+            'default' => 1,
         ]
     ],
     'denacharts_stack' => [
