@@ -124,6 +124,7 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
             denacharts_color_scheme,
             denacharts_colors,
             --palette--;;chart_source,
+            bodytext,
             --palette--;;chart_imagesize,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,
@@ -132,6 +133,14 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.access;access,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.extended
         ',
+        'columnsOverrides' => [
+            'bodytext' => [
+                'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.bodytext',
+                'config' => [
+                    'enableRichtext' => true,
+                ],
+            ],
+        ],
     ];
 }
 

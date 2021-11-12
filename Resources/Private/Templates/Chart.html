@@ -13,6 +13,9 @@
             data-data="{f:format.json(value: chart.data)}"
         ></canvas>
     </div>
+    <f:if condition="{elementData.bodytext}">
+        <f:format.html>{elementData.bodytext}</f:format.html>
+    </f:if>
     <f:if condition="{elementData.denacharts_source}">
         <div>
             <f:translate key="source" extensionName="dena_charts" />:

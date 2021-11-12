@@ -4,6 +4,9 @@
 		  product-name="dena_charts">
 		<header/>
 		<body>
+			<trans-unit id="tt_content.bodytext">
+				<source>Description</source>
+			</trans-unit>
 			<trans-unit id="tt_content.CType.I.denacharts_chart_bar" xml:space="preserve">
 				<source>Bar chart</source>
 			</trans-unit>
