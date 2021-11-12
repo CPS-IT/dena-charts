@@ -7,6 +7,9 @@
 			<trans-unit id="more" approved="yes">
 				<source>read more</source>
 			</trans-unit>
+			<trans-unit id="source">
+				<source>Source</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

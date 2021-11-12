@@ -37,6 +37,21 @@
             'eval' => 'required'
         ]
     ],
+    'denacharts_source' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_source',
+        'config' => [
+            'type' => 'input',
+        ]
+    ],
+    'denacharts_source_link' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_source_link',
+        'config' => [
+            'type' => 'input',
+            'renderType' => 'inputLink',
+        ]
+    ],
     'denacharts_show_points' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_show_points',
@@ -82,6 +97,10 @@
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] = [
     'showitem' => 'denacharts_aspect_ratio,denacharts_container_width',
 ];
+$GLOBALS['TCA']['tt_content']['palettes']['chart_source'] = [
+    'showitem' => 'denacharts_source,denacharts_source_link',
+];
+
 
 // Register separate CTypes for all chart types
 foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chartType) {
@@ -104,6 +123,7 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
             denacharts_data_file,
             denacharts_color_scheme,
             denacharts_colors,
+            --palette--;;chart_source,
             --palette--;;chart_imagesize,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,

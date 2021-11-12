@@ -32,6 +32,12 @@
 			<trans-unit id="tt_content.denacharts_show_points">
 				<source>Show data points</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_source">
+				<source>Source</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_source_link">
+				<source>Source link</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_stack">
 				<source>Stack</source>
 			</trans-unit>

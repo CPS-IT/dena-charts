@@ -13,5 +13,11 @@
             data-data="{f:format.json(value: chart.data)}"
         ></canvas>
     </div>
+    <f:if condition="{elementData.denacharts_source}">
+        <div>
+            <f:translate key="source" extensionName="dena_charts" />:
+            <f:link.typolink parameter="{elementData.denacharts_source_link}">{elementData.denacharts_source}</f:link.typolink>
+        </div>
+    </f:if>
 </f:section>
 </html>
