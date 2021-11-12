@@ -23,6 +23,7 @@ use CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColorsProcessor;
 use CPSIT\DenaCharts\Domain\Model\ChartJsChart;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -34,6 +35,8 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 class ChartJsProcessor implements DataProcessorInterface
 {
     protected ColorsProcessor $colorsProcessor;
+
+    protected SiteLanguage $language;
 
     protected TypoScriptService $typoScriptService;
 
@@ -86,6 +89,11 @@ class ChartJsProcessor implements DataProcessorInterface
     public function injectColorsProcessor(ColorsProcessor $colorsProcessor)
     {
         $this->colorsProcessor = $colorsProcessor;
+    }
+
+    public function injectCurrentLanguage(SiteLanguage $currentLanguage)
+    {
+        $this->language = $currentLanguage;
     }
 
     /**
@@ -215,6 +223,10 @@ class ChartJsProcessor implements DataProcessorInterface
     protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration): ChartJsChart
     {
         $this->colorsProcessor->processColors($chart, $contentObject);
+        $locale = $this->language->getLocale();
+        if (!empty($locale)) {
+            $chart->setLocale($locale);
+        }
         return $chart;
     }
 }

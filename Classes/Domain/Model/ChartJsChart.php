@@ -68,4 +68,9 @@ class ChartJsChart
             }
         }
     }
+
+    public function setLocale(string $locale)
+    {
+        $this->options['locale'] = implode('-', \Locale::parseLocale($locale));
+    }
 }
