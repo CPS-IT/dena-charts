@@ -9,6 +9,32 @@ use CPSIT\DenaCharts\Domain\Model\Color;
 
 class PieChartJsChart extends ChartJsChart
 {
+    public function __construct(array $data, array $options, string $type)
+    {
+        $this->data = $this->transposeData($data);
+        $this->options = $options;
+        $this->type = $type;
+    }
+
+    protected function transposeData($data) {
+        $result = [];
+
+        $result['labels'] = array_column($data['datasets'], 'label');
+        foreach($data['labels'] as $label) {
+            $result['datasets'][] = [
+                'label' => $label,
+                'data' => [],
+            ];
+        }
+        foreach($data['datasets'] as $y => $sourceDataset) {
+            foreach($sourceDataset['data'] as $x => $value) {
+                $result['datasets'][$x]['data'][$y] = $value;
+            }
+        }
+
+        return $result;
+    }
+
     /**
      * @param Color[] $colors
      */
