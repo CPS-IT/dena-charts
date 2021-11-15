@@ -8,11 +8,14 @@ use CPSIT\DenaCharts\Domain\Model\ChartJsChart;
 
 class ColumnChartProcessor extends \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
 {
+    protected AxisTitleProcessor $axisTitleProcessor;
     protected StackedProcessor $stackedProcessor;
 
     public function __construct(
+        AxisTitleProcessor $axisTitleProcessor,
         StackedProcessor $stackedProcessor
     ) {
+        $this->axisTitleProcessor = $axisTitleProcessor;
         $this->stackedProcessor = $stackedProcessor;
     }
 

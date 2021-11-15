@@ -19,6 +19,20 @@
             'csv'
         )
     ],
+    'denacharts_axis_title_x' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_title_x',
+        'config' => [
+            'type' => 'input',
+        ]
+    ],
+    'denacharts_axis_title_y' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_title_y',
+        'config' => [
+            'type' => 'input',
+        ]
+    ],
     'denacharts_aspect_ratio' => [
         'exclude' => 0,
         'label' => 'aspect ratio',
@@ -94,6 +108,9 @@
 ]);
 
 // Configure the default palettes for the chart content element
+$GLOBALS['TCA']['tt_content']['palettes']['chart_axis'] = [
+    'showitem' => 'denacharts_axis_title_x,denacharts_axis_title_y',
+];
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] = [
     'showitem' => 'denacharts_aspect_ratio,denacharts_container_width',
 ];
@@ -143,6 +160,17 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
         ],
     ];
 }
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--palette--;;chart_axis',
+    implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR,
+        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_COLUMN,
+        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE,
+    ])),
+    'after:denacharts_data_file',
+);
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',

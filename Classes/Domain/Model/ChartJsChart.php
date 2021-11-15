@@ -50,6 +50,16 @@ class ChartJsChart
         }
     }
 
+    public function setXAxisTitle(string $xAxisTitle)
+    {
+        $this->setAxisTitle('x', $xAxisTitle);
+    }
+
+    public function setYAxisTitle(string $yAxisTitle)
+    {
+        $this->setAxisTitle('y', $yAxisTitle);
+    }
+
     /**
      * @param Color[] $colors
      */
@@ -72,5 +82,11 @@ class ChartJsChart
     public function setLocale(string $locale)
     {
         $this->options['locale'] = implode('-', \Locale::parseLocale($locale));
+    }
+
+    public function setAxisTitle(string $axis, string $axisTitle): void
+    {
+        $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'title', 'display'], !empty($axisTitle));
+        $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'title', 'text'], $axisTitle);
     }
 }

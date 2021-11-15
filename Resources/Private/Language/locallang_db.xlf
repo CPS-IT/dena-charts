@@ -26,6 +26,12 @@
 				<source>Radar chart</source>
 			</trans-unit>
 
+			<trans-unit id="tt_content.denacharts_axis_title_x">
+				<source>X Axis title</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_title_y">
+				<source>Y Axis title</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_color_scheme">
 				<source>Color scheme</source>
 			</trans-unit>
