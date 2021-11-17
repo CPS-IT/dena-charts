@@ -22,6 +22,7 @@ class ColumnChartProcessor extends \CPSIT\DenaCharts\DataProcessing\ChartJsProce
     protected function processChart(ChartJsChart $chart, array $contentObject, array $configuration): ChartJsChart
     {
         parent::processChart($chart, $contentObject, $configuration);
+        $this->axisTitleProcessor->processAxisTitles($chart, $contentObject);
         $this->stackedProcessor->processStacked($chart, $contentObject);
         return $chart;
     }
