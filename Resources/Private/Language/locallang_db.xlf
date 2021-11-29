@@ -23,10 +23,10 @@
 				<source>Pie chart</source>
 			</trans-unit>
 
-			<trans-unit id="tt_content.denacharts_axis_title_x">
+			<trans-unit id="tt_content.denacharts_axis_x_title">
 				<source>X Axis title</source>
 			</trans-unit>
-			<trans-unit id="tt_content.denacharts_axis_title_y">
+			<trans-unit id="tt_content.denacharts_axis_y_title">
 				<source>Y Axis title</source>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_color_scheme">

@@ -8,11 +8,11 @@ class AxisTitleProcessor
 {
     public function processAxisTitles(ChartJsChart $chart, array $contentObject): void
     {
-        if (!empty($contentObject['denacharts_axis_title_x'])) {
-            $chart->setXAxisTitle($contentObject['denacharts_axis_title_x']);
+        if (!empty($contentObject['denacharts_axis_x_title'])) {
+            $chart->setXAxisTitle($contentObject['denacharts_axis_x_title']);
         }
-        if (!empty($contentObject['denacharts_axis_title_y'])) {
-            $chart->setYAxisTitle($contentObject['denacharts_axis_title_y']);
+        if (!empty($contentObject['denacharts_axis_y_title'])) {
+            $chart->setYAxisTitle($contentObject['denacharts_axis_y_title']);
         }
     }
 }
