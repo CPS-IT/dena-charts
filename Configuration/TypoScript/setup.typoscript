@@ -76,26 +76,6 @@ tt_content.denacharts_chart_line.dataProcessing.30 {
   }
 }
 
-tt_content.denacharts_chart_radar < temp.denacharts_chart
-tt_content.denacharts_chart_radar.dataProcessing.30 {
-  type = radar
-  datasets {
-    0 {
-      fill = false
-      lineTension = 0.2
-      borderWidth = 3
-    }
-  }
-
-  options {
-    #barPercentage =
-    #categoryPercentage =
-    #barThickness =
-    #maxBarThickness =
-    options.grid.offset = false
-  }
-}
-
 tt_content.denacharts_chart_pie < temp.denacharts_chart
 tt_content.denacharts_chart_pie.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor
 tt_content.denacharts_chart_pie.dataProcessing.30 {

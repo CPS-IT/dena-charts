@@ -22,9 +22,6 @@
 			<trans-unit id="tt_content.CType.I.denacharts_chart_pie" xml:space="preserve">
 				<source>Pie chart</source>
 			</trans-unit>
-			<trans-unit id="tt_content.CType.I.denacharts_chart_radar" xml:space="preserve">
-				<source>Radar chart</source>
-			</trans-unit>
 
 			<trans-unit id="tt_content.denacharts_axis_title_x">
 				<source>X Axis title</source>

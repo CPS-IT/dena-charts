@@ -67,18 +67,12 @@ class ChartJsProcessor implements DataProcessorInterface
      */
     const CHART_TYPE_PIE = 'pie';
 
-    /**
-     * Type 'Radar Chart'
-     */
-    const CHART_TYPE_RADAR = 'radar';
-
     const CHART_TYPES = [
         self::CHART_TYPE_BAR,
         self::CHART_TYPE_COLUMN,
         self::CHART_TYPE_DOUGHNUT,
         self::CHART_TYPE_LINE,
         self::CHART_TYPE_PIE,
-        self::CHART_TYPE_RADAR,
     ];
 
     public function injectTypoScriptService(TypoScriptService $typoScriptService)
