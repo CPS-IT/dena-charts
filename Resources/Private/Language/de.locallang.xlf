@@ -9,8 +9,8 @@
 				<target>Mehr lesen</target>
 			</trans-unit>
 			<trans-unit id="source">
-				<source>Source</source>
-				<target>Quelle</target>
+				<source>Data source</source>
+				<target>Datenquelle</target>
 			</trans-unit>
 		</body>
 	</file>
