@@ -26,9 +26,23 @@
             'type' => 'input',
         ]
     ],
+    'denacharts_axis_x_unit' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_x_unit',
+        'config' => [
+            'type' => 'input',
+        ]
+    ],
     'denacharts_axis_y_title' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y_title',
+        'config' => [
+            'type' => 'input',
+        ]
+    ],
+    'denacharts_axis_y_unit' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y_unit',
         'config' => [
             'type' => 'input',
         ]
@@ -109,7 +123,7 @@
 
 // Configure the default palettes for the chart content element
 $GLOBALS['TCA']['tt_content']['palettes']['chart_axis'] = [
-    'showitem' => 'denacharts_axis_x_title,denacharts_axis_y_title',
+    'showitem' => 'denacharts_axis_x_title,denacharts_axis_x_unit,denacharts_axis_y_title,denacharts_axis_y_unit',
 ];
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] = [
     'showitem' => 'denacharts_aspect_ratio,denacharts_container_width',

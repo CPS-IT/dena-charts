@@ -50,14 +50,14 @@ class ChartJsChart
         }
     }
 
-    public function setXAxisTitle(string $xAxisTitle)
+    public function setXAxis(ChartsJsAxis $xAxis)
     {
-        $this->setAxisTitle('x', $xAxisTitle);
+        $this->setAxis('x', $xAxis);
     }
 
-    public function setYAxisTitle(string $yAxisTitle)
+    public function setYAxis(ChartsJsAxis $yAxis)
     {
-        $this->setAxisTitle('y', $yAxisTitle);
+        $this->setAxis('y', $yAxis);
     }
 
     /**
@@ -84,8 +84,13 @@ class ChartJsChart
         $this->options['locale'] = implode('-', \Locale::parseLocale($locale));
     }
 
-    public function setAxisTitle(string $axis, string $axisTitle): void
+    public function setAxis(string $axis, ChartsJsAxis $chartsJsAxis): void
     {
+        $axisTitle = $chartsJsAxis->getTitle();
+        if (!empty($chartsJsAxis->getUnit())) {
+            $axisTitle .= sprintf(' [%s]', $chartsJsAxis->getUnit());
+        }
+
         $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'title', 'display'], !empty($axisTitle));
         $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'title', 'text'], $axisTitle);
     }

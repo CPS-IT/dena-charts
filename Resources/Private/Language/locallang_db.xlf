@@ -26,8 +26,14 @@
 			<trans-unit id="tt_content.denacharts_axis_x_title">
 				<source>X Axis title</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_x_unit">
+				<source>Y Axis unit</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_axis_y_title">
 				<source>Y Axis title</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y_unit">
+				<source>Y Axis unit</source>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_color_scheme">
 				<source>Color scheme</source>
