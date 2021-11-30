@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Controller;
 
+use CPSIT\DenaCharts\Service\ChartDownloadService;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -11,6 +12,8 @@ use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
 
 class ChartController extends ActionController
 {
+    protected ChartDownloadService  $chartDownloadService;
+
     protected ContentDataProcessor $contentDataProcessor;
 
     protected FileRepository $fileRepository;
@@ -18,10 +21,12 @@ class ChartController extends ActionController
     protected TypoScriptService $typoScriptService;
 
     public function __construct(
+        ChartDownloadService $chartDownloadService,
         ContentDataProcessor $contentDataProcessor,
         FileRepository $fileRepository,
         TypoScriptService $typoScriptService
     ) {
+        $this->chartDownloadService = $chartDownloadService;
         $this->contentDataProcessor = $contentDataProcessor;
         $this->fileRepository = $fileRepository;
         $this->typoScriptService = $typoScriptService;
@@ -47,6 +52,16 @@ class ChartController extends ActionController
         );
 
         $this->view->assignMultiple($variables);
+    }
+
+    public function downloadAction()
+    {
+        $contentObjectData = $this->configurationManager->getContentObject()->data;
+        $source = $contentObjectData['denacharts_source'];
+        $file = $this->getFile($contentObjectData['uid']);
+
+        $this->chartDownloadService->streamChartZip($file, $source);
+        exit(0);
     }
 
     protected function getFile(int $contentElementUid): ?FileReference

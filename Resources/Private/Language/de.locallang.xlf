@@ -4,6 +4,10 @@
 		  product-name="dena_charts">
 		<header/>
 		<body>
+			<trans-unit id="download" approved="yes">
+				<source>Download</source>
+				<target>Download</target>
+			</trans-unit>
 			<trans-unit id="more" approved="yes">
 				<source>read more</source>
 				<target>Mehr lesen</target>

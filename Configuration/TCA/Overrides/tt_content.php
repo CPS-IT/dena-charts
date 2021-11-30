@@ -19,6 +19,16 @@
             'csv'
         )
     ],
+    'denacharts_allow_download' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_allow_download',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [[0 => '', 1 => '',]],
+            'default' => 1,
+        ]
+    ],
     'denacharts_axis_x_title' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_x_title',
@@ -167,6 +177,7 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
             --palette--;;chart_source,
             bodytext,
             --palette--;;chart_imagesize,
+            denacharts_allow_download,
             denacharts_show_datatable,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,

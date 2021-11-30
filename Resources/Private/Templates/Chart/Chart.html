@@ -19,6 +19,11 @@
             <f:link.typolink parameter="{elementData.denacharts_source_link}">{elementData.denacharts_source}</f:link.typolink>
         </div>
     </f:if>
+
+    <f:if condition="{elementData.denacharts_allow_download}">
+        <f:link.action class="tx-dena-charts-downloadlink" action="download" additionalAttributes="{download: 1}">Download</f:link.action>
+    </f:if>
+
     <f:if condition="{elementData.bodytext}">
         <f:format.html>{elementData.bodytext}</f:format.html>
     </f:if>

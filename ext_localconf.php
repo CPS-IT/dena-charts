@@ -26,6 +26,7 @@ defined('TYPO3_MODE') or die();
     [
         \CPSIT\DenaCharts\Controller\ChartController::class => implode(',', [
             'chart',
+            'download',
         ]),
     ],
     [],
