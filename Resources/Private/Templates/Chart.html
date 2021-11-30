@@ -23,6 +23,8 @@
         <f:format.html>{elementData.bodytext}</f:format.html>
     </f:if>
 
-    <f:render partial="DataTable" arguments="{_all}" />
+    <f:if condition="{elementData.denacharts_show_datatable}">
+        <f:render partial="DataTable" arguments="{_all}" />
+    </f:if>
 </f:section>
 </html>

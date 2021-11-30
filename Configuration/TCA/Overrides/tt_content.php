@@ -90,6 +90,16 @@
             'default' => 1,
         ]
     ],
+    'denacharts_show_datatable' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_show_datatable',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [[0 => '', 1 => '',]],
+            'default' => 1,
+        ]
+    ],
     'denacharts_stack' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_stack',
@@ -157,6 +167,7 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
             --palette--;;chart_source,
             bodytext,
             --palette--;;chart_imagesize,
+            denacharts_show_datatable,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.access,
@@ -190,7 +201,7 @@ foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chart
     'tt_content',
     'denacharts_show_points',
     'denacharts_chart_' . \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE,
-    'after:--palette--;;chart_imagesize',
+    'after:denacharts_show_datatable',
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
