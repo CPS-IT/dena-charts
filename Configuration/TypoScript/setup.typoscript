@@ -1,31 +1,30 @@
-temp.denacharts_chart < lib.contentElement
-temp.denacharts_chart {
-  templateName = Chart
-
-  partialRootPaths {
-    200 = EXT:dena_charts/Resources/Private/Partials/
-  }
-  templateRootPaths {
-    200 = EXT:dena_charts/Resources/Private/Templates/
-  }
-
-  dataProcessing {
-    10 = CPSIT\DenaCharts\DataProcessing\FileReaderCSV
-    20 = CPSIT\DenaCharts\DataProcessing\DataTableFromArray
-    20 {
-      labelFromFirstColumn = 1
+tt_content.denacharts_chart.20 {
+  view {
+    partialRootPaths {
+      200 = EXT:dena_charts/Resources/Private/Partials/
+    }
+    templateRootPaths {
+      200 = EXT:dena_charts/Resources/Private/Templates/
     }
 
-    30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
-    30 {
-      options.plugins.legend.position = bottom
+    dataProcessing {
+      10 = CPSIT\DenaCharts\DataProcessing\FileReaderCSV
+      20 = CPSIT\DenaCharts\DataProcessing\DataTableFromArray
+      20 {
+        labelFromFirstColumn = 1
+      }
+
+      30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
+      30 {
+        options.plugins.legend.position = bottom
+      }
     }
   }
 }
 
-tt_content.denacharts_chart_bar < temp.denacharts_chart
-tt_content.denacharts_chart_bar.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\BarChartProcessor
-tt_content.denacharts_chart_bar.dataProcessing.30 {
+tt_content.denacharts_chart_bar < tt_content.denacharts_chart
+tt_content.denacharts_chart_bar.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\BarChartProcessor
+tt_content.denacharts_chart_bar.20.view.dataProcessing.30 {
   type = bar
   options {
     #barPercentage =
@@ -58,16 +57,16 @@ tt_content.denacharts_chart_bar.dataProcessing.30 {
 }
 
 tt_content.denacharts_chart_column < tt_content.denacharts_chart_bar
-tt_content.denacharts_chart_column.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColumnChartProcessor
-tt_content.denacharts_chart_column.dataProcessing.30 {
+tt_content.denacharts_chart_column.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColumnChartProcessor
+tt_content.denacharts_chart_column.20.view.dataProcessing.30 {
   options {
     indexAxis >
   }
 }
 
-tt_content.denacharts_chart_line < temp.denacharts_chart
-tt_content.denacharts_chart_line.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\LineChartProcessor
-tt_content.denacharts_chart_line.dataProcessing.30 {
+tt_content.denacharts_chart_line < tt_content.denacharts_chart
+tt_content.denacharts_chart_line.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\LineChartProcessor
+tt_content.denacharts_chart_line.20.view.dataProcessing.30 {
   type = line
 
   options {
@@ -79,9 +78,9 @@ tt_content.denacharts_chart_line.dataProcessing.30 {
   }
 }
 
-tt_content.denacharts_chart_pie < temp.denacharts_chart
-tt_content.denacharts_chart_pie.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor
-tt_content.denacharts_chart_pie.dataProcessing.30 {
+tt_content.denacharts_chart_pie < tt_content.denacharts_chart
+tt_content.denacharts_chart_pie.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor
+tt_content.denacharts_chart_pie.20.view.dataProcessing.30 {
   type = pie
 
   options {
@@ -93,9 +92,9 @@ tt_content.denacharts_chart_pie.dataProcessing.30 {
   }
 }
 
-tt_content.denacharts_chart_doughnut < temp.denacharts_chart
-tt_content.denacharts_chart_doughnut.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor
-tt_content.denacharts_chart_doughnut.dataProcessing.30 {
+tt_content.denacharts_chart_doughnut < tt_content.denacharts_chart
+tt_content.denacharts_chart_doughnut.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor
+tt_content.denacharts_chart_doughnut.20.view.dataProcessing.30 {
   type = doughnut
   options {
     #barPercentage =
@@ -106,4 +105,4 @@ tt_content.denacharts_chart_doughnut.dataProcessing.30 {
   }
 }
 
-temp.denacharts_chart >
+tt_content.denacharts_chart >

@@ -19,3 +19,15 @@ defined('TYPO3_MODE') or die();
         }
     })($extKey);
 })('dena_charts');
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'CPSIT.DenaCharts',
+    'Chart',
+    [
+        \CPSIT\DenaCharts\Controller\ChartController::class => implode(',', [
+            'chart',
+        ]),
+    ],
+    [],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
+);
