@@ -88,6 +88,7 @@ class ChartJsChart
     {
         $axisTitle = $chartsJsAxis->getTitle();
         if (!empty($chartsJsAxis->getUnit())) {
+            $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'unit'], $chartsJsAxis->getUnit());
             $axisTitle .= sprintf(' [%s]', $chartsJsAxis->getUnit());
         }
 

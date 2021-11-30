@@ -27,12 +27,40 @@ var denaCharts = denaCharts || {};
       var canvas = canvases[c];
 
       var ctx = canvas.getContext('2d');
+
+      let options = JSON.parse(canvas.dataset.options);
+
+      // Add customized tooltip to display y axis unit
+      options = {...options, ...{
+          'plugins': {
+            'tooltip': {
+              'callbacks': {
+                label: function(context) {
+                  let label = context.dataset.label || '';
+
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.formattedValue !== null) {
+                    label += context.formattedValue;
+                    let unit = context.chart?.options?.scales?.y?.unit
+                    if (unit !== undefined) {
+                      label += ' [' + unit + ']';
+                    }
+                  }
+                  return label;
+                }
+              }
+            }
+          }
+      }};
+
       charts[c] = new Chart(
         ctx,
         {
           type: canvas.dataset.type,
           data: JSON.parse(canvas.dataset.data),
-          options: JSON.parse(canvas.dataset.options)
+          options: options
         }
       );
     }
