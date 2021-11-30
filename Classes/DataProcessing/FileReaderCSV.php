@@ -31,20 +31,15 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class FileReaderCSV implements DataProcessorInterface
 {
-    const DEFAULT_RELATION_TABLE = 'tt_content';
-    const DEFAULT_FIELD_NAME = 'denacharts_data_file';
     const CSV_DATA_KEY = 'csvData';
 
     protected TypoScriptService $typoScriptService;
-    protected FileRepository $fileRepository;
 
     public function __construct(
-        TypoScriptService $typoScriptService,
-        FileRepository $fileRepository
+        TypoScriptService $typoScriptService
     )
     {
         $this->typoScriptService = $typoScriptService;
-        $this->fileRepository = $fileRepository;
     }
 
     /**
@@ -68,8 +63,9 @@ class FileReaderCSV implements DataProcessorInterface
         $configuration = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
             $processorConfiguration
         );
-        $contentElementData = $processedData['data'];
-        $processedData[static::CSV_DATA_KEY] = $this->getData($contentElementData, $configuration);
+        if ($processedData['file'] instanceof FileReference) {
+            $processedData[static::CSV_DATA_KEY] = $this->getData($processedData['file'], $configuration);
+        }
 
         return $processedData;
     }
@@ -77,34 +73,14 @@ class FileReaderCSV implements DataProcessorInterface
     /**
      * Returns the raw data from the data file (a CSV file) as array
      *
-     * @param array $contentElementData
+     * @param FileReference $file
      * @param array $configuration
      * @return array Array of records. First row contains headers.
      */
-    protected function getData(array $contentElementData, array $configuration): array
+    protected function getData(FileReference $file, array $configuration): array
     {
-        $tableName = static::DEFAULT_RELATION_TABLE;
-        $fieldName = static::DEFAULT_FIELD_NAME;
-        $fileContent = '';
-
-        if (!empty($configuration['tableName'])) {
-            $tableName = $configuration['tableName'];
-        }
-        if (!empty($configuration['fieldName'])) {
-            $fieldName = $configuration['fieldName'];
-        }
-
-        $files = $this->fileRepository->findByRelation(
-            $tableName,
-            $fieldName,
-            $contentElementData['uid']
-        );
-        if (!empty($files)) {
-            /** @var FileReference $file */
-            $file = $files[0];
-            $fileContentRaw = rtrim($file->getContents());
-            $fileContent = $this->fixEncoding($fileContentRaw);
-        }
+        $fileContentRaw = rtrim($file->getContents());
+        $fileContent = $this->fixEncoding($fileContentRaw);
         $delimiter = ';';
         $enclosure = '"';
         $escape = "\\";

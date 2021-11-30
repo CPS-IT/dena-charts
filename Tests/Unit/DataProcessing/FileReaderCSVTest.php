@@ -39,11 +39,6 @@ class FileReaderCSVTest extends UnitTestCase
     protected $typoScriptService;
 
     /**
-     * @var FileRepository|\PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $fileRepository;
-
-    /**
      * @var ContentObjectRenderer|\PHPUnit_Framework_MockObject_MockObject
      */
     protected $contentObjectRenderer;
@@ -53,16 +48,12 @@ class FileReaderCSVTest extends UnitTestCase
      */
     public function setUp()
     {
-        $this->fileRepository = $this->getMockBuilder(FileRepository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['findByRelation'])
-            ->getMock();
         $this->typoScriptService = $this->getMockBuilder(TypoScriptService::class)
             ->disableOriginalConstructor()
             ->setMethods(['convertTypoScriptArrayToPlainArray'])
             ->getMock();
         $this->subject = $this->getMockBuilder(FileReaderCSV::class)
-            ->setConstructorArgs([$this->typoScriptService, $this->fileRepository])
+            ->setConstructorArgs([$this->typoScriptService])
             ->setMethods(['dummy'])
             ->getMock();
 
@@ -84,74 +75,6 @@ class FileReaderCSVTest extends UnitTestCase
             [],
             $typoScript,
             ['data' => []],
-        );
-    }
-
-    /**
-     * provides data for file processing according a configuration
-     * @return array
-     */
-    public function processGetsFileFromRepositoryDataProvider()
-    {
-        // contentElementData, $configuration, expectedProcessedData
-        return [
-            'empty configuration' => [
-                ['uid' => 2], [], []
-            ],
-            'custom table name' => [
-                ['uid' => 2],
-                [
-                    'tableName' => 'foo'
-                ],
-                []
-            ],
-            'custom field name' => [
-                ['uid' => 2],
-                [
-                    'fieldName' => 'foo'
-                ],
-                []
-            ]
-        ];
-    }
-
-    /**
-     * @test
-     * @param array $contentElementData
-     * @param array $configuration
-     * @param array $expectedProcessedData
-     * @dataProvider processGetsFileFromRepositoryDataProvider
-     */
-    public function processGetsFileFromRepository($contentElementData, $configuration, $expectedProcessedData)
-    {
-        $expectedTableName = FileReaderCSV::DEFAULT_RELATION_TABLE;
-        $expectedFieldName = FileReaderCSV::DEFAULT_FIELD_NAME;
-        if (!empty($configuration['tableName'])) {
-            $expectedTableName = $configuration['tableName'];
-        }
-        if (!empty($configuration['fieldName'])) {
-            $expectedFieldName = $configuration['fieldName'];
-        }
-        $contentObjectConfiguration = [];
-        $processedData = [];
-        $processedData['data'] = $contentElementData;
-
-        $this->fileRepository->expects($this->once())
-            ->method('findByRelation')
-            ->with(
-                $expectedTableName,
-                $expectedFieldName,
-                $contentElementData['uid']
-            );
-        $this->typoScriptService->expects($this->once())
-            ->method('convertTypoScriptArrayToPlainArray')
-            ->will($this->returnValue($configuration));
-
-        $this->subject->process(
-            $this->contentObjectRenderer,
-            $contentObjectConfiguration,
-            $configuration,
-            $processedData
         );
     }
 
@@ -214,16 +137,12 @@ BIE;
         $mockFile->expects($this->once())->method('getContents')
             ->will($this->returnValue($fileContent));
 
-        $filesReturnedByRepository = [
-            $mockFile
-        ];
         $contentObjectConfiguration = [];
-        $processedData = [];
-        $processedData['data'] = $contentElementData;
+        $processedData = [
+            'data' => $contentElementData,
+            'file' => $mockFile,
+        ];
 
-        $this->fileRepository->expects($this->once())
-            ->method('findByRelation')
-            ->will($this->returnValue($filesReturnedByRepository));
         $this->typoScriptService->expects($this->once())
             ->method('convertTypoScriptArrayToPlainArray')
             ->will($this->returnValue($configuration));
