@@ -47,13 +47,8 @@ class DataTableFactory
             foreach ($headers as $columnIndex => $header) {
                 $column = new DataColumn();
                 $column->setLabel($header);
-
                 $dataColumn = array_column($data, $columnIndex + 1);
-                $numberFormatter = NumberFormatter::create('de_DE', NumberFormatter::DECIMAL);
-                $parsedDataColumn = array_map(function($formattedValue) use ($numberFormatter) {
-                    return $numberFormatter->parse($formattedValue);
-                }, $dataColumn);
-                $column->setData($parsedDataColumn);
+                $column->setData($this->parseNumbers($dataColumn));
 
                 $dataTable->addColumn($column);
             }
@@ -64,11 +59,19 @@ class DataTableFactory
                     $label = (string)array_shift($dataRow);
                     $row->setLabel($label);
                 }
-                $row->setData($dataRow);
+                $row->setData($this->parseNumbers($dataRow));
                 $dataTable->addRow($row);
             }
         }
 
         return $dataTable;
+    }
+
+    protected function parseNumbers(array $data)
+    {
+        $numberFormatter = NumberFormatter::create('de_DE', NumberFormatter::DECIMAL);
+        return array_map(function($formattedValue) use ($numberFormatter) {
+            return $numberFormatter->parse($formattedValue);
+        }, $data);
     }
 }
