@@ -2,6 +2,9 @@ temp.denacharts_chart < lib.contentElement
 temp.denacharts_chart {
   templateName = Chart
 
+  partialRootPaths {
+    200 = EXT:dena_charts/Resources/Private/Partials/
+  }
   templateRootPaths {
     200 = EXT:dena_charts/Resources/Private/Templates/
   }
