@@ -54,11 +54,16 @@ class ChartController extends ActionController
         $this->view->assignMultiple($variables);
     }
 
-    public function downloadAction()
+    public function downloadAction(int $id)
     {
         $contentObjectData = $this->configurationManager->getContentObject()->data;
+        $contentObjectUid = $contentObjectData['uid'];
+        if ($contentObjectUid !== $id) {
+            return '';
+        }
+
         $source = $contentObjectData['denacharts_source'];
-        $file = $this->getFile($contentObjectData['uid']);
+        $file = $this->getFile($contentObjectUid);
 
         $this->chartDownloadService->streamChartZip($file, $source);
         exit(0);

@@ -21,7 +21,14 @@
     </f:if>
 
     <f:if condition="{elementData.denacharts_allow_download}">
-        <f:link.action class="tx-dena-charts-downloadlink" action="download" additionalAttributes="{download: 1}">Download</f:link.action>
+        <f:link.action
+            action="download"
+            arguments="{id: elementData.uid}"
+            additionalAttributes="{download: 1}"
+            class="tx-dena-charts-downloadlink"
+        >
+            Download
+        </f:link.action>
     </f:if>
 
     <f:if condition="{elementData.bodytext}">
