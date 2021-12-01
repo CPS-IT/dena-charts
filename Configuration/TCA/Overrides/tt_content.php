@@ -80,6 +80,7 @@
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_source',
         'config' => [
             'type' => 'input',
+            'eval' => 'required,trim',
         ]
     ],
     'denacharts_source_link' => [
