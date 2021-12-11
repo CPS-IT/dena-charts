@@ -2,56 +2,69 @@
 
 namespace CPSIT\DenaCharts\Controller;
 
+use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
+use CPSIT\DenaCharts\Domain\Repository\ChartConfigurationRepository;
 use CPSIT\DenaCharts\Service\ChartDownloadService;
-use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\TypoScript\TypoScriptService;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use CPSIT\DenaCharts\Service\FileReaderCSV;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
 
 class ChartController extends ActionController
 {
-    protected ChartDownloadService  $chartDownloadService;
+    protected ChartConfigurationRepository $chartConfigurationRepository;
 
-    protected ContentDataProcessor $contentDataProcessor;
+    protected FileReaderCSV $fileReaderCSV;
 
-    protected FileRepository $fileRepository;
+    protected DataTableFactory $dataTableFactory;
 
-    protected TypoScriptService $typoScriptService;
+    protected ChartDownloadService $chartDownloadService;
+
+    protected SiteLanguage $currentLanguage;
 
     public function __construct(
+        ChartConfigurationRepository $chartConfigurationRepository,
+        FileReaderCSV $fileReaderCSV,
+        DataTableFactory $dataTableFactory,
         ChartDownloadService $chartDownloadService,
-        ContentDataProcessor $contentDataProcessor,
-        FileRepository $fileRepository,
-        TypoScriptService $typoScriptService
+        SiteLanguage $currentLanguage
     ) {
+        $this->chartConfigurationRepository = $chartConfigurationRepository;
+        $this->fileReaderCSV = $fileReaderCSV;
+        $this->dataTableFactory = $dataTableFactory;
         $this->chartDownloadService = $chartDownloadService;
-        $this->contentDataProcessor = $contentDataProcessor;
-        $this->fileRepository = $fileRepository;
-        $this->typoScriptService = $typoScriptService;
+        $this->currentLanguage = $currentLanguage;
     }
 
     public function chartAction()
     {
-        $contentObjectRenderer = $this->configurationManager->getContentObject();
-        $contentObjectData = $contentObjectRenderer->data;
+        $contentObjectData = $this->configurationManager->getContentObject()->data;
 
-        $file = $this->getFile($contentObjectData['uid']);
+        $uid = (int)$contentObjectData['uid'];
+        $chartConfiguration = $this->chartConfigurationRepository->findByUid($uid);
+        $csvContents = $this->fileReaderCSV->getData($chartConfiguration->getDataFile());
+        $dataTable = $this->dataTableFactory->fromArray($csvContents);
 
-        // as a legacy, most of the  logic of this action is implemented as fluid data processors. Run those processors
-        $configuration = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_FRAMEWORK);
-        $viewConfiguration = $this->typoScriptService->convertPlainArrayToTypoScriptArray($configuration['view']);
-        $variables = $this->contentDataProcessor->process(
-            $contentObjectRenderer,
-            $viewConfiguration,
-            [
-                'data' => $contentObjectData,
-                'file' => $file,
-            ]
+        $builderConfiguration = $this->settings['chartJsDefaults'][$chartConfiguration->getType()];
+        $builder = GeneralUtility::makeInstance($builderConfiguration['builder']);
+        $chartJsChart = $builder->buildForConfiguration(
+            $chartConfiguration,
+            $dataTable,
+            $this->currentLanguage,
+            $builderConfiguration,
         );
 
-        $this->view->assignMultiple($variables);
+        $this->view->assignMultiple([
+            'chart' => $chartJsChart,
+            'uid' => $uid,
+            'chartContainerWidth' => (string) $contentObjectData['denacharts_container_width'],
+            'dataTable' => $dataTable,
+            'allowDownload' => (bool) $contentObjectData['denacharts_allow_download'],
+            'description' => (string) $contentObjectData['bodytext'],
+            'showDataTable' => (bool) $contentObjectData['denacharts_show_datatable'],
+            'source' => (string) $contentObjectData['denacharts_source'],
+            'sourceLink' => (string) $contentObjectData['denacharts_source_link'],
+        ]);
     }
 
     public function downloadAction(int $id)
@@ -63,18 +76,10 @@ class ChartController extends ActionController
         }
 
         $source = $contentObjectData['denacharts_source'];
-        $file = $this->getFile($contentObjectUid);
+        $chartConfiguration = $this->chartConfigurationRepository->findByUid($contentObjectUid);
+        $file = $chartConfiguration->getDataFile();
 
         $this->chartDownloadService->streamChartZip($file, $source);
         exit(0);
-    }
-
-    protected function getFile(int $contentElementUid): ?FileReference
-    {
-        $files = $this->fileRepository->findByRelation('tt_content', 'denacharts_data_file', $contentElementUid);
-        if (empty($files)) {
-            return null;
-        }
-        return $files[0];
     }
 }

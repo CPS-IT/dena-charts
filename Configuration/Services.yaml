@@ -15,19 +15,13 @@ services:
      class: TYPO3\CMS\Core\Site\Entity\SiteLanguage
      factory: '@CPSIT\DenaCharts\Language\CurrentSiteLanguageFactory'
 
-  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor:
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder:
     public: true
-  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\BarChartProcessor:
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\BarChartBuilder:
     public: true
-  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColumnChartProcessor:
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\LineChartBuilder:
     public: true
-  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\LineChartProcessor:
-    public: true
-  CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor:
-    public: true
-  CPSIT\DenaCharts\DataProcessing\DataTableFromArray:
-    public: true
-  CPSIT\DenaCharts\DataProcessing\FileReaderCSV:
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\PieChartBuilder:
     public: true
 
   CPSIT\DenaCharts\Form\ColorSchemeSelectorItemProvider:

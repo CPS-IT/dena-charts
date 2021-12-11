@@ -55,7 +55,7 @@ class DataTable
 
     /**
      * Gets the rows
-     * @return ObjectStorage
+     * @return ObjectStorage<DataRow>
      */
     public function getRows()
     {

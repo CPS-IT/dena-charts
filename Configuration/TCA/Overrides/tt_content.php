@@ -155,7 +155,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['chart_source'] = [
 
 
 // Register separate CTypes for all chart types
-foreach (\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chartType) {
+foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $chartType) {
     $cType = 'denacharts_chart_' . $chartType;
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
         [
@@ -202,9 +202,9 @@ foreach (\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $char
     'tt_content',
     '--palette--;;chart_axis',
     implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
-        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR,
-        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_COLUMN,
-        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_BAR,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,
     ])),
     'after:denacharts_data_file',
 );
@@ -212,7 +212,7 @@ foreach (\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $char
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     'denacharts_show_points',
-    'denacharts_chart_' . \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_LINE,
+    'denacharts_chart_' . \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,
     'after:denacharts_show_datatable',
 );
 
@@ -220,8 +220,8 @@ foreach (\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $char
     'tt_content',
     'denacharts_stack',
     implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
-        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_COLUMN,
-        \CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPE_BAR,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_BAR,
     ])),
     'after:--palette--;;chart_imagesize',
 );

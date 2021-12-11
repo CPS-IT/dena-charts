@@ -57,5 +57,5 @@ indent_size = 2
 indent_style = tab
 
 
-[Tests/Unit/DataProcessing/FileReaderCSVTest.php]
+[Tests/Unit/Service/FileReaderCSVTest.php]
 trim_trailing_whitespace = false

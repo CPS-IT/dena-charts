@@ -6,103 +6,61 @@ tt_content.denacharts_chart.20 {
     templateRootPaths {
       200 = EXT:dena_charts/Resources/Private/Templates/
     }
+  }
 
-    dataProcessing {
-      10 = CPSIT\DenaCharts\DataProcessing\FileReaderCSV
-      20 = CPSIT\DenaCharts\DataProcessing\DataTableFromArray
-      20 {
-        labelFromFirstColumn = 1
+  settings {
+    chartJsDefaults {
+      default {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder
+        options {
+          plugins.legend.position = bottom
+        }
       }
 
-      30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor
-      30 {
-        options.plugins.legend.position = bottom
+      column < .default
+      column {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\BarChartBuilder
+        type = bar
+        options {
+          grid.offset = false
+        }
       }
+
+      bar < .column
+      bar.options.indexAxis = y
+
+      line < .default
+      line {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\LineChartBuilder
+        type = line
+        options {
+          options.grid.offset = false
+        }
+      }
+
+      pie < .default
+      pie {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\PieChartBuilder
+        type = pie
+        options {
+          grid.offset = false
+        }
+      }
+
+      doughnut < .pie
+      doughnut {
+        type = doughnut
+      }
+
+      default >
     }
   }
 }
 
 tt_content.denacharts_chart_bar < tt_content.denacharts_chart
-tt_content.denacharts_chart_bar.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\BarChartProcessor
-tt_content.denacharts_chart_bar.20.view.dataProcessing.30 {
-  type = bar
-  options {
-    #barPercentage =
-    #categoryPercentage =
-    #barThickness =
-    #maxBarThickness =
-    grid.offset = false
-    plugins {
-      legend {
-        # default: true, allowed: true, false
-        # display = false
-
-        # default: top, allowed: top, bottom, left, right
-        # position = bottom
-
-        # box takes full canvas width, pushing other boxes down
-        # default: true, allowed: true, false
-        # fullWidth = true
-
-        # data sets in reverse order
-        # default: false, allowed: true,false
-        # reverse = true
-        #labels {
-        #
-        #}
-      }
-    }
-    indexAxis = y
-  }
-}
-
-tt_content.denacharts_chart_column < tt_content.denacharts_chart_bar
-tt_content.denacharts_chart_column.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\ColumnChartProcessor
-tt_content.denacharts_chart_column.20.view.dataProcessing.30 {
-  options {
-    indexAxis >
-  }
-}
-
+tt_content.denacharts_chart_column < tt_content.denacharts_chart
 tt_content.denacharts_chart_line < tt_content.denacharts_chart
-tt_content.denacharts_chart_line.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\LineChartProcessor
-tt_content.denacharts_chart_line.20.view.dataProcessing.30 {
-  type = line
-
-  options {
-    #barPercentage =
-    #categoryPercentage =
-    #barThickness =
-    #maxBarThickness =
-    options.grid.offset = false
-  }
-}
-
 tt_content.denacharts_chart_pie < tt_content.denacharts_chart
-tt_content.denacharts_chart_pie.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor
-tt_content.denacharts_chart_pie.20.view.dataProcessing.30 {
-  type = pie
-
-  options {
-    #barPercentage =
-    #categoryPercentage =
-    #barThickness =
-    #maxBarThickness =
-    options.grid.offset = false
-  }
-}
-
 tt_content.denacharts_chart_doughnut < tt_content.denacharts_chart
-tt_content.denacharts_chart_doughnut.20.view.dataProcessing.30 = CPSIT\DenaCharts\DataProcessing\ChartJsProcessor\PieChartProcessor
-tt_content.denacharts_chart_doughnut.20.view.dataProcessing.30 {
-  type = doughnut
-  options {
-    #barPercentage =
-    #categoryPercentage =
-    #barThickness =
-    #maxBarThickness =
-    options.grid.offset = false
-  }
-}
 
 tt_content.denacharts_chart >

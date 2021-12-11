@@ -2,12 +2,10 @@
 
 namespace CPSIT\DenaCharts\Tests\Unit\DataProcessing;
 
-use CPSIT\DenaCharts\DataProcessing\FileReaderCSV;
+use CPSIT\DenaCharts\Service\FileReaderCSV;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /***************************************************************
@@ -34,48 +32,11 @@ class FileReaderCSVTest extends UnitTestCase
     protected $subject;
 
     /**
-     * @var TypoScriptService|\PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $typoScriptService;
-
-    /**
-     * @var ContentObjectRenderer|\PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $contentObjectRenderer;
-
-    /**
      * set up subject
      */
     public function setUp()
     {
-        $this->typoScriptService = $this->getMockBuilder(TypoScriptService::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['convertTypoScriptArrayToPlainArray'])
-            ->getMock();
-        $this->subject = $this->getMockBuilder(FileReaderCSV::class)
-            ->setConstructorArgs([$this->typoScriptService])
-            ->setMethods(['dummy'])
-            ->getMock();
-
-        $this->contentObjectRenderer = $this->getMockBuilder(ContentObjectRenderer::class)
-            ->disableOriginalConstructor()->getMock();
-    }
-
-    /**
-     * @test
-     */
-    public function processConvertsTypoScriptArrayToPlainArray()
-    {
-        $typoScript = ['foo'];
-        $this->typoScriptService->expects($this->once())
-            ->method('convertTypoScriptArrayToPlainArray')
-            ->with($typoScript);
-        $this->subject->process(
-            $this->contentObjectRenderer,
-            [],
-            $typoScript,
-            ['data' => []],
-        );
+        $this->subject = new FileReaderCSV();
     }
 
     /**
@@ -85,7 +46,7 @@ class FileReaderCSVTest extends UnitTestCase
     {
         $contentWithWhiteSpace = <<<FCC
 "label 1"
-"content 1"   
+"content 1" 
 
 FCC;
 
@@ -126,9 +87,6 @@ BIE;
      */
     public function processConvertsFileContentToArray($fileContent, $expectedRecords)
     {
-        $configuration = [];
-        $contentElementData = [];
-
         $mockFile = $this->getMockBuilder(FileReference::class)
             ->disableOriginalConstructor()
             ->setMethods(['getContents'])
@@ -136,26 +94,8 @@ BIE;
         $mockFile->expects($this->once())->method('getContents')
             ->will($this->returnValue($fileContent));
 
-        $contentObjectConfiguration = [];
-        $processedData = [
-            'data' => $contentElementData,
-            'file' => $mockFile,
-        ];
+        $data = $this->subject->getData($mockFile);
 
-        $this->typoScriptService->expects($this->once())
-            ->method('convertTypoScriptArrayToPlainArray')
-            ->will($this->returnValue($configuration));
-
-        $dataAfterProcessing = $this->subject->process(
-            $this->contentObjectRenderer,
-            $contentObjectConfiguration,
-            $configuration,
-            $processedData
-        );
-
-        $this->assertSame(
-            $dataAfterProcessing['csvData'],
-            $expectedRecords
-        );
+        $this->assertSame($expectedRecords, $data);
     }
 }

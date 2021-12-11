@@ -89,9 +89,9 @@ class DataTableFactoryTest extends UnitTestCase
     public function fromArrayGeneratesRowsFromDataRows()
     {
         $data = [
-            ['foo', 'bar'],
-            [1, 2],
-            [3, 5]
+            ['', 'foo', 'bar'],
+            [1995, 1, 2],
+            [1996, 3, 5]
         ];
 
         $dataTable = $this->subject->fromArray($data);
@@ -110,9 +110,11 @@ class DataTableFactoryTest extends UnitTestCase
                 $row
             );
             $position = $rows->getPosition($row);
+            $expected = $data[$position];
+            array_shift($expected);
             $this->assertSame(
                 $row->getData(),
-                array_map(fn ($number) => (float)$number, $data[$position])
+                array_map(fn ($number) => (float)$number, $expected)
             );
         }
     }

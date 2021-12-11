@@ -33,10 +33,9 @@ class DataTableFactory
      * Builds a DataTable from array
      *
      * @param array $data Two dimensional array to build data table from
-     * @param array $configuration Optional configuration
      * @return DataTable
      */
-    public function fromArray(array $data, array $configuration = []): DataTable
+    public function fromArray(array $data): DataTable
     {
         $dataTable = new DataTable();
 
@@ -55,10 +54,8 @@ class DataTableFactory
 
             foreach ($data as $dataRow) {
                 $row = new DataRow();
-                if (!empty($configuration['labelFromFirstColumn'])) {
-                    $label = (string)array_shift($dataRow);
-                    $row->setLabel($label);
-                }
+                $label = (string)array_shift($dataRow);
+                $row->setLabel($label);
                 $row->setData($this->parseNumbers($dataRow));
                 $dataTable->addRow($row);
             }
