@@ -155,7 +155,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['chart_source'] = [
 
 
 // Register separate CTypes for all chart types
-foreach(\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chartType) {
+foreach (\CPSIT\DenaCharts\DataProcessing\ChartJsProcessor::CHART_TYPES as $chartType) {
     $cType = 'denacharts_chart_' . $chartType;
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
         [

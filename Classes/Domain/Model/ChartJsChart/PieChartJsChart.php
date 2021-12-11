@@ -16,18 +16,19 @@ class PieChartJsChart extends ChartJsChart
         $this->type = $type;
     }
 
-    protected function transposeData($data) {
+    protected function transposeData($data)
+    {
         $result = [];
 
         $result['labels'] = array_column($data['datasets'], 'label');
-        foreach($data['labels'] as $label) {
+        foreach ($data['labels'] as $label) {
             $result['datasets'][] = [
                 'label' => $label,
                 'data' => [],
             ];
         }
-        foreach($data['datasets'] as $y => $sourceDataset) {
-            foreach($sourceDataset['data'] as $x => $value) {
+        foreach ($data['datasets'] as $y => $sourceDataset) {
+            foreach ($sourceDataset['data'] as $x => $value) {
                 $result['datasets'][$x]['data'][$y] = $value;
             }
         }
@@ -40,11 +41,11 @@ class PieChartJsChart extends ChartJsChart
      */
     public function applyColors(array $colors): void
     {
-        foreach($this->data['datasets'] as &$dataset) {
+        foreach ($this->data['datasets'] as &$dataset) {
             $nColors = count($colors);
             $dataCount = count($dataset['data']);
             $colorArray = [];
-            for($index = 0; $index < $dataCount; $index++) {
+            for ($index = 0; $index < $dataCount; $index++) {
                 $colorArray[] = $colors[$index % $nColors]->getValue();
             }
             $dataset['backgroundColor'] = $colorArray;

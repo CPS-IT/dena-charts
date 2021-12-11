@@ -47,7 +47,8 @@ class DataTable
     /**
      * initialize object
      */
-    public function initializeStorageObjects() {
+    public function initializeStorageObjects()
+    {
         $this->rows = new ObjectStorage();
         $this->columns = new ObjectStorage();
     }
@@ -56,7 +57,8 @@ class DataTable
      * Gets the rows
      * @return ObjectStorage
      */
-    public function getRows() {
+    public function getRows()
+    {
         return $this->rows;
     }
 
@@ -64,7 +66,8 @@ class DataTable
      * Sets the rows
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<CPSIT\DenaCharts\Domain\Model\DataRow> $rows
      */
-    public function setRows(ObjectStorage $rows) {
+    public function setRows(ObjectStorage $rows)
+    {
         $this->rows = $rows;
     }
 
@@ -72,7 +75,8 @@ class DataTable
      * Adds a row
      * @param DataRow $row
      */
-    public function addRow(DataRow $row) {
+    public function addRow(DataRow $row)
+    {
         $this->rows->attach($row);
     }
 
@@ -99,9 +103,8 @@ class DataTable
      *
      * @param DataColumn $column
      */
-    public function addColumn(DataColumn $column) {
+    public function addColumn(DataColumn $column)
+    {
         $this->columns->attach($column);
     }
-
-
 }

@@ -45,7 +45,7 @@ class ChartJsChart
 
     public function setStacked(bool $stacked)
     {
-        foreach(['x', 'y'] as $axis) {
+        foreach (['x', 'y'] as $axis) {
             $this->options = ArrayUtility::setValueByPath($this->options, ['scales', $axis, 'stacked'], $stacked);
         }
     }
@@ -66,14 +66,14 @@ class ChartJsChart
     public function applyColors(array $colors): void
     {
         $nColors = count($colors);
-        foreach($this->data['datasets'] as $index => &$dataset) {
+        foreach ($this->data['datasets'] as $index => &$dataset) {
             $color = $colors[$index % $nColors];
             $value = $color->getValue();
             $update = [
                 'backgroundColor' => $value,
                 'borderColor' => $value,
             ];
-            foreach($update as $key => $updateValue) {
+            foreach ($update as $key => $updateValue) {
                 $dataset[$key] = $updateValue;
             }
         }

@@ -20,7 +20,7 @@ class ColorSchemeSelectorItemProvider
     public function provideColorSchemeSelectorItems(&$params): void
     {
         $params['items'] = array_values(array_map(
-            fn(ColorScheme $colorScheme) => [$colorScheme->getId(), $colorScheme->getId()],
+            fn (ColorScheme $colorScheme) => [$colorScheme->getId(), $colorScheme->getId()],
             $this->colorSchemeRepository->findAll()
         ));
     }
@@ -34,7 +34,7 @@ class ColorSchemeSelectorItemProvider
         $colorSchemeId = $row['denacharts_color_scheme'][0];
         $colorScheme = $this->colorSchemeRepository->findById($colorSchemeId);
         $result = array_map(
-            fn(Color $color) => [sprintf('%s (%s)', $color->getId(), $color->getValue()), $color->getId()],
+            fn (Color $color) => [sprintf('%s (%s)', $color->getId(), $color->getValue()), $color->getId()],
             $colorScheme->getColors()
         );
         $params['items'] = $result;

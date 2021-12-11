@@ -1,6 +1,7 @@
 <?php
 
 namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
+
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
@@ -43,7 +44,8 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function getRowInitiallyReturnsEmptyObjectStorage() {
+    public function getRowInitiallyReturnsEmptyObjectStorage()
+    {
         $emptyStorage = new ObjectStorage();
         $this->assertEquals(
             $emptyStorage,
@@ -54,7 +56,8 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function setRowsForObjectStorageSetsRows() {
+    public function setRowsForObjectStorageSetsRows()
+    {
         $rows = new ObjectStorage();
         $this->subject->setRows($rows);
 
@@ -67,7 +70,8 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function addRowForObjectAddsRow() {
+    public function addRowForObjectAddsRow()
+    {
         $newRow = new DataRow();
 
         $this->subject->addRow($newRow);
@@ -80,7 +84,8 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function rowCanBeAddedOnlyOnce() {
+    public function rowCanBeAddedOnlyOnce()
+    {
         $row = new DataRow();
 
         $this->subject->addRow($row);
@@ -95,7 +100,8 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function getColumnsInitiallyReturnsEmptyObjectStorage() {
+    public function getColumnsInitiallyReturnsEmptyObjectStorage()
+    {
         $this->assertInstanceOf(
             ObjectStorage::class,
             $this->subject->getColumns()

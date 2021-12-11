@@ -104,8 +104,7 @@ class ChartJsProcessor implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    ): array
-    {
+    ): array {
         $configuration = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
             $processorConfiguration
         );

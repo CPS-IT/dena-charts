@@ -52,7 +52,7 @@ class ColorSchemeTest extends TestCase
         $resultColors = $colorScheme->getColors($idsToGet);
 
         $this->assertCount(count($idsToGet), $resultColors);
-        foreach($idsToGet as $index => $id) {
+        foreach ($idsToGet as $index => $id) {
             $this->assertEquals($id, $resultColors[$index]->getId());
         }
     }

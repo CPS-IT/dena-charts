@@ -112,7 +112,7 @@ class DataTableFactoryTest extends UnitTestCase
             $position = $rows->getPosition($row);
             $this->assertSame(
                 $row->getData(),
-                array_map(fn($number) => (float)$number, $data[$position])
+                array_map(fn ($number) => (float)$number, $data[$position])
             );
         }
     }
@@ -147,7 +147,7 @@ class DataTableFactoryTest extends UnitTestCase
             array_shift($rawRow);
             $this->assertSame(
                 $row->getData(),
-                array_map(fn($number) => (float)$number, $rawRow)
+                array_map(fn ($number) => (float)$number, $rawRow)
             );
         }
     }

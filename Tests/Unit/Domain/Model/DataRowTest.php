@@ -64,7 +64,8 @@ class DataRowTest extends UnitTestCase
     /**
      * @test
      */
-    public function getLabelInitiallyReturnsEmptyString() {
+    public function getLabelInitiallyReturnsEmptyString()
+    {
         $this->assertSame(
             '',
             $this->subject->getLabel()
@@ -74,7 +75,8 @@ class DataRowTest extends UnitTestCase
     /**
      * @test
      */
-    public function setLabelForStringSetsLabel() {
+    public function setLabelForStringSetsLabel()
+    {
         $label = 'foo';
         $this->subject->setLabel($label);
 

@@ -39,8 +39,7 @@ class DataTableFromArray implements DataProcessorInterface
     public function __construct(
         TypoScriptService $typoScriptService,
         DataTableFactory $dataTableFactory
-    )
-    {
+    ) {
         $this->typoScriptService = $typoScriptService;
         $this->dataTableFactory = $dataTableFactory;
     }
@@ -60,8 +59,7 @@ class DataTableFromArray implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    ): array
-    {
+    ): array {
         if (
             !empty($processedData[FileReaderCSV::CSV_DATA_KEY])
             && is_array($processedData[FileReaderCSV::CSV_DATA_KEY])
@@ -70,7 +68,8 @@ class DataTableFromArray implements DataProcessorInterface
                 $processorConfiguration
             );
             $processedData[static::DATA_TABLE_KEY] = $this->dataTableFactory->fromArray(
-                $processedData[FileReaderCSV::CSV_DATA_KEY], $configuration
+                $processedData[FileReaderCSV::CSV_DATA_KEY],
+                $configuration
             );
         }
 

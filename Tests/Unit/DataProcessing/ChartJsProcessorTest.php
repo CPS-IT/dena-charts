@@ -89,7 +89,8 @@ class ChartJsProcessorTest extends UnitTestCase
     /**
      * provides data for processing
      */
-    public function processGetsChartDataFromCSVDataProvider() {
+    public function processGetsChartDataFromCSVDataProvider()
+    {
         return [
             'empty CSV data' => [
                 [
@@ -109,7 +110,8 @@ class ChartJsProcessorTest extends UnitTestCase
      * @param string $expectedChartData
      * @dataProvider processGetsChartDataFromCSVDataProvider
      */
-    public function processGetsChartDataFromCSV($processedData, $localConfiguration, $expectedChartData) {
+    public function processGetsChartDataFromCSV($processedData, $localConfiguration, $expectedChartData)
+    {
         $contentObjectConfiguration = [];
         $processorConfiguration = ['type' => 'pie'];
 

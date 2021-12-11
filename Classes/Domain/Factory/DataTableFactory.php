@@ -70,7 +70,7 @@ class DataTableFactory
     protected function parseNumbers(array $data)
     {
         $numberFormatter = NumberFormatter::create('de_DE', NumberFormatter::DECIMAL);
-        return array_map(function($formattedValue) use ($numberFormatter) {
+        return array_map(function ($formattedValue) use ($numberFormatter) {
             return $numberFormatter->parse($formattedValue);
         }, $data);
     }

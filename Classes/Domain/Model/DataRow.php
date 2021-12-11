@@ -44,6 +44,4 @@ class DataRow
     {
         $this->label = $label;
     }
-
-
 }

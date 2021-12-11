@@ -1,9 +1,9 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-(function(string $extKey) {
+(function (string $extKey) {
     // register backend icons
-    (function(string $extKey) {
+    (function (string $extKey) {
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         $iconsBasePath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extKey) . 'Resources/Public/Backend/Icons';
         foreach (['ctype'] as $type) {

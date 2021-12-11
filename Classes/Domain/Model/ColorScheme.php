@@ -37,8 +37,7 @@ class ColorScheme
         if (isset($colorIds)) {
             $colorsById = $this->getColorsById();
             return array_map(
-                function(string $colorId) use ($colorsById): Color
-                {
+                function (string $colorId) use ($colorsById): Color {
                     if (!isset($colorsById[$colorId])) {
                         throw new \InvalidArgumentException(
                             sprintf('Color "%s" does not exist in color scheme "%s"', $colorId, $this->getId()),

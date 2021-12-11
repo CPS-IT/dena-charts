@@ -19,9 +19,9 @@ class ColorSchemeRepository
         $content = json_decode(file_get_contents($path));
 
         $schemes = [];
-        foreach($content as $schemeId => $colorsData) {
+        foreach ($content as $schemeId => $colorsData) {
             $colors = [];
-            foreach($colorsData as $colorId => $hexCode) {
+            foreach ($colorsData as $colorId => $hexCode) {
                 $colors[] = new Color($colorId, $hexCode);
             }
             $schemes[$schemeId] = new ColorScheme($schemeId, $colors);

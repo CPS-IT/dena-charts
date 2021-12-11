@@ -37,8 +37,7 @@ class FileReaderCSV implements DataProcessorInterface
 
     public function __construct(
         TypoScriptService $typoScriptService
-    )
-    {
+    ) {
         $this->typoScriptService = $typoScriptService;
     }
 
@@ -58,8 +57,7 @@ class FileReaderCSV implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    )
-    {
+    ) {
         $configuration = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
             $processorConfiguration
         );
