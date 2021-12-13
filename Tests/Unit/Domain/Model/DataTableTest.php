@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
+use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
@@ -115,5 +116,38 @@ class DataTableTest extends UnitTestCase
             ObjectStorage::class,
             $this->subject->getColumns()
         );
+    }
+
+    public function provideCasesForCellsById()
+    {
+        return [
+            ['B2', 1.0],
+            ['C2', 2.0],
+            ['D2', 3.0],
+            ['B3', 4.0],
+            ['C3', 5.0],
+            ['D3', 6.0],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider provideCasesForCellsById
+     */
+    public function findsCellById(string $id, float $value)
+    {
+        $rows = [
+            ['Header', 'Header 1', 'Header 2', 'Header 3'],
+            ['Row 1', 1, 2, 3],
+            ['Row 2', 4, 5, 6],
+            ['Row 3', 7, 8, 9],
+        ];
+
+        $dataTableFactory = new DataTableFactory();
+        $dataTable = $dataTableFactory->fromArray($rows);
+
+        $result = $dataTable->getCellById($id);
+        self::assertEquals($id, $result->getId());
+        self::assertEquals($value, $result->getValue());
     }
 }

@@ -107,4 +107,30 @@ class DataTable
     {
         $this->columns->attach($column);
     }
+
+    public function getCellById(string $cellId): ?DataCell
+    {
+        $match = preg_match('/([A-Z]+)([0-9]+)/', $cellId, $matches);
+        if (!$match) {
+            throw new \InvalidArgumentException('Invalid cell id ' . $cellId);
+        }
+
+        $columnLetters = $matches[1];
+        $columnIndex = DataColumn::getColumnIndexForLetters($columnLetters);
+
+        $rowIndex = ((int)$matches[2]) - 1;
+
+        /** @var DataRow $row */
+        if (!isset($this->getRows()[$rowIndex - 1])) {
+            return null;
+        }
+        $row = $this->getRows()[$rowIndex - 1];
+
+        if (!isset($row->getCells()[$columnIndex - 1])) {
+            return null;
+        }
+        $cell = $row->getCells()[$columnIndex - 1];
+
+        return $cell;
+    }
 }

@@ -8,6 +8,7 @@ use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
 use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\DataCell;
 
 class LineChartBuilder extends ChartBuilder
 {
@@ -31,11 +32,20 @@ class LineChartBuilder extends ChartBuilder
     {
         $options = $chart->getOptions();
         if ($chartConfiguration->isShowPoints()) {
-            unset($options['pointRadius']);
+            unset($options['defaultPointRadius']);
         } else {
-            $options['pointRadius'] = 0;
+            $options['defaultPointRadius'] = 0;
         }
 
         return $chart->withOptions($options);
+    }
+
+    protected function convertCell(DataCell $dataCell)
+    {
+        return [
+            'x' => $dataCell->getRow()->getLabel(),
+            'y' => $dataCell->getValue(),
+            'highlight' => $dataCell->isHighlight(),
+        ];
     }
 }

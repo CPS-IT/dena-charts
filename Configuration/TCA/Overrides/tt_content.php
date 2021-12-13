@@ -140,6 +140,20 @@
             'multiple' => true,
         ],
     ],
+    'denacharts_data' => [
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_data',
+        'config' => [
+            'type' => 'none',
+            'renderType' => 'dena-charts-data-table',
+            'pass_content' => true,
+        ],
+    ],
+    'denacharts_highlights' => [
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_highlights',
+        'config' => [
+            'type' => 'text'
+        ],
+    ],
 ]);
 
 // Configure the default palettes for the chart content element
@@ -211,7 +225,12 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
-    'denacharts_show_points',
+    implode(',', [
+        'denacharts_show_points',
+        '--div--;Data,LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
+        'denacharts_data',
+        'denacharts_highlights',
+    ]),
     'denacharts_chart_' . \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,
     'after:denacharts_show_datatable',
 );

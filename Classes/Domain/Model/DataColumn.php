@@ -67,4 +67,12 @@ class DataColumn
         }
         return $result;
     }
+
+    public static function getColumnIndexForLetters(string $columnLetters): int
+    {
+        for ($i = 0, $result = 0, $length = strlen($columnLetters); $i < $length; $i++) {
+            $result = $result * 26 + ord($columnLetters[$i]) - 0x40;
+        }
+        return $result - 1;
+    }
 }

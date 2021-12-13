@@ -34,9 +34,10 @@ class DataTableFactory
      * Builds a DataTable from array
      *
      * @param array $data Two dimensional array to build data table from
+     * @param array $highlightFieldIds List of fields ids of fields to highlight
      * @return DataTable
      */
-    public function fromArray(array $data): DataTable
+    public function fromArray(array $data, array $highlightFieldIds = []): DataTable
     {
         $dataTable = new DataTable();
         if (empty($data)) {
@@ -72,6 +73,13 @@ class DataTableFactory
                 $cellRow
             );
             $dataTable->addRow($row);
+        }
+
+        foreach ($highlightFieldIds as $fieldId) {
+            $cell = $dataTable->getCellById($fieldId);
+            if (isset($cell)) {
+                $cell->setHighlight(true);
+            }
         }
 
         return $dataTable;

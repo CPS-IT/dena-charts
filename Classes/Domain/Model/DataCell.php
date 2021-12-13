@@ -6,6 +6,8 @@ class DataCell
 {
     protected float $value;
 
+    protected bool $highlight = false;
+
     protected DataRow $row;
 
     protected DataColumn $column;
@@ -15,9 +17,24 @@ class DataCell
         $this->value = $value;
     }
 
+    public function getId(): string
+    {
+        return $this->column->getLetters() . $this->row->getNumber();
+    }
+
     public function getValue(): float
     {
         return $this->value;
+    }
+
+    public function isHighlight(): bool
+    {
+        return $this->highlight;
+    }
+
+    public function setHighlight(bool $highlight): void
+    {
+        $this->highlight = $highlight;
     }
 
     public function getRow(): DataRow

@@ -52,6 +52,15 @@ var denaCharts = denaCharts || {};
                 }
               }
             }
+          },
+          'elements': {
+            'point': {
+              'radius': function(context) {
+                const defaultRadius = context.chart?.options?.defaultPointRadius ?? 5;
+                const highlightRadius = defaultRadius > 0 ? defaultRadius * 2 : 5;
+                return context.raw?.highlight === true ? highlightRadius : defaultRadius;
+              }
+            }
           }
       }};
 

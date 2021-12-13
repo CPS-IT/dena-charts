@@ -41,8 +41,14 @@
 			<trans-unit id="tt_content.denacharts_color_scheme">
 				<source>Color scheme</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_data">
+				<source>Data</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_colors">
 				<source>Colors</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_highlights">
+				<source>Highlights</source>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_datatable">
 				<source>Show data table</source>
@@ -65,6 +71,9 @@
             </trans-unit>
             <trans-unit id="tabs.chart" xml:space="preserve">
 				<source>Chart</source>
+			</trans-unit>
+			<trans-unit id="tabs.chartdata">
+				<source>Data</source>
 			</trans-unit>
 		</body>
 	</file>

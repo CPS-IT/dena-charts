@@ -132,11 +132,8 @@ class DataTableFactoryTest extends UnitTestCase
             ['label 1', 1, 2],
             ['label 2', 3, 5]
         ];
-        $configuration = [
-            'labelFromFirstColumn' => 1
-        ];
 
-        $dataTable = $this->subject->fromArray($data, $configuration);
+        $dataTable = $this->subject->fromArray($data);
         $rows = $dataTable->getRows();
 
         /** @var DataRow $row */

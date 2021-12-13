@@ -62,4 +62,22 @@ class DataColumnTest extends UnitTestCase
             $this->subject->getLetters(),
         );
     }
+
+    public function provideIndexForLettersTestCases(): array
+    {
+        return [
+            ['A', 0],
+            ['B', 1],
+            ['Z', 25],
+            ['AA', 26],
+            ['AF', 31],
+        ];
+    }
+
+    /** @dataProvider provideIndexForLettersTestCases */
+    public function testGetIndexForLetters(string $columnLetters, int $expectedIndex)
+    {
+        $result = DataColumn::getColumnIndexForLetters($columnLetters);
+        $this->assertEquals($expectedIndex, $result);
+    }
 }

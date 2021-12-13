@@ -14,5 +14,6 @@ denacharts_source_link tinytext,
 denacharts_stack tinyint(4) unsigned DEFAULT 0 NOT NULL,
 denacharts_color_scheme tinytext,
 denacharts_colors text,
+denacharts_highlights text,
 );
 

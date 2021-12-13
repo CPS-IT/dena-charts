@@ -43,7 +43,11 @@ class ChartController extends ActionController
         $uid = (int)$contentObjectData['uid'];
         $chartConfiguration = $this->chartConfigurationRepository->findByUid($uid);
         $csvContents = $this->fileReaderCSV->getData($chartConfiguration->getDataFile());
-        $dataTable = $this->dataTableFactory->fromArray($csvContents);
+
+        $highlightsString = str_replace(["\n", ',', ';'], ',', $contentObjectData['denacharts_highlights']);
+        $highlights = GeneralUtility::trimExplode(',', $highlightsString, true);
+
+        $dataTable = $this->dataTableFactory->fromArray($csvContents, $highlights);
 
         $builderConfiguration = $this->settings['chartJsDefaults'][$chartConfiguration->getType()];
         $builder = GeneralUtility::makeInstance($builderConfiguration['builder']);
