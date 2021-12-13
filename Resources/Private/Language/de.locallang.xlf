@@ -16,6 +16,9 @@
 				<source>Data source</source>
 				<target>Datenquelle</target>
 			</trans-unit>
+			<trans-unit id="data_table">
+				<source>Wertetabelle</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

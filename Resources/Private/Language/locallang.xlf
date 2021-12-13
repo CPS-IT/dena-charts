@@ -13,6 +13,9 @@
 			<trans-unit id="source">
 				<source>Data source</source>
 			</trans-unit>
+			<trans-unit id="data_table">
+				<source>Datatable</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
