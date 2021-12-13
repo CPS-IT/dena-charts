@@ -21,27 +21,43 @@ namespace CPSIT\DenaCharts\Domain\Model;
 
 class DataRow
 {
+    protected int $number;
+
     protected string $label = '';
 
-    protected array $data = [];
+    /**
+     * @var DataCell[]
+     */
+    protected array $cells = [];
+
+    public function __construct(int $index, string $label, array $cells)
+    {
+        $this->number = $index;
+        $this->label = $label;
+        $this->cells = $cells;
+
+        foreach ($this->cells as &$cell) {
+            $cell->setRow($this);
+        }
+    }
+
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
+    public function getCells(): array
+    {
+        return $this->cells;
+    }
 
     public function getData(): array
     {
-        return $this->data;
-    }
-
-    public function setData(array $data)
-    {
-        $this->data = $data;
+        return array_map(fn (DataCell $cell) => $cell->getValue(), $this->cells);
     }
 
     public function getLabel(): string
     {
         return $this->label;
-    }
-
-    public function setLabel(string $label)
-    {
-        $this->label = $label;
     }
 }

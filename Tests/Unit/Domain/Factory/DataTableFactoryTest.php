@@ -3,6 +3,7 @@
 namespace CPSIT\DenaCharts\Tests\Unit\Domain\Factory;
 
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
+use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
@@ -70,11 +71,12 @@ class DataTableFactoryTest extends UnitTestCase
             $columns
         );
         /** @var DataColumn $column */
-        foreach ($columns as $column) {
+        foreach ($columns->toArray() as $index => $column) {
             $this->assertInstanceOf(
                 DataColumn::class,
                 $column
             );
+            $this->assertEquals($index + 2, $column->getNumber());
             $this->assertContains(
                 $column->getLabel(),
                 $firstRow
@@ -104,16 +106,17 @@ class DataTableFactoryTest extends UnitTestCase
         );
 
         /** @var DataRow $row */
-        foreach ($rows as $row) {
+        foreach ($rows->toArray() as $index => $row) {
             $this->assertInstanceOf(
                 DataRow::class,
                 $row
             );
             $position = $rows->getPosition($row);
+            $this->assertEquals($index + 2, $row->getNumber());
             $expected = $data[$position];
             array_shift($expected);
             $this->assertSame(
-                $row->getData(),
+                array_map(fn (DataCell $dataCell) => $dataCell->getValue(), $row->getCells()),
                 array_map(fn ($number) => (float)$number, $expected)
             );
         }
@@ -148,7 +151,7 @@ class DataTableFactoryTest extends UnitTestCase
 
             array_shift($rawRow);
             $this->assertSame(
-                $row->getData(),
+                array_map(fn (DataCell $dataCell) => $dataCell->getValue(), $row->getCells()),
                 array_map(fn ($number) => (float)$number, $rawRow)
             );
         }

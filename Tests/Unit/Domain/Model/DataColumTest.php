@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
+use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 
@@ -33,16 +34,20 @@ class DataColumnTest extends UnitTestCase
      */
     public function setUp()
     {
-        $this->subject = new DataColumn();
+        $this->subject = new DataColumn(
+            32,
+            'label',
+            array_map(fn ($value) => new DataCell($value), [1, 2, 3])
+        );
     }
 
     /**
      * @test
      */
-    public function getLabelInitiallyReturnsEmptyString()
+    public function getLabelInitiallyReturnsString()
     {
         $this->assertSame(
-            '',
+            'label',
             $this->subject->getLabel()
         );
     }
@@ -50,14 +55,11 @@ class DataColumnTest extends UnitTestCase
     /**
      * @test
      */
-    public function setLabelForStringSetsLabel()
+    public function getLettersReturnsLetterCode()
     {
-        $label = 'foo';
-        $this->subject->setLabel($label);
-
         $this->assertSame(
-            $label,
-            $this->subject->getLabel()
+            'AF',
+            $this->subject->getLetters(),
         );
     }
 }

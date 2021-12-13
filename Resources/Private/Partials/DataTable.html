@@ -18,8 +18,8 @@
             <f:for each="{dataTable.rows}" as="row">
                 <tr>
                     <th class="tx-dena-charts-table--rowheaderfield">{row.label}</th>
-                    <f:for each="{row.data}" as="value">
-                        <td><c:format.number>{value}</c:format.number></td>
+                    <f:for each="{row.cells}" as="cell">
+                        <td><c:format.number>{cell.value}</c:format.number></td>
                     </f:for>
                 </tr>
             </f:for>

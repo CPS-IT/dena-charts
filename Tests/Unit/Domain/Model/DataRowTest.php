@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
+use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 
@@ -33,16 +34,20 @@ class DataRowTest extends UnitTestCase
      */
     public function setUp()
     {
-        $this->subject = new DataRow();
+        $this->subject = new DataRow(
+            42,
+            'Label',
+            array_map(fn ($value) => new DataCell($value), [0.4, 1.2, 2]),
+        );
     }
 
     /**
      * @test
      */
-    public function getDataInitiallyReturnsEmptyArray()
+    public function getDataReturnsData()
     {
-        $this->assertSame(
-            [],
+        $this->assertEquals(
+            [0.4, 1.2, 2],
             $this->subject->getData()
         );
     }
@@ -50,38 +55,10 @@ class DataRowTest extends UnitTestCase
     /**
      * @test
      */
-    public function setDataForArraySetsData()
-    {
-        $data = ['baz'];
-        $this->subject->setData($data);
-
-        $this->assertSame(
-            $data,
-            $this->subject->getData()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getLabelInitiallyReturnsEmptyString()
+    public function getLabelReturnsLabel()
     {
         $this->assertSame(
-            '',
-            $this->subject->getLabel()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function setLabelForStringSetsLabel()
-    {
-        $label = 'foo';
-        $this->subject->setLabel($label);
-
-        $this->assertSame(
-            $label,
+            'Label',
             $this->subject->getLabel()
         );
     }

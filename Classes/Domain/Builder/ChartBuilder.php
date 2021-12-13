@@ -5,6 +5,7 @@ namespace CPSIT\DenaCharts\Domain\Builder;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
 use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
@@ -77,7 +78,7 @@ class ChartBuilder
             $dataSets[] = [
                 // label might not be appropriate for all chart types
                 'label' => $column->getLabel(),
-                'data' => $column->getData()
+                'data' => array_map([$this, 'convertCell'], $column->getCells()),
             ];
         }
 
@@ -92,5 +93,10 @@ class ChartBuilder
     {
         $chart = $this->colorsProcessor->process($chartConfiguration, $chart);
         return $chart;
+    }
+
+    protected function convertCell(DataCell $dataCell)
+    {
+        return $dataCell->getValue();
     }
 }

@@ -21,32 +21,50 @@ namespace CPSIT\DenaCharts\Domain\Model;
 
 class DataColumn
 {
+    protected int $number;
+
     protected string $label = '';
 
+    /** @var DataCell[] */
+    protected $cells = [];
+
     /**
-     * Data
-     *
-     * @var array
+     * @param int $index
+     * @param string $label
+     * @param DataCell[] $cells
      */
-    protected $data = [];
+    public function __construct(int $index, string $label, array $cells)
+    {
+        $this->number = $index;
+        $this->label = $label;
+        $this->cells = $cells;
+
+        foreach ($this->cells as &$cell) {
+            $cell->setColumn($this);
+        }
+    }
+
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
 
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    public function setLabel(string $label)
+    public function getCells(): array
     {
-        $this->label = $label;
+        return $this->cells;
     }
 
-    public function getData(): array
+    public function getLetters(): string
     {
-        return $this->data;
-    }
-
-    public function setData(array $data)
-    {
-        $this->data = $data;
+        $residue = $this->getNumber() - 1;
+        for ($result = ''; $residue >= 0; $residue = intval($residue / 26) - 1) {
+            $result = chr($residue%26 + 0x41) . $result;
+        }
+        return $result;
     }
 }

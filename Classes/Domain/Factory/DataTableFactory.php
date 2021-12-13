@@ -19,6 +19,7 @@ namespace CPSIT\DenaCharts\Domain\Factory;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
@@ -38,37 +39,41 @@ class DataTableFactory
     public function fromArray(array $data): DataTable
     {
         $dataTable = new DataTable();
+        if (empty($data)) {
+            return $dataTable;
+        }
 
-        if (!empty($data)) {
-            $headers = array_shift($data);
-            array_shift($headers);
+        $columnHeaders = array_shift($data);
+        array_shift($columnHeaders);
+        $rowHeaders = array_column($data, 0);
 
-            foreach ($headers as $columnIndex => $header) {
-                $column = new DataColumn();
-                $column->setLabel($header);
-                $dataColumn = array_column($data, $columnIndex + 1);
-                $column->setData($this->parseNumbers($dataColumn));
+        $numberFormatter = NumberFormatter::create('de_DE', NumberFormatter::DECIMAL);
+        $cells = array_map(function (array $values) use ($numberFormatter): array {
+            array_shift($values);
+            return array_map(function (string $formattedValue) use ($numberFormatter) {
+                return new DataCell($numberFormatter->parse($formattedValue));
+            }, $values);
+        }, $data);
 
-                $dataTable->addColumn($column);
-            }
+        foreach ($columnHeaders as $columnIndex => $header) {
+            $columnData = array_column($cells, $columnIndex);
+            $dataTable->addColumn(new DataColumn(
+                $columnIndex + 2,
+                $header,
+                $columnData,
+            ));
+        }
 
-            foreach ($data as $dataRow) {
-                $row = new DataRow();
-                $label = (string)array_shift($dataRow);
-                $row->setLabel($label);
-                $row->setData($this->parseNumbers($dataRow));
-                $dataTable->addRow($row);
-            }
+        foreach ($cells as $rowIndex => $cellRow) {
+            $label = $rowHeaders[$rowIndex];
+            $row = new DataRow(
+                $rowIndex + 2,
+                $label,
+                $cellRow
+            );
+            $dataTable->addRow($row);
         }
 
         return $dataTable;
-    }
-
-    protected function parseNumbers(array $data)
-    {
-        $numberFormatter = NumberFormatter::create('de_DE', NumberFormatter::DECIMAL);
-        return array_map(function ($formattedValue) use ($numberFormatter) {
-            return $numberFormatter->parse($formattedValue);
-        }, $data);
     }
 }

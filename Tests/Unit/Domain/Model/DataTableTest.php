@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
+use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
@@ -72,7 +73,11 @@ class DataTableTest extends UnitTestCase
      */
     public function addRowForObjectAddsRow()
     {
-        $newRow = new DataRow();
+        $newRow = new DataRow(
+            1,
+            'rowLabel',
+            array_map(fn ($value) => new DataCell($value), [1, 2, 3]),
+        );
 
         $this->subject->addRow($newRow);
         $this->assertContains(
@@ -86,7 +91,11 @@ class DataTableTest extends UnitTestCase
      */
     public function rowCanBeAddedOnlyOnce()
     {
-        $row = new DataRow();
+        $row = new DataRow(
+            1,
+            'rowLabel',
+            array_map(fn ($value) => new DataCell($value), [1, 2, 3]),
+        );
 
         $this->subject->addRow($row);
         $this->subject->addRow($row);
