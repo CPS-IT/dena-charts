@@ -21,7 +21,7 @@ class ColorSchemeRepositoryTest extends UnitTestCase
     public function testFindAll()
     {
         $colorSchemes = $this->colorSchemeRepository->findAll();
-        self::assertCount(4, $colorSchemes);
+        self::assertCount(5, $colorSchemes);
         self::arrayHasKey('dena-corporate-design', $colorSchemes);
         self::arrayHasKey('dena-orange', $colorSchemes);
 
