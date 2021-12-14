@@ -32,6 +32,7 @@
     'denacharts_download_filename' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_download_filename',
+        'description' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_download_filename.description',
         'config' => [
             'type' => 'input',
             'eval' => 'trim,alphanum_x',
