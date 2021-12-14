@@ -17,7 +17,8 @@
 				<target>Datenquelle</target>
 			</trans-unit>
 			<trans-unit id="data_table">
-				<source>Wertetabelle</source>
+				<source>Datatable</source>
+				<target>Wertetabelle</target>
 			</trans-unit>
 		</body>
 	</file>
