@@ -29,6 +29,14 @@
             'default' => 1,
         ]
     ],
+    'denacharts_download_filename' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_download_filename',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim,alphanum_x',
+        ]
+    ],
     'denacharts_axis_x_title' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_x_title',
@@ -160,6 +168,11 @@
 $GLOBALS['TCA']['tt_content']['palettes']['chart_axis'] = [
     'showitem' => 'denacharts_axis_x_title,denacharts_axis_x_unit,denacharts_axis_y_title,denacharts_axis_y_unit',
 ];
+
+$GLOBALS['TCA']['tt_content']['palettes']['chart_download'] = [
+    'showitem' => 'denacharts_allow_download,denacharts_download_filename'
+];
+
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] = [
     'showitem' => 'denacharts_aspect_ratio,denacharts_container_width',
 ];
@@ -192,7 +205,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
             --palette--;;chart_source,
             bodytext,
             --palette--;;chart_imagesize,
-            denacharts_allow_download,
+            --palette--;;chart_download,
             denacharts_show_datatable,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
              --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,

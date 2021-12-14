@@ -83,7 +83,8 @@ class ChartController extends ActionController
         $chartConfiguration = $this->chartConfigurationRepository->findByUid($contentObjectUid);
         $file = $chartConfiguration->getDataFile();
 
-        $this->chartDownloadService->streamChartZip($file, $source);
+        $basename = $contentObjectData['denacharts_download_filename'] ?? '';
+        $this->chartDownloadService->streamChartZip($file, $source, $basename);
         exit(0);
     }
 }

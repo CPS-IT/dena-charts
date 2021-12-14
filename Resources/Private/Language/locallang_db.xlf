@@ -44,6 +44,9 @@
 			<trans-unit id="tt_content.denacharts_data">
 				<source>Data</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_download_filename">
+				<source>Download filename basename</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_colors">
 				<source>Colors</source>
 			</trans-unit>

@@ -9,9 +9,9 @@ use ZipStream\ZipStream;
 
 class ChartDownloadService
 {
-    public function streamChartZip(FileReference $file, ?string $source)
+    public function streamChartZip(FileReference $file, ?string $source, string $basename = '')
     {
-        $downloadFilename = $file->getNameWithoutExtension();
+        $downloadFilename = $basename ?: $file->getNameWithoutExtension();
 
         $options = new Archive();
         $options->setSendHttpHeaders(true);
