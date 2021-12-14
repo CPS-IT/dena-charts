@@ -159,6 +159,7 @@
     ],
     'denacharts_highlights' => [
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_highlights',
+        'description' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_highlights.description',
         'config' => [
             'type' => 'text'
         ],

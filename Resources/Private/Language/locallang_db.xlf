@@ -56,6 +56,13 @@
 			<trans-unit id="tt_content.denacharts_highlights">
 				<source>Highlights</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_highlights.description">
+				<source>The comma, space or semicolon separated ids of fields to highlight in the chart and data table.
+
+Example:
+B2,C3;D4
+C5,D5</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_datatable">
 				<source>Show data table</source>
 			</trans-unit>
