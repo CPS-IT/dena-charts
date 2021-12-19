@@ -18,6 +18,29 @@ var denaCharts = denaCharts || {};
    **********/
 
   /**
+   * Set a deeply nested property of an object, creating empty objects
+   * along the path, if the properties do not already exist.
+   *
+   * @param object object object to modify
+   * @param path array path of object properties
+   * @param value
+   */
+  this.setObjectPath = function(object, path, value)
+  {
+    nextKey = path.shift();
+    if (path.length === 0) {
+      object[nextKey] = value;
+      return;
+    }
+
+    if (object[nextKey] === undefined) {
+      object[nextKey] = {};
+    }
+
+    this.setObjectPath(object[nextKey], path, value);
+  }
+
+  /**
    * Reads data and configuration from all canvases and builds charts accordingly.
    * Existing chart objects are replaced.
    */
@@ -31,38 +54,31 @@ var denaCharts = denaCharts || {};
       let options = JSON.parse(canvas.dataset.options);
 
       // Add customized tooltip to display y axis unit
-      options = {...options, ...{
-          'plugins': {
-            'tooltip': {
-              'callbacks': {
-                label: function(context) {
-                  let label = context.dataset.label || '';
+      this.setObjectPath(options, ['plugins', 'tooltip', 'callbacks', 'label'],
+        function(context) {
+          let label = context.dataset.label || '';
 
-                  if (label) {
-                    label += ': ';
-                  }
-                  if (context.formattedValue !== null) {
-                    label += context.formattedValue;
-                    let unit = context.chart?.options?.scales?.y?.unit
-                    if (unit !== undefined) {
-                      label += ' [' + unit + ']';
-                    }
-                  }
-                  return label;
-                }
-              }
-            }
-          },
-          'elements': {
-            'point': {
-              'radius': function(context) {
-                const defaultRadius = context.chart?.options?.defaultPointRadius ?? 5;
-                const highlightRadius = defaultRadius > 0 ? defaultRadius * 2 : 5;
-                return context.raw?.highlight === true ? highlightRadius : defaultRadius;
-              }
+          if (label) {
+            label += ': ';
+          }
+          if (context.formattedValue !== null) {
+            label += context.formattedValue;
+            let unit = context.chart?.options?.scales?.y?.unit
+            if (unit !== undefined) {
+              label += ' [' + unit + ']';
             }
           }
-      }};
+          return label;
+        }
+      );
+
+      this.setObjectPath(options, ['elements', 'point', 'radius'],
+        function(context) {
+          const defaultRadius = context.chart?.options?.defaultPointRadius ?? 5;
+          const highlightRadius = defaultRadius > 0 ? defaultRadius * 2 : 5;
+          return context.raw?.highlight === true ? highlightRadius : defaultRadius;
+        }
+      );
 
       charts[c] = new Chart(
         ctx,
