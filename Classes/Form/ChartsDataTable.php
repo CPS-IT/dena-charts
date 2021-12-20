@@ -36,8 +36,10 @@ class ChartsDataTable extends AbstractNode
             return ['html' => 'Table cannot be fetched'];
         }
 
-        $result = $this->initializeResultArray();
-        $result['html'] = $this->renderHtmlForDataTable($dataTable);
+        $result = array_merge($this->initializeResultArray(), [
+            'stylesheetFiles' => ['EXT:dena_charts/Resources/Public/Backend/Styles/charts-table.css'],
+            'html' => $this->renderHtmlForDataTable($dataTable),
+        ]);
         return $result;
     }
 
