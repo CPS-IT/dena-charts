@@ -7,6 +7,9 @@
 			<trans-unit id="tt_content.bodytext">
 				<source>Description</source>
 			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_area" xml:space="preserve">
+				<source>Area chart</source>
+			</trans-unit>
 			<trans-unit id="tt_content.CType.I.denacharts_chart_bar" xml:space="preserve">
 				<source>Bar chart</source>
 			</trans-unit>

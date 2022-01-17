@@ -231,6 +231,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
     'tt_content',
     '--palette--;;chart_axis',
     implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_AREA,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_BAR,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,

@@ -17,6 +17,8 @@ services:
 
   CPSIT\DenaCharts\Domain\Builder\ChartBuilder:
     public: true
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\AreaChartBuilder:
+    public: true
   CPSIT\DenaCharts\Domain\Builder\ChartBuilder\BarChartBuilder:
     public: true
   CPSIT\DenaCharts\Domain\Builder\ChartBuilder\LineChartBuilder:

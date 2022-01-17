@@ -17,6 +17,12 @@ tt_content.denacharts_chart.20 {
         }
       }
 
+      area <. default
+      area {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\AreaChartBuilder
+        type = line
+      }
+
       column < .default
       column {
         builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\BarChartBuilder
@@ -57,6 +63,7 @@ tt_content.denacharts_chart.20 {
   }
 }
 
+tt_content.denacharts_chart_area < tt_content.denacharts_chart
 tt_content.denacharts_chart_bar < tt_content.denacharts_chart
 tt_content.denacharts_chart_column < tt_content.denacharts_chart
 tt_content.denacharts_chart_line < tt_content.denacharts_chart

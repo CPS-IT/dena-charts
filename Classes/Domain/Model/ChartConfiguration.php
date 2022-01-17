@@ -8,6 +8,8 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class ChartConfiguration extends AbstractEntity
 {
+    const CHART_TYPE_AREA = 'area';
+
     const CHART_TYPE_BAR = 'bar';
 
     const CHART_TYPE_COLUMN = 'column';
@@ -19,6 +21,7 @@ class ChartConfiguration extends AbstractEntity
     const CHART_TYPE_PIE = 'pie';
 
     const CHART_TYPES = [
+        self::CHART_TYPE_AREA,
         self::CHART_TYPE_BAR,
         self::CHART_TYPE_COLUMN,
         self::CHART_TYPE_DOUGHNUT,
