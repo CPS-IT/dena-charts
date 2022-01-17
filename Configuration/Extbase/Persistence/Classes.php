@@ -17,6 +17,15 @@ return [
             'axisXUnit' => [
                 'fieldName' => 'denacharts_axis_x_unit',
             ],
+            'axisY2Columns' => [
+                'fieldName' => 'denacharts_axis_y2_columns',
+            ],
+            'axisY2Title' => [
+                'fieldName' => 'denacharts_axis_y2_title',
+            ],
+            'axisY2Unit' => [
+                'fieldName' => 'denacharts_axis_y2_unit',
+            ],
             'axisYTitle' => [
                 'fieldName' => 'denacharts_axis_y_title',
             ],

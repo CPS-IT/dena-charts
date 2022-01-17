@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Domain\Model;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -40,6 +41,15 @@ class ChartConfiguration extends AbstractEntity
 
     protected string $axisXUnit = '';
 
+    /**
+     * @var string
+     */
+    protected string $axisY2Columns = '';
+
+    protected string $axisY2Title = '';
+
+    protected string $axisY2Unit = '';
+
     protected string $axisYTitle = '';
 
     protected string $axisYUnit = '';
@@ -74,6 +84,25 @@ class ChartConfiguration extends AbstractEntity
     public function getAxisXUnit(): string
     {
         return $this->axisXUnit;
+    }
+
+    public function getAxisY2Columns(): array
+    {
+        return $columns = GeneralUtility::trimExplode(
+            ',',
+            str_replace(["\n", ',', ';'], ',', $this->axisY2Columns),
+            true
+        );
+    }
+
+    public function getAxisY2Title(): string
+    {
+        return $this->axisY2Title;
+    }
+
+    public function getAxisY2Unit(): string
+    {
+        return $this->axisY2Unit;
     }
 
     public function getAxisYTitle(): string

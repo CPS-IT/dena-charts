@@ -66,6 +66,27 @@
             'type' => 'input',
         ]
     ],
+    'denacharts_axis_y2_columns' => [
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_columns',
+        'description' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_columns.description',
+        'config' => [
+            'type' => 'text'
+        ],
+    ],
+    'denacharts_axis_y2_title' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_title',
+        'config' => [
+            'type' => 'input',
+        ]
+    ],
+    'denacharts_axis_y2_unit' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_unit',
+        'config' => [
+            'type' => 'input',
+        ]
+    ],
     'denacharts_aspect_ratio' => [
         'exclude' => 0,
         'label' => 'aspect ratio',
@@ -182,6 +203,9 @@ $GLOBALS['TCA']['tt_content']['palettes']['chart_source'] = [
     'showitem' => 'denacharts_source,denacharts_source_link',
 ];
 
+$GLOBALS['TCA']['tt_content']['palettes']['chart_axis_y2'] = [
+    'showitem' => 'denacharts_axis_y2_title,denacharts_axis_y2_unit,--linebreak--,denacharts_axis_y2_columns',
+];
 
 // Register separate CTypes for all chart types
 foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $chartType) {
@@ -237,6 +261,17 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,
     ])),
     'after:denacharts_data_file',
+);
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    implode(',', [
+        '--div--;Data,LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
+        'denacharts_data',
+        '--palette--;;chart_axis_y2',
+    ]),
+    'denacharts_chart_' . \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_AREA,
+    'after:denacharts_show_datatable',
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(

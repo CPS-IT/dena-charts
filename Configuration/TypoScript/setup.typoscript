@@ -17,7 +17,7 @@ tt_content.denacharts_chart.20 {
         }
       }
 
-      area <. default
+      area < .default
       area {
         builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\AreaChartBuilder
         type = line
