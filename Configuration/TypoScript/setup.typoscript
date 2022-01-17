@@ -21,6 +21,14 @@ tt_content.denacharts_chart.20 {
       area {
         builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\AreaChartBuilder
         type = line
+        options {
+          plugins {
+            tooltip {
+              mode = index
+              position = average
+            }
+          }
+        }
       }
 
       column < .default

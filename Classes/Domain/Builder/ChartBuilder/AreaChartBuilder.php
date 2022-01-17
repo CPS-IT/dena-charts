@@ -37,6 +37,7 @@ class AreaChartBuilder extends ChartBuilder
 
         // Remove data points
         $options['defaultPointRadius'] = 0;
+        $options['pointHitRadius'] = 20;
 
         // Stack on Y axis
         $options = ArrayUtility::setValueByPath($options, ['scales','y','stacked'], true);

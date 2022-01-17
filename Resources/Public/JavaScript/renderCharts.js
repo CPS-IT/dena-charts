@@ -53,6 +53,11 @@ var denaCharts = denaCharts || {};
 
       let options = JSON.parse(canvas.dataset.options);
 
+      // Match the sorting of tooltip items to the legend
+      if (options.plugins.legend.reverse) {
+        options.plugins.tooltip.itemSort = function(a, b) { return b.datasetIndex - a.datasetIndex }
+      }
+      
       // Add customized tooltip to display y axis unit
       this.setObjectPath(options, ['plugins', 'tooltip', 'callbacks', 'label'],
         function(context) {
