@@ -64,6 +64,8 @@ class ChartConfiguration extends AbstractEntity
 
     protected string $colors = '';
 
+    protected bool $showGridLines = false;
+
     protected bool $showPoints = false;
 
     public function getType(): string
@@ -138,6 +140,11 @@ class ChartConfiguration extends AbstractEntity
     public function getColors(): string
     {
         return $this->colors;
+    }
+
+    public function isShowGridLines(): bool
+    {
+        return $this->showGridLines;
     }
 
     public function isShowPoints(): bool

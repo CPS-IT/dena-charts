@@ -41,6 +41,13 @@ class AreaChartBuilder extends ChartBuilder
         // Stack on Y axis
         $options = ArrayUtility::setValueByPath($options, ['scales','y','stacked'], true);
 
+        // Respect the 'show grid lines' setting
+        $options = ArrayUtility::setValueByPath(
+            $options,
+            ['scales', 'y', 'grid', 'drawOnChartArea'],
+            $chartConfiguration->isShowGridLines(),
+        );
+
         $chart = $chart->withData($data)->withOptions($options);
         $chart = $this->addSecondYAxis($chartConfiguration, $chart);
         return $chart;

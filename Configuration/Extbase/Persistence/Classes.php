@@ -47,6 +47,9 @@ return [
             'colors' => [
                 'fieldName' => 'denacharts_colors',
             ],
+            'showGridLines' => [
+                'fieldName' => 'denacharts_show_gridlines',
+            ],
             'showPoints' => [
                 'fieldName' => 'denacharts_show_points',
             ],

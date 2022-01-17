@@ -81,6 +81,9 @@ C5,D5</source>
 			<trans-unit id="tt_content.denacharts_show_datatable">
 				<source>Show data table</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_show_gridlines">
+				<source>Show grid lines</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_points">
 				<source>Show data points</source>
 			</trans-unit>

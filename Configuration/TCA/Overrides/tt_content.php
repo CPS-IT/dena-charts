@@ -121,6 +121,16 @@
             'renderType' => 'inputLink',
         ]
     ],
+    'denacharts_show_gridlines' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_show_gridlines',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [[0 => '', 1 => '',]],
+            'default' => 1,
+        ]
+    ],
     'denacharts_show_points' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_show_points',
@@ -266,6 +276,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     implode(',', [
+        'denacharts_show_gridlines',
         '--div--;Data,LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
         'denacharts_data',
         '--palette--;;chart_axis_y2',
