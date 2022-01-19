@@ -61,7 +61,8 @@ var denaCharts = denaCharts || {};
       // Add customized tooltip to display y axis unit
       this.setObjectPath(options, ['plugins', 'tooltip', 'callbacks', 'label'],
         function(context) {
-          let label = context.dataset.label || '';
+          let isPieChart = context.chart.config.type === "pie";
+          let label = isPieChart ? context.label : (context.dataset.label || '');
 
           if (label) {
             label += ': ';

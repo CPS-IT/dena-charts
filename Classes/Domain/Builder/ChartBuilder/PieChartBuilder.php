@@ -12,6 +12,20 @@ class PieChartBuilder extends ChartBuilder
     {
         $chart = $chart->withData($this->transposeData($chart->getData()));
         $chart = parent::process($chartConfiguration, $chart);
+        $yUnit = $chartConfiguration->getAxisYUnit();
+        if (!empty($yUnit)) {
+            $options = $chart->getOptions();
+            $options = array_merge_recursive($options, [
+                'scales' => [
+                    'y' => [
+                        'unit' => $yUnit,
+                        'display' => false,
+                    ]
+                ]
+            ]);
+            $chart = $chart->withOptions($options);
+        }
+
         return $chart;
     }
 

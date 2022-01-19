@@ -275,6 +275,16 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
+    'denacharts_axis_y_unit',
+    implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_DOUGHNUT,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_PIE,
+    ])),
+    'after:denacharts_data_file',
+);
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
     implode(',', [
         'denacharts_show_gridlines',
         '--div--;Data,LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
