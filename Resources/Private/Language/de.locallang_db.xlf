@@ -77,6 +77,10 @@
 				<source>Data</source>
 				<target>Daten</target>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_data_file">
+				<source>Data file</source>
+				<target>Datendatei</target>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_download_filename">
 				<source>Download filename basename</source>
 				<target>Download Dateiname</target>

@@ -8,7 +8,7 @@
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', [
     'denacharts_data_file' => [
-        'label' => 'Data File',
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_data_file',
         'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'denacharts_data_file',
             [
@@ -287,7 +287,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
     'tt_content',
     implode(',', [
         'denacharts_show_gridlines',
-        '--div--;Data,LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
+        '--div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
         'denacharts_data',
         '--palette--;;chart_axis_y2',
     ]),
@@ -299,7 +299,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
     'tt_content',
     implode(',', [
         'denacharts_show_points',
-        '--div--;Data,LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
+        '--div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chartdata',
         'denacharts_data',
         'denacharts_highlights',
     ]),
