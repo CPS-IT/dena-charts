@@ -82,7 +82,7 @@ C5,D5</source>
 				<source>Show data table</source>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_gridlines">
-				<source>Show grid lines</source>
+				<source>Show horizontal grid lines</source>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_points">
 				<source>Show data points</source>

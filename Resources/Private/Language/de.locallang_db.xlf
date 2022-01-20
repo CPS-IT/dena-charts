@@ -111,7 +111,7 @@ C5,D5</target>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_gridlines">
 				<source>Show grid lines</source>
-				<target>Gitterlinien anzeigen</target>
+				<target>Horizontale Gitterlinien anzeigen</target>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_show_points">
 				<source>Show data points</source>
