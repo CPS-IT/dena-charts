@@ -2,36 +2,29 @@
 
 namespace CPSIT\DenaCharts\Form;
 
-use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
-use CPSIT\DenaCharts\Service\FileReaderCSV;
+use CPSIT\DenaCharts\Domain\Model\DataTable;
+use CPSIT\DenaCharts\Service\DataTableService;
 use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Backend\Form\NodeFactory;
-use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ChartsDataTable extends AbstractNode
 {
-    protected FileRepository $fileRepository;
-
-    protected FileReaderCSV $fileReaderCSV;
-
-    protected DataTableFactory $dataTableFactory;
+    protected DataTableService $dataTableService;
 
     public function __construct(NodeFactory $nodeFactory, array $data)
     {
         parent::__construct($nodeFactory, $data);
-        $this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-        $this->fileReaderCSV = GeneralUtility::makeInstance(FileReaderCSV::class);
-        $this->dataTableFactory = GeneralUtility::makeInstance(DataTableFactory::class);
+        $this->dataTableService = GeneralUtility::makeInstance(DataTableService::class);
     }
 
     public function render()
     {
         try {
-            $dataTable = $this->getDataTable();
+            $rowUid = (int)$this->data['databaseRow']['uid'];
+            $dataTable = $this->dataTableService->getDataTableForContentRowUid($rowUid);
         } catch (\Throwable $e) {
             return ['html' => 'Table cannot be fetched'];
         }
@@ -43,24 +36,7 @@ class ChartsDataTable extends AbstractNode
         return $result;
     }
 
-    protected function getFile(int $contentElementUid): ?FileReference
-    {
-        $files = $this->fileRepository->findByRelation('tt_content', 'denacharts_data_file', $contentElementUid);
-        if (empty($files)) {
-            return null;
-        }
-        return $files[0];
-    }
-
-    protected function getDataTable(): \CPSIT\DenaCharts\Domain\Model\DataTable
-    {
-        $contentElementUid = (int)$this->data['databaseRow']['uid'];
-        $file = $this->getFile($contentElementUid);
-        $data = $this->fileReaderCSV->getData($file);
-        return $this->dataTableFactory->fromArray($data);
-    }
-
-    protected function renderHtmlForDataTable(\CPSIT\DenaCharts\Domain\Model\DataTable $dataTable): string
+    protected function renderHtmlForDataTable(DataTable $dataTable): string
     {
         $headerRows = [['', ''], ['', '']];
         foreach ($dataTable->getColumns() as $column) {
