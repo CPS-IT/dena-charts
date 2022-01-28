@@ -53,13 +53,13 @@
 				<source>Y Axis unit</source>
 				<target>Y-Achse Einheit</target>
 			</trans-unit>
-			<trans-unit id="tt_content.denacharts_axis_y2_columns">
-				<source>Second Y Axis columns</source>
-				<target>Spalten der zweiten Y-Achse</target>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column">
+				<source>First column to assign to the second Y axis</source>
+				<target>Erste Spalte der zweiten Y-Achse</target>
 			</trans-unit>
-			<trans-unit id="tt_content.denacharts_axis_y2_columns.description">
-				<source>Columns to assign to the second Y axis. Comma, space or semicolon separated. Example: F,G</source>
-				<target>Spalten, die zu der zweiten Y-Achse gehören. Komma-, Leertasten- oder Semikolon-separiert. Beispiel: F,G</target>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column.description">
+				<source>Columns to assign to the second Y axis. The selected column will be the first one to be assigned to the second Y axis. All columns to the right of the selected axis will be assigned to the second Y axis as well.</source>
+				<target>Spalten, die zu der zweiten Y-Achse gehören. Die ausgewählte Spalte ist die erste, die der zweiten Y-Achse zugeordnet wird. Alle Spalten rechts der ausgewählten Spalte werden ebenfalls der zweiten Y-Achse zugeordnet.</target>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_axis_y2_title">
 				<source>Second Y Axis title</source>

@@ -28,6 +28,8 @@ services:
 
   CPSIT\DenaCharts\Form\ColorSchemeSelectorItemProvider:
     public: true
+  CPSIT\DenaCharts\Form\ColumnSelectorItemProvider:
+    public: true
 
   CPSIT\DenaCharts\Service\DataTableService:
     public: true

@@ -65,7 +65,8 @@ class AreaChartBuilder extends ChartBuilder
 
     protected function addSecondYAxis(ChartConfiguration $chartConfiguration, Chart $chart): Chart
     {
-        if (empty($chartConfiguration->getAxisY2Columns())) {
+        $firstIndex = $chartConfiguration->getAxisY2FirstColumn();
+        if (! isset($firstIndex)) {
             return $chart;
         }
 
@@ -90,8 +91,8 @@ class AreaChartBuilder extends ChartBuilder
         );
 
         // Assign datasets to new Y2 axis
-        foreach ($chartConfiguration->getAxisY2Columns() as $columnLetter) {
-            $index = DataColumn::getColumnIndexForLetters($columnLetter) - 1;
+        $firstDataSetIndex = $firstIndex - 1;
+        for ($index = $firstDataSetIndex; $index < count($data['datasets']); $index++) {
             if (is_array($data['datasets'][$index])) {
                 $data['datasets'][$index]['yAxisID'] = 'y2';
                 $data['datasets'][$index]['fill'] = false;

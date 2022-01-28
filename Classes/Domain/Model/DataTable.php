@@ -83,7 +83,7 @@ class DataTable
     /**
      * Gets the columns
      *
-     * @return ObjectStorage
+     * @return ObjectStorage<\CPSIT\DenaCharts\Domain\Model\DataColumn>
      */
     public function getColumns()
     {

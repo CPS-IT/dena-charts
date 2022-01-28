@@ -41,11 +41,11 @@
 			<trans-unit id="tt_content.denacharts_axis_y_unit">
 				<source>Y Axis unit</source>
 			</trans-unit>
-			<trans-unit id="tt_content.denacharts_axis_y2_columns">
-				<source>Second Y Axis columns</source>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column">
+				<source>First column to assign to the second Y axis</source>
 			</trans-unit>
-			<trans-unit id="tt_content.denacharts_axis_y2_columns.description">
-				<source>Columns to assign to the second Y axis. Comma, space or semicolon separated. Example: F,G</source>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column.description">
+				<source>Columns to assign to the second Y axis. The selected column will be the first one to be assigned to the second Y axis. All columns to the right of the selected axis will be assigned to the second Y axis as well.</source>
 			</trans-unit>
 			<trans-unit id="tt_content.denacharts_axis_y2_title">
 				<source>Second Y Axis title</source>

@@ -66,11 +66,13 @@
             'type' => 'input',
         ]
     ],
-    'denacharts_axis_y2_columns' => [
-        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_columns',
-        'description' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_columns.description',
+    'denacharts_axis_y2_first_column' => [
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_first_column',
+        'description' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_first_column.description',
         'config' => [
-            'type' => 'text'
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'itemsProcFunc' => \CPSIT\DenaCharts\Form\ColumnSelectorItemProvider::class . '->provideColumnSelectorItems',
         ],
     ],
     'denacharts_axis_y2_title' => [
@@ -214,7 +216,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['chart_source'] = [
 ];
 
 $GLOBALS['TCA']['tt_content']['palettes']['chart_axis_y2'] = [
-    'showitem' => 'denacharts_axis_y2_title,denacharts_axis_y2_unit,--linebreak--,denacharts_axis_y2_columns',
+    'showitem' => 'denacharts_axis_y2_title,denacharts_axis_y2_unit,--linebreak--,denacharts_axis_y2_first_column',
 ];
 
 // Register separate CTypes for all chart types

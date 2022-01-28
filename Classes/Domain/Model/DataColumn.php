@@ -44,6 +44,11 @@ class DataColumn
         }
     }
 
+    public function getDataSetNumber(): int
+    {
+        return $this->number - 1;
+    }
+
     public function getNumber(): int
     {
         return $this->number;

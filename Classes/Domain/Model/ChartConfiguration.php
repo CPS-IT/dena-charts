@@ -41,10 +41,7 @@ class ChartConfiguration extends AbstractEntity
 
     protected string $axisXUnit = '';
 
-    /**
-     * @var string
-     */
-    protected string $axisY2Columns = '';
+    protected int $axisY2FirstColumn = 0;
 
     protected string $axisY2Title = '';
 
@@ -88,13 +85,12 @@ class ChartConfiguration extends AbstractEntity
         return $this->axisXUnit;
     }
 
-    public function getAxisY2Columns(): array
+    public function getAxisY2FirstColumn(): ?int
     {
-        return $columns = GeneralUtility::trimExplode(
-            ',',
-            str_replace(["\n", ',', ';'], ',', $this->axisY2Columns),
-            true
-        );
+        if ($this->axisY2FirstColumn === 0) {
+            return null;
+        }
+        return $this->axisY2FirstColumn;
     }
 
     public function getAxisY2Title(): string
