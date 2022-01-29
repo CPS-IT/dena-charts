@@ -57,7 +57,7 @@ var denaCharts = denaCharts || {};
       if (options.plugins.legend.reverse) {
         options.plugins.tooltip.itemSort = function(a, b) { return b.datasetIndex - a.datasetIndex }
       }
-      
+
       // Add customized tooltip to display y axis unit
       this.setObjectPath(options, ['plugins', 'tooltip', 'callbacks', 'label'],
         function(context) {
@@ -69,9 +69,13 @@ var denaCharts = denaCharts || {};
           }
           if (context.formattedValue !== null) {
             label += context.formattedValue;
-            let unit = context.chart?.options?.scales?.y?.unit
-            if (unit !== undefined) {
-              label += ' [' + unit + ']';
+            let yAxisID = context.dataset.yAxisID ?? 'y';
+            let axisOptions = context.chart?.options?.scales[yAxisID];
+            if (axisOptions !== undefined) {
+              let unit = axisOptions.unit;
+              if (unit !== undefined) {
+                label += ' [' + unit + ']';
+              }
             }
           }
           return label;
