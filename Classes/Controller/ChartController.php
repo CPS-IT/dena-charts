@@ -3,6 +3,7 @@
 namespace CPSIT\DenaCharts\Controller;
 
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Repository\ChartConfigurationRepository;
 use CPSIT\DenaCharts\Service\ChartDownloadService;
 use CPSIT\DenaCharts\Service\FileReaderCSV;
@@ -58,12 +59,16 @@ class ChartController extends ActionController
             $builderConfiguration,
         );
 
+        $pngDownloadBaseName = $contentObjectData['denacharts_download_filename'] ?: $chartConfiguration->getDataFile()->getNameWithoutExtension();
+        $pngDownloadFileName = $pngDownloadBaseName . '.png';
+
         $this->view->assignMultiple([
             'chart' => $chartJsChart,
             'uid' => $uid,
             'chartContainerWidth' => (string) $contentObjectData['denacharts_container_width'],
             'dataTable' => $dataTable,
             'allowDownload' => (bool) $contentObjectData['denacharts_allow_download'],
+            'pngDownloadFilename' => $pngDownloadFileName,
             'description' => (string) $contentObjectData['bodytext'],
             'showDataTable' => (bool) $contentObjectData['denacharts_show_datatable'],
             'source' => (string) $contentObjectData['denacharts_source'],

@@ -40,6 +40,44 @@ var denaCharts = denaCharts || {};
     this.setObjectPath(object[nextKey], path, value);
   }
 
+  this.capturePng = function(captureArea, filename) {
+    html2canvas(captureArea, {
+      ignoreElements: function(element) {
+        return element.classList.contains('tx-dena-charts-no-capture');
+      }
+    })
+      .then(canvas => {
+        canvas.style.display = 'none'
+        document.body.appendChild(canvas)
+        return canvas
+      })
+      .then(canvas => {
+        const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+        const a = document.createElement('a')
+        a.setAttribute('download', filename)
+        a.setAttribute('href', image)
+        a.click()
+        canvas.remove()
+      });
+  }
+
+  this.onCaptureButtonClick = function(event, captureButton) {
+    const captureAreaId = captureButton.getAttribute('data-capture-area');
+    const captureFilename = captureButton.getAttribute('data-capture-filename')
+    const captureArea = document.getElementById(captureAreaId);
+    this.capturePng(captureArea, captureFilename);
+  }
+
+  this.initializePngCapture = function () {
+    var captureButtons = document.getElementsByClassName('tx-dena-charts-capture-button');
+    for (const captureButton of captureButtons) {
+      const self = this;
+      captureButton.addEventListener('click', function(event) {
+        self.onCaptureButtonClick(event, captureButton);
+      })
+    }
+  }
+
   /**
    * Reads data and configuration from all canvases and builds charts accordingly.
    * Existing chart objects are replaced.
@@ -104,4 +142,5 @@ var denaCharts = denaCharts || {};
 
 (function () {
   denaCharts.initializeCharts();
+  denaCharts.initializePngCapture();
 })();

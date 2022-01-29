@@ -4,6 +4,10 @@
     <f:asset.script
         identifier="dena_charts-rendercharts"
         src="EXT:dena_charts/Resources/Public/JavaScript/renderCharts.js" />
+    <f:asset.script
+        identifier="dena_charts-html2canvas"
+        src="EXT:dena_charts/Resources/Public/JavaScript/Library/html2canvas.min.js" />
+
     <div class="tx-dena-charts chart" style="width: {chartContainerWidth}">
         <canvas
             class="tx-dena-charts-canvas"
@@ -20,19 +24,29 @@
         </div>
     </f:if>
 
+    <div
+        class="tx-dena-charts-capture-button tx-dena-charts-no-capture"
+        data-capture-area="c{uid}"
+        data-capture-filename="{pngDownloadFilename}"
+    >
+        <f:translate key="download_png" />
+    </div>
+
     <f:if condition="{allowDownload}">
         <f:link.action
             action="download"
             arguments="{id: uid}"
             additionalAttributes="{download: 1}"
-            class="tx-dena-charts-downloadlink"
+            class="tx-dena-charts-downloadlink tx-dena-charts-no-capture"
         >
             Download
         </f:link.action>
     </f:if>
 
     <f:if condition="{description}">
-        <f:format.html>{description}</f:format.html>
+        <div class="tx-dena-charts-no-capture">
+            <f:format.html>{description}</f:format.html>
+        </div>
     </f:if>
 
     <f:if condition="{showDataTable}">

@@ -8,6 +8,10 @@
 				<source>Download</source>
 				<target>Download</target>
 			</trans-unit>
+			<trans-unit id="download_png" approved="yes">
+				<source>Download PNG</source>
+				<target>Download PNG</target>
+			</trans-unit>
 			<trans-unit id="more" approved="yes">
 				<source>read more</source>
 				<target>Mehr lesen</target>
