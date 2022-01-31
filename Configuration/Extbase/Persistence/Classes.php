@@ -38,6 +38,9 @@ return [
             'containerWidth' => [
                 'fieldName' => 'denacharts_container_width',
             ],
+            'enableZoom' => [
+                'fieldName' => 'denacharts_enable_zoom',
+            ],
             'stack' => [
                 'fieldName' => 'denacharts_stack',
             ],

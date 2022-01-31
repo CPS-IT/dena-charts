@@ -61,6 +61,8 @@ class ChartConfiguration extends AbstractEntity
 
     protected string $colors = '';
 
+    protected bool $enableZoom = false;
+
     protected bool $showGridLines = false;
 
     protected bool $showPoints = false;
@@ -121,6 +123,11 @@ class ChartConfiguration extends AbstractEntity
     public function getContainerWidth(): string
     {
         return $this->containerWidth;
+    }
+
+    public function isZoomEnabled(): bool
+    {
+        return $this->enableZoom;
     }
 
     public function isStack(): bool

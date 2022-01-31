@@ -89,6 +89,14 @@
 				<source>The basename of the zip and the csv file. The extensions (.csv, .zip) will be added automatically.</source>
 				<target>Namensteil der zip und csv Datei. Die Dateinamenerweiterung (.csv, .zip) wird automatisch angehängt.</target>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom">
+				<source>Enable zoom</source>
+				<target>Zoom aktivieren</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom.description">
+				<source>Allows the user to zoom and pan the graph</source>
+				<target>Erlaubt dem Benutzer das Vergrößern, Verkleinern und Verschieben des Graph.</target>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_colors">
 				<source>Colors</source>
 				<target>Farben</target>

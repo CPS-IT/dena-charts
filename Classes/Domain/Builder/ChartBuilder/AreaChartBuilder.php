@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 
+use CPSIT\DenaCharts\Domain\Builder\Aspect\ZoomAspect;
 use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
 use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
@@ -16,10 +17,14 @@ class AreaChartBuilder extends ChartBuilder
 {
     protected AxisTitleAspect $axisTitleProcessor;
 
+    protected ZoomAspect $zoomAspect;
+
     public function __construct(
-        AxisTitleAspect $axisTitleProcessor
+        AxisTitleAspect $axisTitleProcessor,
+        ZoomAspect $zoomAspect
     ) {
         $this->axisTitleProcessor = $axisTitleProcessor;
+        $this->zoomAspect = $zoomAspect;
     }
 
     protected function process(ChartConfiguration $chartConfiguration, Chart $chart): Chart
@@ -51,6 +56,7 @@ class AreaChartBuilder extends ChartBuilder
 
         $chart = $chart->withData($data)->withOptions($options);
         $chart = $this->addSecondYAxis($chartConfiguration, $chart);
+        $chart = $this->zoomAspect->process($chartConfiguration, $chart);
         return $chart;
     }
 

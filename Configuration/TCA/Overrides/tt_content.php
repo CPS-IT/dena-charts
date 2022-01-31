@@ -107,6 +107,17 @@
             'eval' => 'required'
         ]
     ],
+    'denacharts_enable_zoom' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_enable_zoom',
+        'description' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_enable_zoom.description',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [[0 => '', 1 => '',]],
+            'default' => 1,
+        ]
+    ],
     'denacharts_source' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_source',
@@ -283,6 +294,18 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_PIE,
     ])),
     'after:denacharts_data_file',
+);
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    'denacharts_enable_zoom',
+    implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_AREA,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_BAR,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
+        \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,
+    ])),
+    'after:denacharts_color_scheme',
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(

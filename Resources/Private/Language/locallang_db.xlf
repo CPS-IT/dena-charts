@@ -68,6 +68,13 @@
 			<trans-unit id="tt_content.denacharts_download_filename.description">
 				<source>The basename of the zip and the csv file. The extensions (.csv, .zip) will be added automatically.</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom">
+				<source>Enable zoom</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom.description">
+				<source>Allows the user to zoom and pan the graph</source>
+				<target>Erlaubt dem Benutzer das vergrößern, verkleinern und verschieben des Graph.</target>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_colors">
 				<source>Colors</source>
 			</trans-unit>
