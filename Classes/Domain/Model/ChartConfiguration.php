@@ -53,8 +53,6 @@ class ChartConfiguration extends AbstractEntity
 
     protected string $aspectRatio = '';
 
-    protected string $containerWidth = '';
-
     protected bool $stack = false;
 
     protected string $colorScheme = '';
@@ -118,11 +116,6 @@ class ChartConfiguration extends AbstractEntity
     public function getAspectRatio(): string
     {
         return $this->aspectRatio;
-    }
-
-    public function getContainerWidth(): string
-    {
-        return $this->containerWidth;
     }
 
     public function isZoomEnabled(): bool

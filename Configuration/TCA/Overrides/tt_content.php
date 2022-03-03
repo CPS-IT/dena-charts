@@ -105,15 +105,6 @@
             ],
         ],
     ],
-    'denacharts_container_width' => [
-        'exclude' => 0,
-        'label' => 'container width',
-        'config' => [
-            'type' => 'input',
-            'default' => '100%',
-            'eval' => 'required'
-        ]
-    ],
     'denacharts_enable_zoom' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_enable_zoom',
@@ -227,7 +218,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['chart_download'] = [
 ];
 
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] = [
-    'showitem' => 'denacharts_aspect_ratio,denacharts_container_width',
+    'showitem' => 'denacharts_aspect_ratio',
 ];
 $GLOBALS['TCA']['tt_content']['palettes']['chart_source'] = [
     'showitem' => 'denacharts_source,denacharts_source_link',
@@ -312,7 +303,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,
     ])),
-    'after:denacharts_container_width',
+    'after:denacharts_aspect_ratio',
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(

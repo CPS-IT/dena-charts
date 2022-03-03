@@ -35,9 +35,6 @@ return [
             'aspectRatio' => [
                 'fieldName' => 'denacharts_aspect_ratio',
             ],
-            'containerWidth' => [
-                'fieldName' => 'denacharts_container_width',
-            ],
             'enableZoom' => [
                 'fieldName' => 'denacharts_enable_zoom',
             ],
