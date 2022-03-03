@@ -305,7 +305,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_LINE,
     ])),
-    'after:denacharts_color_scheme',
+    'after:denacharts_container_width',
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
