@@ -66,6 +66,7 @@ class ChartController extends ActionController
             'chart' => $chartJsChart,
             'uid' => $uid,
             'chartContainerWidth' => (string) $contentObjectData['denacharts_container_width'],
+            'chartRatio' => $chartConfiguration->getAspectRatio(),
             'dataTable' => $dataTable,
             'allowDownload' => (bool) $contentObjectData['denacharts_allow_download'],
             'pngDownloadFilename' => $pngDownloadFileName,

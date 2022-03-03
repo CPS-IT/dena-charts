@@ -29,6 +29,9 @@
 			<trans-unit id="tt_content.denacharts_allow_download">
 				<source>Allow csv file download</source>
 			</trans-unit>
+			<trans-unit id="tt_content.denacharts_aspect_ratio">
+				<source>Chart aspect ratio</source>
+			</trans-unit>
 			<trans-unit id="tt_content.denacharts_axis_x_title">
 				<source>X Axis title</source>
 			</trans-unit>

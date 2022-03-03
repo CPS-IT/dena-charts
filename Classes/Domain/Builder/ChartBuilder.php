@@ -35,6 +35,12 @@ class ChartBuilder
             $options['locale'] = implode('-', \Locale::parseLocale($locale));
         }
 
+        $aspectRatio = $chartConfiguration->getAspectRatio();
+        if (!empty($aspectRatio)) {
+            $splits = explode(':', $aspectRatio);
+            $options['aspectRatio'] = $splits[0] / $splits[1];
+        }
+
         $chart = new Chart(
             $builderConfiguration['type'],
             $options,

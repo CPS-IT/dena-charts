@@ -91,12 +91,19 @@
     ],
     'denacharts_aspect_ratio' => [
         'exclude' => 0,
-        'label' => 'aspect ratio',
+        'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_aspect_ratio',
         'config' => [
-            'type' => 'input',
-            'default' => '16:9',
-            'eval' => 'required'
-        ]
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                ['Auto', ''],
+                ['4:3', '4:3'],
+                ['3:2', '3:2'],
+                ['16:9', '16:9'],
+                ['2:1', '2:1'],
+                ['1:1', '1:1'],
+            ],
+        ],
     ],
     'denacharts_container_width' => [
         'exclude' => 0,
