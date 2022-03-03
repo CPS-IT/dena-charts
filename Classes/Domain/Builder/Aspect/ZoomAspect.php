@@ -10,27 +10,25 @@ class ZoomAspect
     public function process(
         ChartConfiguration $chartConfiguration,
         Chart $chart,
-        array $primaryZoomAxes = ['y'],
-        array $secondaryZoomAxes = ['x']
+        array $primaryZoomAxes = ['x'],
+        array $secondaryZoomAxes = []
     ): Chart {
         if (! $chartConfiguration->isZoomEnabled()) {
             return $chart;
         }
 
-        $overScaleMode = implode('', $secondaryZoomAxes);
         $mode = implode('', array_merge($primaryZoomAxes, $secondaryZoomAxes));
 
-        return $chart->withOptions(array_replace_recursive($chart->getOptions(), [
+        $options = [
             'plugins' => [
                 'zoom' => [
                     'pan' => [
                         'enabled' => true,
                     ],
                     'zoom' => [
-                        'overScaleMode' => $overScaleMode,
                         'wheel' => [
                             'enabled' => true,
-                            'speed' => 0.02,
+                            'speed' => 0.001,
                         ],
                         'pinch' => [
                             'enabled' => true,
@@ -39,6 +37,12 @@ class ZoomAspect
                     ],
                 ],
             ],
-        ]));
+        ];
+
+        if (!empty($secondaryZoomAxes)) {
+            $options['plugins']['zoom']['zoom']['overScaleMode'] = implode('', $secondaryZoomAxes);
+        }
+
+        return $chart->withOptions(array_replace_recursive($chart->getOptions(), $options));
     }
 }

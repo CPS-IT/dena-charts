@@ -32,7 +32,7 @@ class BarChartBuilder extends ChartBuilder
         if ($chartConfiguration->getType() === ChartConfiguration::CHART_TYPE_COLUMN) {
             $chart = $this->zoomAspect->process($chartConfiguration, $chart);
         } else {
-            $chart = $this->zoomAspect->process($chartConfiguration, $chart, ['x'], ['y']);
+            $chart = $this->zoomAspect->process($chartConfiguration, $chart, ['y']);
         }
         $chart = $this->processStacked($chartConfiguration, $chart);
         return $chart;
