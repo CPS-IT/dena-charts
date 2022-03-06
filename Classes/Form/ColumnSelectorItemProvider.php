@@ -20,7 +20,9 @@ class ColumnSelectorItemProvider
     {
         $row = $params['row'];
         $rowUid = (int)$row['uid'];
-        $dataTable = $this->dataTableService->getDataTableForContentRowUid($rowUid);
+        if (! $rowUid > 0) {
+            return;
+        }
 
         $columns = $dataTable->getColumns()->toArray();
         $items = array_map(fn (DataColumn $column) => [
