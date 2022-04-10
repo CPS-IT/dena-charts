@@ -24,6 +24,7 @@ class ColumnSelectorItemProvider
             return;
         }
 
+        $dataTable = $this->dataTableService->getDataTableForContentRowUid($rowUid);
         $columns = $dataTable->getColumns()->toArray();
         $items = array_map(fn (DataColumn $column) => [
             sprintf('%s %s', $column->getLetters(), $column->getLabel()),
