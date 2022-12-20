@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-04-19T10:24:45+02:00"
+		  product-name="dena_charts">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.bodytext">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_area" xml:space="preserve">
+				<source>Area chart</source>
+				<target>Flächendiagramm</target>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_bar" xml:space="preserve">
+				<source>Bar chart</source>
+				<target>Balkendiagramm</target>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_column" xml:space="preserve">
+				<source>Column chart</source>
+				<target>Säulendiagramm</target>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_doughnut" xml:space="preserve">
+				<source>Doughnut chart</source>
+				<target>Ringdiagramm</target>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_line" xml:space="preserve">
+				<source>Line chart</source>
+				<target>Liniendiagramm</target>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_pie" xml:space="preserve">
+				<source>Pie chart</source>
+				<target>Tortendiagramm</target>
+			</trans-unit>
+
+			<trans-unit id="tt_content.denacharts_allow_download">
+				<source>Allow csv file download</source>
+				<target>CSV Download erlauben</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_x_title">
+				<source>X Axis title</source>
+				<target>X-Achse Titel</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_x_unit">
+				<source>X Axis unit</source>
+				<target>X-Achse Einheit</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y_title">
+				<source>Y Axis title</source>
+				<target>Y-Achse Titel</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y_unit">
+				<source>Y Axis unit</source>
+				<target>Y-Achse Einheit</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column">
+				<source>First column to assign to the second Y axis</source>
+				<target>Erste Spalte der zweiten Y-Achse</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column.description">
+				<source>Columns to assign to the second Y axis. The selected column will be the first one to be assigned to the second Y axis. All columns to the right of the selected axis will be assigned to the second Y axis as well.</source>
+				<target>Spalten, die zu der zweiten Y-Achse gehören. Die ausgewählte Spalte ist die erste, die der zweiten Y-Achse zugeordnet wird. Alle Spalten rechts der ausgewählten Spalte werden ebenfalls der zweiten Y-Achse zugeordnet.</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_title">
+				<source>Second Y Axis title</source>
+				<target>Zweite Y-Achse Titel</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_unit">
+				<source>Second Y Axis unit</source>
+				<target>Zweite Y-Achse Einheit</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_color_scheme">
+				<source>Color scheme</source>
+				<target>Farbschema</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_data">
+				<source>Data</source>
+				<target>Daten</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_data_file">
+				<source>Data file</source>
+				<target>Datendatei</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_download_filename">
+				<source>Download filename basename</source>
+				<target>Download Dateiname</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_download_filename.description">
+				<source>The basename of the zip and the csv file. The extensions (.csv, .zip) will be added automatically.</source>
+				<target>Namensteil der zip und csv Datei. Die Dateinamenerweiterung (.csv, .zip) wird automatisch angehängt.</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom">
+				<source>Enable zoom</source>
+				<target>Zoom aktivieren</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom.description">
+				<source>Allows the user to zoom and pan the graph</source>
+				<target>Erlaubt dem Benutzer das Vergrößern, Verkleinern und Verschieben des Graph.</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_colors">
+				<source>Colors</source>
+				<target>Farben</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_highlights">
+				<source>Highlights</source>
+				<target>Hervorherbungen</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_highlights.description">
+				<source>The comma, space or semicolon separated ids of fields to highlight in the chart and data table.
+
+Example:
+B2,C3;D4
+C5,D5</source>
+				<target>Die Komma-, Leertasten oder Semikolon-separierte Liste von Feld-IDs die hervorgehoben werden sollen.
+
+Beispiel:
+B2,C3;D4
+C5,D5</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_show_datatable">
+				<source>Show data table</source>
+				<target>Datentabelle anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_show_gridlines">
+				<source>Show grid lines</source>
+				<target>Horizontale Gitterlinien anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_show_points">
+				<source>Show data points</source>
+				<target>Datenpunkte anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_source">
+				<source>Source</source>
+				<target>Quelle</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_source_link">
+				<source>Source link</source>
+				<target>Link zur Quelle</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_stack">
+				<source>Stack</source>
+				<target>Datenreihen stapeln</target>
+			</trans-unit>
+
+            <trans-unit id="wizards.newContentElement.chartsTabTitle" xml:space="preserve">
+				<source>Charts</source>
+				<target>Diagramme</target>
+            </trans-unit>
+            <trans-unit id="tabs.chart" xml:space="preserve">
+				<source>Chart</source>
+				<target>Diagramm</target>
+			</trans-unit>
+			<trans-unit id="tabs.chartdata">
+				<source>Data</source>
+				<target>Daten</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

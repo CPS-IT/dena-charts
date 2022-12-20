@@ -1,0 +1,51 @@
+mod.wizards.newContentElement.wizardItems {
+  charts {
+    header = LLL:EXT:dena_charts/Resources/Private/Language/locallang_db:wizards.newContentElement.chartsTabTitle
+    after = common, special
+    show = *
+    elements {
+      chart_area {
+        iconIdentifier = dena_charts-ctype-denacharts_chart_area
+        title = LLL:EXT:dena_charts/Resources/Private/Language/locallang_db:tt_content.CType.I.denacharts_chart_area
+        tt_content_defValues {
+          CType = denacharts_chart_area
+        }
+      }
+      chart_bar {
+        iconIdentifier = dena_charts-ctype-denacharts_chart_bar
+        title = LLL:EXT:dena_charts/Resources/Private/Language/locallang_db:tt_content.CType.I.denacharts_chart_bar
+        tt_content_defValues {
+          CType = denacharts_chart_bar
+        }
+      }
+      chart_column {
+        iconIdentifier = dena_charts-ctype-denacharts_chart_column
+        title = LLL:EXT:dena_charts/Resources/Private/Language/locallang_db:tt_content.CType.I.denacharts_chart_column
+        tt_content_defValues {
+          CType = denacharts_chart_column
+        }
+      }
+      chart_doughnut {
+        iconIdentifier = dena_charts-ctype-denacharts_chart_doughnut
+        title = LLL:EXT:dena_charts/Resources/Private/Language/locallang_db:tt_content.CType.I.denacharts_chart_doughnut
+        tt_content_defValues {
+          CType = denacharts_chart_doughnut
+        }
+      }
+      chart_line {
+        iconIdentifier = dena_charts-ctype-denacharts_chart_line
+        title = LLL:EXT:dena_charts/Resources/Private/Language/locallang_db:tt_content.CType.I.denacharts_chart_line
+        tt_content_defValues {
+          CType = denacharts_chart_line
+        }
+      }
+      chart_pie {
+        iconIdentifier = dena_charts-ctype-denacharts_chart_pie
+        title = LLL:EXT:dena_charts/Resources/Private/Language/locallang_db:tt_content.CType.I.denacharts_chart_pie
+        tt_content_defValues {
+          CType = denacharts_chart_pie
+        }
+      }
+    }
+  }
+}

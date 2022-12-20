@@ -1,0 +1,65 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+    <f:asset.script
+        identifier="dena_charts-chart-js"
+        src="EXT:dena_charts/Resources/Public/JavaScript/Library/chart.min.js" />
+    <f:asset.script
+        identifier="dena_charts-hammer-js"
+        src="EXT:dena_charts/Resources/Public/JavaScript/Library/hammerjs.min.js" />
+    <f:asset.script
+        identifier="dena_charts-chart-js-plugin-zoom"
+        src="EXT:dena_charts/Resources/Public/JavaScript/Library/chartjs-plugin-zoom.min.js" />
+    <f:asset.script
+        identifier="dena_charts-rendercharts"
+        src="EXT:dena_charts/Resources/Public/JavaScript/renderCharts.js" />
+    <f:asset.script
+        identifier="dena_charts-html2canvas"
+        src="EXT:dena_charts/Resources/Public/JavaScript/Library/html2canvas.min.js" />
+
+    <div class="tx-dena-charts chart">
+        <canvas
+            class="tx-dena-charts-canvas"
+            id="tx-dena-charts-canvas-{elementData.uid}"
+            data-type="{chart.type}"
+            data-options="{f:format.json(value: chart.options)}"
+            data-data="{f:format.json(value: chart.data)}"
+        ></canvas>
+    </div>
+    <f:if condition="{source}">
+        <div>
+            <f:translate key="source" extensionName="dena_charts" />:
+            <f:link.typolink parameter="{sourceLink}">{source}</f:link.typolink>
+        </div>
+    </f:if>
+
+    <div
+        class="tx-dena-charts-capture-button tx-dena-charts-no-capture"
+        data-capture-area="c{uid}"
+        data-capture-filename="{pngDownloadFilename}"
+    >
+        <f:translate key="download_png" />
+    </div>
+
+    <f:if condition="{allowDownload}">
+        <f:link.action
+            action="download"
+            arguments="{id: uid}"
+            additionalAttributes="{download: 1}"
+            class="tx-dena-charts-downloadlink tx-dena-charts-no-capture"
+        >
+            Download
+        </f:link.action>
+    </f:if>
+
+    <f:if condition="{description}">
+        <div class="tx-dena-charts-no-capture">
+            <f:format.html>{description}</f:format.html>
+        </div>
+    </f:if>
+
+    <f:if condition="{showDataTable}">
+        <f:render partial="DataTable" arguments="{_all}" />
+    </f:if>
+</f:section>
+</html>

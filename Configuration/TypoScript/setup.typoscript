@@ -1,0 +1,81 @@
+tt_content.denacharts_chart.20 {
+  view {
+    partialRootPaths {
+      200 = EXT:dena_charts/Resources/Private/Partials/
+    }
+    templateRootPaths {
+      200 = EXT:dena_charts/Resources/Private/Templates/
+    }
+  }
+
+  settings {
+    chartJsDefaults {
+      default {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder
+        options {
+          plugins.legend.position = bottom
+        }
+      }
+
+      area < .default
+      area {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\AreaChartBuilder
+        type = line
+        options {
+          plugins {
+            tooltip {
+              mode = index
+              position = average
+            }
+          }
+        }
+      }
+
+      column < .default
+      column {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\BarChartBuilder
+        type = bar
+        options {
+          grid.offset = false
+        }
+      }
+
+      bar < .column
+      bar.options.indexAxis = y
+
+      line < .default
+      line {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\LineChartBuilder
+        type = line
+        options {
+          options.grid.offset = false
+        }
+      }
+
+      pie < .default
+      pie {
+        builder = CPSIT\DenaCharts\Domain\Builder\ChartBuilder\PieChartBuilder
+        type = pie
+        options {
+          grid.offset = false
+        }
+      }
+
+      doughnut < .pie
+      doughnut {
+        type = doughnut
+      }
+
+      default >
+    }
+  }
+}
+
+tt_content.denacharts_chart_area < tt_content.denacharts_chart
+tt_content.denacharts_chart_bar < tt_content.denacharts_chart
+tt_content.denacharts_chart_column < tt_content.denacharts_chart
+tt_content.denacharts_chart_line < tt_content.denacharts_chart
+tt_content.denacharts_chart_pie < tt_content.denacharts_chart
+tt_content.denacharts_chart_doughnut < tt_content.denacharts_chart
+
+tt_content.denacharts_chart >

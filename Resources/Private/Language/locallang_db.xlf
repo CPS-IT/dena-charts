@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-04-19T10:24:45+02:00"
+		  product-name="dena_charts">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.bodytext">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_area" xml:space="preserve">
+				<source>Area chart</source>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_bar" xml:space="preserve">
+				<source>Bar chart</source>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_column" xml:space="preserve">
+				<source>Column chart</source>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_doughnut" xml:space="preserve">
+				<source>Doughnut chart</source>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_line" xml:space="preserve">
+				<source>Line chart</source>
+			</trans-unit>
+			<trans-unit id="tt_content.CType.I.denacharts_chart_pie" xml:space="preserve">
+				<source>Pie chart</source>
+			</trans-unit>
+
+			<trans-unit id="tt_content.denacharts_allow_download">
+				<source>Allow csv file download</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_aspect_ratio">
+				<source>Chart aspect ratio</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_x_title">
+				<source>X Axis title</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_x_unit">
+				<source>X Axis unit</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y_title">
+				<source>Y Axis title</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y_unit">
+				<source>Y Axis unit</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column">
+				<source>First column to assign to the second Y axis</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_first_column.description">
+				<source>Columns to assign to the second Y axis. The selected column will be the first one to be assigned to the second Y axis. All columns to the right of the selected axis will be assigned to the second Y axis as well.</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_title">
+				<source>Second Y Axis title</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_axis_y2_unit">
+				<source>Second Y Axis unit</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_color_scheme">
+				<source>Color scheme</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_data">
+				<source>Data</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_data_file">
+				<source>Data file</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_download_filename">
+				<source>Download filename basename</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_download_filename.description">
+				<source>The basename of the zip and the csv file. The extensions (.csv, .zip) will be added automatically.</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom">
+				<source>Enable zoom</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_enable_zoom.description">
+				<source>Allows the user to zoom and pan the graph</source>
+				<target>Erlaubt dem Benutzer das vergrößern, verkleinern und verschieben des Graph.</target>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_colors">
+				<source>Colors</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_highlights">
+				<source>Highlights</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_highlights.description">
+				<source>The comma, space or semicolon separated ids of fields to highlight in the chart and data table.
+
+Example:
+B2,C3;D4
+C5,D5</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_show_datatable">
+				<source>Show data table</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_show_gridlines">
+				<source>Show horizontal grid lines</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_show_points">
+				<source>Show data points</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_source">
+				<source>Source</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_source_link">
+				<source>Source link</source>
+			</trans-unit>
+			<trans-unit id="tt_content.denacharts_stack">
+				<source>Stack</source>
+			</trans-unit>
+
+            <trans-unit id="wizards.newContentElement.chartsTabTitle" xml:space="preserve">
+				<source>Charts</source>
+            </trans-unit>
+            <trans-unit id="tabs.chart" xml:space="preserve">
+				<source>Chart</source>
+			</trans-unit>
+			<trans-unit id="tabs.chartdata">
+				<source>Data</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z"
+		  product-name="dena_charts">
+		<header/>
+		<body>
+			<trans-unit id="download" approved="yes">
+				<source>Download</source>
+				<target>Download</target>
+			</trans-unit>
+			<trans-unit id="download_png" approved="yes">
+				<source>Download PNG</source>
+				<target>Download PNG</target>
+			</trans-unit>
+			<trans-unit id="more" approved="yes">
+				<source>read more</source>
+				<target>Mehr lesen</target>
+			</trans-unit>
+			<trans-unit id="source">
+				<source>Data source</source>
+				<target>Datenquelle</target>
+			</trans-unit>
+			<trans-unit id="data_table">
+				<source>Datatable</source>
+				<target>Wertetabelle</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

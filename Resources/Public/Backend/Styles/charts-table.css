@@ -1,0 +1,7 @@
+.data-table-chart th, .data-table-chart td {
+    padding: 3px;
+}
+
+.data-table-chart tbody th {
+    text-align: right;
+}

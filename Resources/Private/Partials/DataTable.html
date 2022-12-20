@@ -1,0 +1,40 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:c="http://typo3.org/ns/CPSIT/DenaCharts/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<div class="tx-dena-charts-table tx-dena-charts-no-capture">
+    <h2 class="tx-dena-charts-table--headline">
+        <f:translate key="data_table" extensionName="dena_charts" />
+    </h2>
+    <table class="tx-dena-charts-table--table">
+        <thead>
+            <tr>
+                <th class="tx-dena-charts-table--cornerfield"></th>
+                <f:for each="{dataTable.columns}" as="column">
+                    <th class="tx-dena-charts-table--columnheaderfield">{column.label}</th>
+                </f:for>
+            </tr>
+        </thead>
+        <tbody>
+            <f:for each="{dataTable.rows}" as="row">
+                <tr>
+                    <th class="tx-dena-charts-table--rowheaderfield">{row.label}</th>
+                    <f:for each="{row.cells}" as="cell">
+                        <td>
+                            <f:if condition="{cell.highlight}">
+                                <f:then>
+                                    <b><c:format.number>{cell.value}</c:format.number></b>
+                                </f:then>
+                                <f:else>
+                                    <c:format.number>{cell.value}</c:format.number>
+                                </f:else>
+                            </f:if>
+                        </td>
+                    </f:for>
+                </tr>
+            </f:for>
+        </tbody>
+    </table>
+</div>
+</html>

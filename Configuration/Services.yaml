@@ -1,0 +1,35 @@
+# Configuration/Services.yaml
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $currentLanguage: '@currentLanguage'
+
+  CPSIT\DenaCharts\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  currentLanguage:
+     class: TYPO3\CMS\Core\Site\Entity\SiteLanguage
+     factory: '@CPSIT\DenaCharts\Language\CurrentSiteLanguageFactory'
+
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder:
+    public: true
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\AreaChartBuilder:
+    public: true
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\BarChartBuilder:
+    public: true
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\LineChartBuilder:
+    public: true
+  CPSIT\DenaCharts\Domain\Builder\ChartBuilder\PieChartBuilder:
+    public: true
+
+  CPSIT\DenaCharts\Form\ColorSchemeSelectorItemProvider:
+    public: true
+  CPSIT\DenaCharts\Form\ColumnSelectorItemProvider:
+    public: true
+
+  CPSIT\DenaCharts\Service\DataTableService:
+    public: true

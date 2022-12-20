@@ -1,0 +1,61 @@
+{
+	"dena-corporate-design": {
+		"Helles Orange": "#fbba00",
+		"Orange": "#f39200",
+		"Dark Orange": "#ef7d00",
+		"Limone": "#e6e000",
+		"Gras": "#76b82a",
+		"Azur": "#008c93",
+		"Space": "#447ebc",
+		"Chilli": "#cf2317",
+		"Malve": "#b8328a"
+	},
+	"dena-orange": {
+		"50": "#fff2da",
+		"100": "#ffdaae",
+		"200": "#ffc27d",
+		"300": "#ffaa4c",
+		"400": "#ff921a",
+		"500": "#e67800",
+		"600": "#b35d00",
+		"700": "#814200",
+		"800": "#4f2700",
+		"900": "#200b00"
+	},
+	"dena-azur": {
+		"50": "#daffff",
+		"100": "#affcff",
+		"200": "#80f9ff",
+		"300": "#52f6fe",
+		"400": "#31f3fe",
+		"500": "#24dae5",
+		"600": "#12aab2",
+		"700": "#007980",
+		"800": "#00494e",
+		"900": "#001a1d"
+	},
+	"dena-blau": {
+		"50": "#e3f3ff",
+		"100": "#c3d9f0",
+		"200": "#9fbee0",
+		"300": "#7ba4d1",
+		"400": "#568ac2",
+		"500": "#3d71a9",
+		"600": "#2d5884",
+		"700": "#1f3f60",
+		"800": "#0d263c",
+		"900": "#000e1b"
+	},
+	"dena-gebäudeforum": {
+		"Dark Space": "#00508c",
+		"Helles Blau": "#1683e3",
+		"Light Chilli": "#eb6c43",
+		"Helles Orange": "#f5a58a",
+		"Limone": "#e6e000",
+		"Helles Gelb": "#fffa4b",
+		"Light Azur": "#08b1b7",
+		"Helles Türkis": "#2deef5",
+		"Schwarz": "#000000",
+		"Grau": "#595959"
+	}
+}
