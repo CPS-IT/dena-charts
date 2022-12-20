@@ -32,7 +32,7 @@ class ColorSchemeRepositoryTest extends UnitTestCase
         self::assertCount(9, $cdColors);
 
         $firstCdColor = $cdColors[0];
-        $this->assertEquals('1', $firstCdColor->getId());
+        $this->assertEquals('Helles Orange', $firstCdColor->getId());
         $this->assertEquals('#fbba00', $firstCdColor->getValue());
     }
 }
