@@ -1,3 +1,7 @@
+2023-03-14         [RELEASE] Release of dena_charts 0.2.0 (Markus)
+2023-03-01 7426d55 [BUGFIX] invalid value in color schema fixed Issue: https://frs.plan.io/issues/39144 (Dirk Wenzel)
+2023-03-01 f4748d4 [TASK] dena color schema edited Issue: https://frs.plan.io/issues/39144 (Dirk Wenzel)
+
 2022-12-20         [RELEASE] Release of dena_charts 0.1.1 (Arend Maubach)
 2022-12-20 f103b7c correcting unit test (Arend Maubach)
 2022-06-04 8c85fa8 [BUGFIX] #23 Area chart: Allow last column as second Y axis (Hannes Lau)
