@@ -36,7 +36,7 @@ class DataTableFactoryTest extends UnitTestCase
     /**
      * set up subject
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new DataTableFactory();
     }

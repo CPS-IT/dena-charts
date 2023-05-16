@@ -13,7 +13,7 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
 {
     protected ColorSchemeSelectorItemProvider $colorSchemeSelectorItemProvider;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $colorSchemeRepository = $this->createMock(ColorSchemeRepository::class);
@@ -42,8 +42,7 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
 
     public function testProvideColorSchemeSelectorItems()
     {
-        $params = [];
-
+        $params = ['row' => ['pid' => 0]];
         $this->colorSchemeSelectorItemProvider->provideColorSchemeSelectorItems($params);
 
         $this->assertEquals([

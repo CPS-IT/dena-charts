@@ -11,7 +11,7 @@ class ColorSchemeRepositoryTest extends UnitTestCase
 {
     protected ColorSchemeRepository $colorSchemeRepository;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->colorSchemeRepository = new ColorSchemeRepository();

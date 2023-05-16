@@ -32,7 +32,7 @@ class DataRowTest extends UnitTestCase
     /**
      * set up subject
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new DataRow(
             42,
