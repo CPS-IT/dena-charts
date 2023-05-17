@@ -28,7 +28,10 @@ class DataTableService
     {
         $contentElementUid = $ttContentRowUid;
         $file = $this->getFile($contentElementUid);
-        $data = $this->fileReaderCSV->getData($file);
+        $data = [];
+        if($file instanceof FileReference) {
+            $data = $this->fileReaderCSV->getData($file);
+        }
         return $this->dataTableFactory->fromArray($data);
     }
 
