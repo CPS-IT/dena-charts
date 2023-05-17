@@ -1,3 +1,6 @@
+2023-05-17         [RELEASE] Release of dena_charts 1.0.1 (Dirk Wenzel)
+2023-05-17 7b9e4a2 [BUGFIX] fixed error in DataTableService caused by non-existing file reference (Dirk Wenzel)
+
 2023-05-16         [RELEASE] Release of dena_charts 1.0.0 (Dirk Wenzel)
 2023-05-09 88658ee Update PHP unit tests (Vladimir Falcon)
 2023-05-08 0db2d68 Add support for typo3 cms ab 10.4 (Vladimir Falcon)
