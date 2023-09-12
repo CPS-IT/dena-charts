@@ -4,7 +4,6 @@ namespace CPSIT\DenaCharts\Service;
 
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use ZipStream\Option\Archive;
 use ZipStream\ZipStream;
 
 class ChartDownloadService
@@ -13,11 +12,12 @@ class ChartDownloadService
     {
         $downloadFilename = $basename ?: $file->getNameWithoutExtension();
 
-        $options = new Archive();
-        $options->setSendHttpHeaders(true);
-
         $zipFilename = $downloadFilename . '.zip';
-        $zip = new ZipStream($zipFilename, $options);
+        $zip = new ZipStream(
+            outputName: $zipFilename,
+            // enable output of HTTP headers
+            sendHttpHeaders: true
+        );
 
         if (is_string($source) && !empty($source)) {
             $sourceFilename = LocalizationUtility::translate('source', 'dena_charts') . '.txt';
