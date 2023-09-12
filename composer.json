@@ -19,7 +19,7 @@
 	],
 	"require": {
 		"typo3/cms-core": "^10.4 || ^11.5",
-		"maennchen/zipstream-php": "^2.1.0 || ^3.0.2"
+		"maennchen/zipstream-php": "^2"
 	},
 	"require-dev": {
 		"mikey179/vfsstream": "~1.6.0",

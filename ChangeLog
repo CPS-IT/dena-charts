@@ -1,3 +1,6 @@
+2023-09-12         [RELEASE] Release of dena_charts 1.0.2 (Vladimir Falcon)
+2023-08-28 b146a6c 46114 fix download by lock library zip to major 2 (Arend Maubach)
+
 2023-05-17         [RELEASE] Release of dena_charts 1.0.1 (Dirk Wenzel)
 2023-05-17 7b9e4a2 [BUGFIX] fixed error in DataTableService caused by non-existing file reference (Dirk Wenzel)
 
