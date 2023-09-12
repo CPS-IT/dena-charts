@@ -14,9 +14,9 @@ class ChartDownloadService
 
         $zipFilename = $downloadFilename . '.zip';
         $zip = new ZipStream(
-            outputName: $zipFilename,
+            sendHttpHeaders: true,
             // enable output of HTTP headers
-            sendHttpHeaders: true
+            outputName: $zipFilename
         );
 
         if (is_string($source) && !empty($source)) {
