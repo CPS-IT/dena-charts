@@ -1,3 +1,7 @@
+2023-09-12         [RELEASE] Release of dena_charts 1.0.3 (Vladimir Falcon)
+2023-09-12 ef57b15 #46114 Update code to support maennchen/zipstream-php v-3 (Vladimir Falcon)
+2023-09-12 e6eeb2d #46114 Update code to support maennchen/zipstream-php v-3 (Vladimir Falcon)
+
 2023-09-12         [RELEASE] Release of dena_charts 1.0.2 (Vladimir Falcon)
 2023-08-28 b146a6c 46114 fix download by lock library zip to major 2 (Arend Maubach)
 
