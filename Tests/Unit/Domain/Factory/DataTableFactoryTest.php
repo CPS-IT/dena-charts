@@ -7,8 +7,8 @@ use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use DWenzel\T3extensionTools\Traits\UnitTests\ResetSingletonInstancesMacro;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
  *  Copyright notice
@@ -26,8 +26,11 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
 class DataTableFactoryTest extends UnitTestCase
 {
+    use ResetSingletonInstancesMacro;
+
     /**
      * @var DataTableFactory|\PHPUnit_Framework_MockObject_MockObject
      */
@@ -38,6 +41,7 @@ class DataTableFactoryTest extends UnitTestCase
      */
     public function setUp(): void
     {
+        $this->setResetSingletonInstances();
         $this->subject = new DataTableFactory();
     }
 
