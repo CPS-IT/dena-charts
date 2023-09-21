@@ -1,3 +1,6 @@
+2023-09-21         [RELEASE] Release of dena-charts 1.0.4 (Arend Maubach)
+2023-09-21 8eec04b updating unit tests (Arend Maubach)
+
 2023-09-12         [RELEASE] Release of dena_charts 1.0.3 (Vladimir Falcon)
 2023-09-12 ef57b15 #46114 Update code to support maennchen/zipstream-php v-3 (Vladimir Falcon)
 2023-09-12 e6eeb2d #46114 Update code to support maennchen/zipstream-php v-3 (Vladimir Falcon)
