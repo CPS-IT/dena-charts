@@ -1,12 +1,10 @@
 <?php
 
-namespace CPSIT\DenaCharts\Tests\Unit\DataProcessing;
+namespace CPSIT\DenaCharts\Tests\Unit\Service;
 
 use CPSIT\DenaCharts\Service\FileReaderCSV;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\TypoScript\TypoScriptService;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /***************************************************************
  *  Copyright notice
@@ -34,7 +32,7 @@ class FileReaderCSVTest extends UnitTestCase
     /**
      * set up subject
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new FileReaderCSV();
     }

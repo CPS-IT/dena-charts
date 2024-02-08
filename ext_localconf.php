@@ -1,5 +1,7 @@
 <?php
-defined('TYPO3_MODE') or die();
+if (!defined('TYPO3')) {
+    die('Access denied.');
+}
 
 (function (string $extKey) {
     // register backend icons

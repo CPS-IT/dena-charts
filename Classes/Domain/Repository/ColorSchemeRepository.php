@@ -6,16 +6,22 @@ namespace CPSIT\DenaCharts\Domain\Repository;
 
 use CPSIT\DenaCharts\Domain\Model\Color;
 use CPSIT\DenaCharts\Domain\Model\ColorScheme;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use CPSIT\DenaCharts\Service\ColorSchemaFileService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ColorSchemeRepository
 {
+    /**
+     * @var string
+     */
+    protected string $colorSchemesFilePath = '';
+
     /**
      * @return ColorScheme[]
      */
     public function findAll(): array
     {
-        $path = ExtensionManagementUtility::extPath('dena_charts') . '/Resources/Private/colorschemes.json';
+        $path = GeneralUtility::getFileAbsFileName($this->getColorSchemesFilePath());
         $content = json_decode(file_get_contents($path));
 
         $schemes = [];
@@ -32,5 +38,19 @@ class ColorSchemeRepository
     public function findById(string $colorSchemeId): ?ColorScheme
     {
         return $this->findAll()[$colorSchemeId] ?? null;
+    }
+
+    public function getColorSchemesFilePath(): string
+    {
+        if (empty($this->colorSchemesFilePath)) {
+            $this->setColorSchemesFilePath(0);
+        }
+        return $this->colorSchemesFilePath;
+    }
+
+    public function setColorSchemesFilePath(int $pid = 0): void
+    {
+        $colorSchemaFileService = GeneralUtility::makeInstance(ColorSchemaFileService::class);
+        $this->colorSchemesFilePath = $colorSchemaFileService->getColorScheme($pid);
     }
 }

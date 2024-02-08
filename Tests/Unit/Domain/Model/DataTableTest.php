@@ -6,7 +6,7 @@ use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /***************************************************************
@@ -36,7 +36,7 @@ class DataTableTest extends UnitTestCase
     /**
      * set up the subject
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = $this->getMockBuilder(DataTable::class)
             ->setMethods(['dummy'])

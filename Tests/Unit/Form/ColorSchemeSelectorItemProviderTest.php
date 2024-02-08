@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace CPSIT\DenaCharts\Form;
+namespace CPSIT\DenaCharts\Tests\Unit\Form;
 
 use CPSIT\DenaCharts\Domain\Model\Color;
 use CPSIT\DenaCharts\Domain\Model\ColorScheme;
 use CPSIT\DenaCharts\Domain\Repository\ColorSchemeRepository;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use CPSIT\DenaCharts\Form\ColorSchemeSelectorItemProvider;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class ColorSchemeSelectorItemProviderTest extends UnitTestCase
 {
     protected ColorSchemeSelectorItemProvider $colorSchemeSelectorItemProvider;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $colorSchemeRepository = $this->createMock(ColorSchemeRepository::class);
@@ -42,8 +43,7 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
 
     public function testProvideColorSchemeSelectorItems()
     {
-        $params = [];
-
+        $params = ['row' => ['pid' => 0]];
         $this->colorSchemeSelectorItemProvider->provideColorSchemeSelectorItems($params);
 
         $this->assertEquals([

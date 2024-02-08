@@ -1,3 +1,23 @@
+2023-09-21         [RELEASE] Release of dena-charts 1.0.4 (Arend Maubach)
+2023-09-21 8eec04b updating unit tests (Arend Maubach)
+
+2023-09-12         [RELEASE] Release of dena_charts 1.0.3 (Vladimir Falcon)
+2023-09-12 ef57b15 #46114 Update code to support maennchen/zipstream-php v-3 (Vladimir Falcon)
+2023-09-12 e6eeb2d #46114 Update code to support maennchen/zipstream-php v-3 (Vladimir Falcon)
+
+2023-09-12         [RELEASE] Release of dena_charts 1.0.2 (Vladimir Falcon)
+2023-08-28 b146a6c 46114 fix download by lock library zip to major 2 (Arend Maubach)
+
+2023-05-17         [RELEASE] Release of dena_charts 1.0.1 (Dirk Wenzel)
+2023-05-17 7b9e4a2 [BUGFIX] fixed error in DataTableService caused by non-existing file reference (Dirk Wenzel)
+
+2023-05-16         [RELEASE] Release of dena_charts 1.0.0 (Dirk Wenzel)
+2023-05-09 88658ee Update PHP unit tests (Vladimir Falcon)
+2023-05-08 0db2d68 Add support for typo3 cms ab 10.4 (Vladimir Falcon)
+2023-05-08 27a58e4 Feature: add site configuration to specify different color schemes for every site in the system (Vladimir Falcon)
+2023-05-05 02117b8 Update typo3 req in composer file (Vladimir Falcon)
+2023-05-05 3c4e25e Update composer and localconf files. (Vladimir Falcon)
+
 2023-03-14         [RELEASE] Release of dena_charts 0.2.0 (Markus)
 2023-03-01 7426d55 [BUGFIX] invalid value in color schema fixed Issue: https://frs.plan.io/issues/39144 (Dirk Wenzel)
 2023-03-01 f4748d4 [TASK] dena color schema edited Issue: https://frs.plan.io/issues/39144 (Dirk Wenzel)

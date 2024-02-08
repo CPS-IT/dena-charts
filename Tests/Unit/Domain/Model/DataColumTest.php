@@ -4,7 +4,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
  *  Copyright notice
@@ -22,6 +22,7 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
 class DataColumnTest extends UnitTestCase
 {
     /**
@@ -32,7 +33,7 @@ class DataColumnTest extends UnitTestCase
     /**
      * set up subject
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new DataColumn(
             32,
