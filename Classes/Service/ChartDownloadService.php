@@ -8,7 +8,7 @@ use ZipStream\ZipStream;
 
 class ChartDownloadService
 {
-    public function streamChartZip(FileReference $file, ?string $source, string $basename = '')
+    public function streamChartZip(FileReference $file, ?string $source, string $basename = ''): void
     {
         $downloadFilename = $basename ?: $file->getNameWithoutExtension();
 
@@ -20,13 +20,14 @@ class ChartDownloadService
         );
 
         if (is_string($source) && !empty($source)) {
-            $sourceFilename = LocalizationUtility::translate('source', 'dena_charts') . '.txt';
+            $sourceFilename = LocalizationUtility::translate('source', 'DenaCharts') . '.txt';
             $zip->addFile($sourceFilename, $source);
         }
 
         $csvFilename = $downloadFilename . '.csv';
         $zip->addFileFromPath($csvFilename, $file->getForLocalProcessing(false));
 
+        // @extensionScannerIgnoreLine
         $zip->finish();
     }
 }

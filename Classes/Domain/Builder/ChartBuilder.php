@@ -18,7 +18,7 @@ class ChartBuilder
 
     protected ColorsAspect $colorsProcessor;
 
-    public function injectColorsProcessor(ColorsAspect $colorsProcessor)
+    public function __construct(\CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect $colorsProcessor)
     {
         $this->colorsProcessor = $colorsProcessor;
     }

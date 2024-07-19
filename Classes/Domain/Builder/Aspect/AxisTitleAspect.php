@@ -10,6 +10,7 @@ class AxisTitleAspect implements ChartBuilderAspect
 {
     public function process(ChartConfiguration $chartConfiguration, Chart $chart): Chart
     {
+        // @extensionScannerIgnoreLine
         $options = $chart->getOptions();
         $options = $this->setAxis($options, 'x', $chartConfiguration->getAxisXTitle(), $chartConfiguration->getAxisXUnit());
         $options = $this->setAxis($options, 'y', $chartConfiguration->getAxisYTitle(), $chartConfiguration->getAxisYUnit());

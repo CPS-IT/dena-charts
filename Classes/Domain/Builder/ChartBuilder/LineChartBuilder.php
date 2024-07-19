@@ -36,6 +36,7 @@ class LineChartBuilder extends ChartBuilder
 
     protected function processShowPoints(ChartConfiguration $chartConfiguration, Chart $chart): Chart
     {
+        // @extensionScannerIgnoreLine
         $options = $chart->getOptions();
         if ($chartConfiguration->isShowPoints()) {
             unset($options['defaultPointRadius']);

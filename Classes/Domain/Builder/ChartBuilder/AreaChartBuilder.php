@@ -33,6 +33,7 @@ class AreaChartBuilder extends ChartBuilder
         $chart = $this->axisTitleProcessor->process($chartConfiguration, $chart);
 
         $data = $chart->getData();
+        // @extensionScannerIgnoreLine
         $options = $chart->getOptions();
 
         // Activate fill
@@ -76,6 +77,7 @@ class AreaChartBuilder extends ChartBuilder
             return $chart;
         }
 
+        // @extensionScannerIgnoreLine
         $options = $chart->getOptions();
         $data = $chart->getData();
 

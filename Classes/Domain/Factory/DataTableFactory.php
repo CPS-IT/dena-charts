@@ -78,6 +78,7 @@ class DataTableFactory
         foreach ($highlightFieldIds as $fieldId) {
             $cell = $dataTable->getCellById($fieldId);
             if (isset($cell)) {
+                // @extensionScannerIgnoreLine
                 $cell->setHighlight(true);
             }
         }

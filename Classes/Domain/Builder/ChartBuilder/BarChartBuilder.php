@@ -40,6 +40,7 @@ class BarChartBuilder extends ChartBuilder
 
     public function processStacked(ChartConfiguration $chartConfiguration, Chart $chart): Chart
     {
+        // @extensionScannerIgnoreLine
         $options = $chart->getOptions();
         foreach (['x', 'y'] as $axis) {
             $options = ArrayUtility::setValueByPath(
