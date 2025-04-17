@@ -21,7 +21,7 @@ class ColorSchemeTest extends TestCase
     /**
      * @dataProvider colorDataProvider
      */
-    public function testGetAllColors(array $colors)
+    public function testGetAllColors(array $colors): void
     {
         $colorScheme = new ColorScheme('test', $colors);
         $resultColors = $colorScheme->getColors();
@@ -45,7 +45,7 @@ class ColorSchemeTest extends TestCase
     /**
      * @dataProvider someColorsDataProvider
      */
-    public function testGetSomeColors(array $colors, array $idsToGet)
+    public function testGetSomeColors(array $colors, array $idsToGet): void
     {
         $colorScheme = new ColorScheme('test', $colors);
 
@@ -57,7 +57,7 @@ class ColorSchemeTest extends TestCase
         }
     }
 
-    public function testGetColorsInvalid()
+    public function testGetColorsInvalid(): void
     {
         $colorScheme = new ColorScheme('test', [new Color('abc', '123')]);
 

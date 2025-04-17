@@ -83,7 +83,7 @@ BIE;
      * @param array $expectedRecords
      * @dataProvider processConvertsFileContentToArrayDataProvider
      */
-    public function processConvertsFileContentToArray($fileContent, $expectedRecords)
+    public function processConvertsFileContentToArray($fileContent, $expectedRecords): void
     {
         $mockFile = $this->getMockBuilder(FileReference::class)
             ->disableOriginalConstructor()

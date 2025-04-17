@@ -48,7 +48,7 @@ class DataTableFactoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function fromArrayReturnsDataTable()
+    public function fromArrayReturnsDataTable(): void
     {
         $data = [];
         $this->assertInstanceOf(
@@ -60,7 +60,7 @@ class DataTableFactoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function fromArrayGeneratesColumnsFromFirstRow()
+    public function fromArrayGeneratesColumnsFromFirstRow(): void
     {
         $data = [
             ['foo', 'bar']
@@ -92,7 +92,7 @@ class DataTableFactoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function fromArrayGeneratesRowsFromDataRows()
+    public function fromArrayGeneratesRowsFromDataRows(): void
     {
         $data = [
             ['', 'foo', 'bar'],
@@ -129,7 +129,7 @@ class DataTableFactoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function fromArrayReadsRowLabelsFromFirstColumn()
+    public function fromArrayReadsRowLabelsFromFirstColumn(): void
     {
         $data = [
             ['baz', 'foo', 'bar'],

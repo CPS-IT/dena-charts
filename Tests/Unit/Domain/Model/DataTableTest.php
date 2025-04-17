@@ -46,7 +46,7 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function getRowInitiallyReturnsEmptyObjectStorage()
+    public function getRowInitiallyReturnsEmptyObjectStorage(): void
     {
         $emptyStorage = new ObjectStorage();
         $this->assertEquals(
@@ -58,7 +58,7 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function setRowsForObjectStorageSetsRows()
+    public function setRowsForObjectStorageSetsRows(): void
     {
         $rows = new ObjectStorage();
         $this->subject->setRows($rows);
@@ -72,7 +72,7 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function addRowForObjectAddsRow()
+    public function addRowForObjectAddsRow(): void
     {
         $newRow = new DataRow(
             1,
@@ -90,7 +90,7 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function rowCanBeAddedOnlyOnce()
+    public function rowCanBeAddedOnlyOnce(): void
     {
         $row = new DataRow(
             1,
@@ -110,7 +110,7 @@ class DataTableTest extends UnitTestCase
     /**
      * @test
      */
-    public function getColumnsInitiallyReturnsEmptyObjectStorage()
+    public function getColumnsInitiallyReturnsEmptyObjectStorage(): void
     {
         $this->assertInstanceOf(
             ObjectStorage::class,
@@ -134,7 +134,7 @@ class DataTableTest extends UnitTestCase
      * @test
      * @dataProvider provideCasesForCellsById
      */
-    public function findsCellById(string $id, float $value)
+    public function findsCellById(string $id, float $value): void
     {
         $rows = [
             ['Header', 'Header 1', 'Header 2', 'Header 3'],

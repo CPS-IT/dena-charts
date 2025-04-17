@@ -45,7 +45,7 @@ class DataRowTest extends UnitTestCase
     /**
      * @test
      */
-    public function getDataReturnsData()
+    public function getDataReturnsData(): void
     {
         $this->assertEquals(
             [0.4, 1.2, 2],
@@ -56,7 +56,7 @@ class DataRowTest extends UnitTestCase
     /**
      * @test
      */
-    public function getLabelReturnsLabel()
+    public function getLabelReturnsLabel(): void
     {
         $this->assertSame(
             'Label',

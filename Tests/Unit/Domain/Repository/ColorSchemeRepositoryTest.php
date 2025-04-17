@@ -18,7 +18,7 @@ class ColorSchemeRepositoryTest extends UnitTestCase
     }
 
 
-    public function testFindAll()
+    public function testFindAll(): void
     {
         $this->markTestSkipped(
             'Skipped test, because of `ValueError: Path cannot be empty` due to `EXT:dena_charts/Resources/Private/colorschemes.json`

@@ -112,7 +112,7 @@ class DataTable
     {
         $match = preg_match('/([A-Z]+)([0-9]+)/', $cellId, $matches);
         if (!$match) {
-            throw new \InvalidArgumentException('Invalid cell id ' . $cellId);
+            throw new \InvalidArgumentException('Invalid cell id ' . $cellId, 2737364761);
         }
 
         $columnLetters = $matches[1];
