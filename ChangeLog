@@ -1,3 +1,8 @@
+2025-04-17         [RELEASE] Release of dena-charts 2.0.0 (Dirk Wenzel)
+2025-04-17 6b45c56 [TASK]  code cleanup (Dirk Wenzel)
+2024-07-26 50e2c53 BUGFIX - Typed property CPSIT\DenaCharts\Domain\Builder\ChartBuilder::$colorsProcessor must not be accessed before initialization (Krzysztof Napora)
+2024-07-19 13caa02 v12 compatibility (Krzysztof Napora)
+
 2024-02-08         [RELEASE] Release of dena_charts 1.1.0 (Dirk Wenzel)
 2024-01-15 e9c0485 [TASK] JavaScript updated (Dirk Wenzel)
 

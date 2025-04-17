@@ -13,6 +13,10 @@
 	],
 	"authors": [
 		{
+			"name": "Hannes Lau",
+			"role": "Developer"
+		},
+		{
 			"name": "Dirk Wenzel",
 			"role": "Developer"
 		}
