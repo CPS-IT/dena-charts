@@ -11,19 +11,17 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class NumberViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
     /**
      * Format the numeric value as a number with grouped thousands, decimal point and
      * precision.
      *
      * @return string The formatted number
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
         $language = GeneralUtility::makeInstance(CurrentSiteLanguageFactory::class)();
         $numberFormatter = NumberFormatter::create($language->getLocale(), NumberFormatter::DECIMAL);
-        $stringToFormat = $renderChildrenClosure();
+        $stringToFormat = $this->renderChildren();
         return $numberFormatter->format((float) $stringToFormat);
     }
 }

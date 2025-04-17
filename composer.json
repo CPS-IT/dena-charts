@@ -13,12 +13,16 @@
 	],
 	"authors": [
 		{
+			"name": "Hannes Lau",
+			"role": "Developer"
+		},
+		{
 			"name": "Dirk Wenzel",
 			"role": "Developer"
 		}
 	],
 	"require": {
-		"typo3/cms-core": "^10.4 || ^11.5",
+		"typo3/cms-core": "^12.4",
 		"maennchen/zipstream-php": "^3.0"
 	},
 	"require-dev": {

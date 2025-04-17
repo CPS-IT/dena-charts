@@ -23,7 +23,7 @@ if (!defined('TYPO3')) {
 })('dena_charts');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'CPSIT.DenaCharts',
+    'DenaCharts',
     'Chart',
     [
         \CPSIT\DenaCharts\Controller\ChartController::class => implode(',', [

@@ -14,6 +14,7 @@ class PieChartBuilder extends ChartBuilder
         $chart = parent::process($chartConfiguration, $chart);
         $yUnit = $chartConfiguration->getAxisYUnit();
         if (!empty($yUnit)) {
+            // @extensionScannerIgnoreLine
             $options = $chart->getOptions();
             $options = array_merge_recursive($options, [
                 'scales' => [

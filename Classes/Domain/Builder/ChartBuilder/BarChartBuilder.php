@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 
+use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ZoomAspect;
 use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
@@ -18,9 +19,11 @@ class BarChartBuilder extends ChartBuilder
     protected ZoomAspect $zoomAspect;
 
     public function __construct(
+        ColorsAspect $colorsProcessor,
         AxisTitleAspect  $axisTitleProcessor,
         ZoomAspect $zoomAspect
     ) {
+        parent::__construct($colorsProcessor);
         $this->axisTitleProcessor = $axisTitleProcessor;
         $this->zoomAspect = $zoomAspect;
     }
@@ -40,6 +43,7 @@ class BarChartBuilder extends ChartBuilder
 
     public function processStacked(ChartConfiguration $chartConfiguration, Chart $chart): Chart
     {
+        // @extensionScannerIgnoreLine
         $options = $chart->getOptions();
         foreach (['x', 'y'] as $axis) {
             $options = ArrayUtility::setValueByPath(

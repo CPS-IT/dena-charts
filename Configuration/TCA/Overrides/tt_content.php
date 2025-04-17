@@ -9,15 +9,14 @@
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', [
     'denacharts_data_file' => [
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_data_file',
-        'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-            'denacharts_data_file',
-            [
-                'minitems' => 1,
-                'maxitems' => 1,
-                'eval' => 'required'
-            ],
-            'csv'
-        )
+        'config' => [
+            ### !!! Watch out for fieldName different from columnName
+            'type' => 'file',
+            'allowed' => 'csv',
+            'minitems' => 1,
+            'maxitems' => 1,
+            'required' => true,
+        ]
     ],
     'denacharts_allow_download' => [
         'exclude' => 0,
@@ -25,7 +24,6 @@
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '',]],
             'default' => 1,
         ]
     ],
@@ -96,12 +94,12 @@
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['Auto', ''],
-                ['4:3', '4:3'],
-                ['3:2', '3:2'],
-                ['16:9', '16:9'],
-                ['2:1', '2:1'],
-                ['1:1', '1:1'],
+                ['label' => 'Auto', 'value' => ''],
+                ['label' => '4:3', 'value' => '4:3'],
+                ['label' => '3:2', 'value' => '3:2'],
+                ['label' => '16:9', 'value' => '16:9'],
+                ['label' => '2:1', 'value' => '2:1'],
+                ['label' => '1:1', 'value' => '1:1'],
             ],
         ],
     ],
@@ -112,7 +110,6 @@
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '',]],
             'default' => 1,
         ]
     ],
@@ -121,15 +118,15 @@
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_source',
         'config' => [
             'type' => 'input',
-            'eval' => 'required,trim',
+            'eval' => 'trim',
+            'required' => true,
         ]
     ],
     'denacharts_source_link' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_source_link',
         'config' => [
-            'type' => 'input',
-            'renderType' => 'inputLink',
+            'type' => 'link',
         ]
     ],
     'denacharts_show_gridlines' => [
@@ -138,7 +135,6 @@
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '',]],
             'default' => 1,
         ]
     ],
@@ -148,7 +144,6 @@
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '',]],
             'default' => 1,
         ]
     ],
@@ -158,7 +153,6 @@
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '',]],
             'default' => 0,
         ]
     ],
@@ -168,7 +162,6 @@
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '',]],
         ]
     ],
     'denacharts_color_scheme' => [

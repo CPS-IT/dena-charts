@@ -37,9 +37,9 @@ class ChartController extends ActionController
         $this->currentLanguage = $currentLanguage;
     }
 
-    public function chartAction()
+    public function chartAction(): \Psr\Http\Message\ResponseInterface
     {
-        $contentObjectData = $this->configurationManager->getContentObject()->data;
+        $contentObjectData = $this->request->getAttribute('currentContentObject')->data;
 
         $uid = (int)$contentObjectData['uid'];
         $chartConfiguration = $this->chartConfigurationRepository->findByUid($uid);
@@ -74,11 +74,12 @@ class ChartController extends ActionController
             'source' => (string) $contentObjectData['denacharts_source'],
             'sourceLink' => (string) $contentObjectData['denacharts_source_link'],
         ]);
+        return $this->htmlResponse();
     }
 
     public function downloadAction(int $id)
     {
-        $contentObjectData = $this->configurationManager->getContentObject()->data;
+        $contentObjectData = $this->request->getAttribute('currentContentObject')->data;
         $contentObjectUid = $contentObjectData['uid'];
         if ($contentObjectUid !== $id) {
             return '';

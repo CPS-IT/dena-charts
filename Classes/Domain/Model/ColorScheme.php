@@ -19,12 +19,14 @@ class ColorScheme
      */
     public function __construct(string $id, array $colors)
     {
+        // @extensionScannerIgnoreLine
         $this->id = $id;
         $this->colors = $colors;
     }
 
     public function getId(): string
     {
+        // @extensionScannerIgnoreLine
         return $this->id;
     }
 

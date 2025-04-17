@@ -16,15 +16,12 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'dirk.wenzel@cps-it.de',
     'author_company' => '',
     'state' => 'beta',
-    'uploadfolder' => false,
-    'createDirs' => '',
-    'clearCacheOnLoad' => 1,
     'version' => '1.1.0',
     'constraints' =>
         [
             'depends' =>
                 [
-                    'typo3' => '10.4.0-11.5.99'
+                    'typo3' => '12.4.0-12.4.99'
                 ],
             'conflicts' => [],
             'suggests' => [],

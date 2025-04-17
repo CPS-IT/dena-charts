@@ -42,7 +42,7 @@ class ZoomAspect
         if (!empty($secondaryZoomAxes)) {
             $options['plugins']['zoom']['zoom']['overScaleMode'] = implode('', $secondaryZoomAxes);
         }
-
+        // @extensionScannerIgnoreLine
         return $chart->withOptions(array_replace_recursive($chart->getOptions(), $options));
     }
 }

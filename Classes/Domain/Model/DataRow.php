@@ -32,6 +32,7 @@ class DataRow
 
     public function __construct(int $index, string $label, array $cells)
     {
+        // @extensionScannerIgnoreLine
         $this->number = $index;
         $this->label = $label;
         $this->cells = $cells;
@@ -43,6 +44,7 @@ class DataRow
 
     public function getNumber(): int
     {
+        // @extensionScannerIgnoreLine
         return $this->number;
     }
 

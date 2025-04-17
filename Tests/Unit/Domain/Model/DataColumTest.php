@@ -45,7 +45,7 @@ class DataColumnTest extends UnitTestCase
     /**
      * @test
      */
-    public function getLabelInitiallyReturnsString()
+    public function getLabelInitiallyReturnsString(): void
     {
         $this->assertSame(
             'label',
@@ -56,7 +56,7 @@ class DataColumnTest extends UnitTestCase
     /**
      * @test
      */
-    public function getLettersReturnsLetterCode()
+    public function getLettersReturnsLetterCode(): void
     {
         $this->assertSame(
             'AF',
@@ -76,7 +76,7 @@ class DataColumnTest extends UnitTestCase
     }
 
     /** @dataProvider provideIndexForLettersTestCases */
-    public function testGetIndexForLetters(string $columnLetters, int $expectedIndex)
+    public function testGetIndexForLetters(string $columnLetters, int $expectedIndex): void
     {
         $result = DataColumn::getColumnIndexForLetters($columnLetters);
         $this->assertEquals($expectedIndex, $result);

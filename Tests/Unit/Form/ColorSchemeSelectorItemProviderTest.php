@@ -41,7 +41,7 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
         $this->colorSchemeSelectorItemProvider = new ColorSchemeSelectorItemProvider($colorSchemeRepository);
     }
 
-    public function testProvideColorSchemeSelectorItems()
+    public function testProvideColorSchemeSelectorItems(): void
     {
         $params = ['row' => ['pid' => 0]];
         $this->colorSchemeSelectorItemProvider->provideColorSchemeSelectorItems($params);
@@ -53,7 +53,7 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
     }
 
 
-    public function testProvideColorSelectorItems()
+    public function testProvideColorSelectorItems(): void
     {
         $params = ['row' => ['denacharts_color_scheme' => ['testscheme B']]];
 
