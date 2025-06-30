@@ -10,6 +10,8 @@ use CPSIT\DenaCharts\Service\FileReaderCSV;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\NullResponse;
 
 class ChartController extends ActionController
 {
@@ -37,7 +39,7 @@ class ChartController extends ActionController
         $this->currentLanguage = $currentLanguage;
     }
 
-    public function chartAction(): \Psr\Http\Message\ResponseInterface
+    public function chartAction(): ResponseInterface
     {
         $contentObjectData = $this->request->getAttribute('currentContentObject')->data;
 
@@ -77,12 +79,12 @@ class ChartController extends ActionController
         return $this->htmlResponse();
     }
 
-    public function downloadAction(int $id)
+    public function downloadAction(int $id): ResponseInterface
     {
         $contentObjectData = $this->request->getAttribute('currentContentObject')->data;
         $contentObjectUid = $contentObjectData['uid'];
         if ($contentObjectUid !== $id) {
-            return '';
+            return new NullResponse();
         }
 
         $source = $contentObjectData['denacharts_source'];
