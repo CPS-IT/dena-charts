@@ -20,6 +20,8 @@ namespace CPSIT\DenaCharts\Service;
  ***************************************************************/
 
 use TYPO3\CMS\Core\Resource\FileReference;
+use function mb_convert_encoding;
+use function mb_detect_encoding;
 
 /**
  * Class FileReaderCSV
@@ -54,10 +56,9 @@ class FileReaderCSV
      * @param string $fileContentRaw
      * @return string UTF-8 encoded string
      */
-    protected function fixEncoding(string $fileContentRaw)
+    protected function fixEncoding(string $fileContentRaw): string
     {
-        $encoding = \mb_detect_encoding($fileContentRaw, 'UTF-8, ISO-8859-1', true);
-        $fileContent = \mb_convert_encoding($fileContentRaw, 'UTF-8', $encoding);
-        return $fileContent;
+        $encoding = mb_detect_encoding($fileContentRaw, 'UTF-8, ISO-8859-1', true);
+        return mb_convert_encoding($fileContentRaw, 'UTF-8', $encoding);
     }
 }

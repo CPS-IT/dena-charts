@@ -26,8 +26,6 @@ class AxisTitleAspect implements ChartBuilderAspect
         }
 
         $options = ArrayUtility::setValueByPath($options, ['scales', $axis, 'title', 'display'], !empty($axisTitle));
-        $options = ArrayUtility::setValueByPath($options, ['scales', $axis, 'title', 'text'], $axisTitle);
-
-        return $options;
+        return ArrayUtility::setValueByPath($options, ['scales', $axis, 'title', 'text'], $axisTitle);
     }
 }

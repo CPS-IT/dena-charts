@@ -7,7 +7,6 @@ use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
-use DWenzel\T3extensionTools\Traits\UnitTests\ResetSingletonInstancesMacro;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
@@ -29,8 +28,6 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class DataTableFactoryTest extends UnitTestCase
 {
-    use ResetSingletonInstancesMacro;
-
     /**
      * @var DataTableFactory|\PHPUnit_Framework_MockObject_MockObject
      */
@@ -41,7 +38,6 @@ class DataTableFactoryTest extends UnitTestCase
      */
     public function setUp(): void
     {
-        $this->setResetSingletonInstances();
         $this->subject = new DataTableFactory();
     }
 

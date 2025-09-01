@@ -37,8 +37,7 @@ class BarChartBuilder extends ChartBuilder
         } else {
             $chart = $this->zoomAspect->process($chartConfiguration, $chart, ['y']);
         }
-        $chart = $this->processStacked($chartConfiguration, $chart);
-        return $chart;
+        return $this->processStacked($chartConfiguration, $chart);
     }
 
     public function processStacked(ChartConfiguration $chartConfiguration, Chart $chart): Chart

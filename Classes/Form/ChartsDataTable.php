@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Form;
 
@@ -6,6 +6,7 @@ use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use CPSIT\DenaCharts\Service\DataTableService;
+use Throwable;
 use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -14,26 +15,25 @@ class ChartsDataTable extends AbstractNode
 {
     protected DataTableService $dataTableService;
 
-    public function __construct(NodeFactory $nodeFactory, array $data)
-    {
-        parent::__construct($nodeFactory, $data);
+    public function __construct(
+        private readonly NodeFactory $nodeFactory
+    ) {
         $this->dataTableService = GeneralUtility::makeInstance(DataTableService::class);
     }
 
-    public function render()
+    public function render(): array
     {
         try {
             $rowUid = (int)$this->data['databaseRow']['uid'];
             $dataTable = $this->dataTableService->getDataTableForContentRowUid($rowUid);
-        } catch (\Throwable $e) {
+        } catch (Throwable) {
             return ['html' => 'Table cannot be fetched'];
         }
 
-        $result = array_merge($this->initializeResultArray(), [
+        return array_merge($this->initializeResultArray(), [
             'stylesheetFiles' => ['EXT:dena_charts/Resources/Public/Backend/Styles/charts-table.css'],
             'html' => $this->renderHtmlForDataTable($dataTable),
         ]);
-        return $result;
     }
 
     protected function renderHtmlForDataTable(DataTable $dataTable): string
@@ -58,7 +58,7 @@ class ChartsDataTable extends AbstractNode
                     $cell->getId(),
                     htmlentities($cell->getRow()->getLabel()),
                     htmlentities($cell->getColumn()->getLabel()),
-                    htmlentities($cell->getValue())
+                    htmlentities((string)$cell->getValue())
                 ),
                 $dataRow->getCells()
             );

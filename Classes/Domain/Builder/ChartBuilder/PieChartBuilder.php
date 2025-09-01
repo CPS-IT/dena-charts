@@ -30,7 +30,7 @@ class PieChartBuilder extends ChartBuilder
         return $chart;
     }
 
-    protected function transposeData($data)
+    protected function transposeData($data): array
     {
         $result = [];
 

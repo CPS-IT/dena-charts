@@ -46,8 +46,7 @@ class ColorsAspect implements ChartBuilderAspect
             }
             $dataset['backgroundColor'] = $colorArray;
         }
-        $chart = $chart->withData($data);
-        return $chart;
+        return $chart->withData($data);
     }
 
     protected function applyColorsToY(Chart $chart, array $colors): Chart

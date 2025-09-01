@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Controller;
 
+use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Repository\ChartConfigurationRepository;
@@ -44,15 +45,18 @@ class ChartController extends ActionController
         $contentObjectData = $this->request->getAttribute('currentContentObject')->data;
 
         $uid = (int)$contentObjectData['uid'];
+
+        /** @var ?ChartConfiguration $chartConfiguration */
         $chartConfiguration = $this->chartConfigurationRepository->findByUid($uid);
-        $csvContents = $this->fileReaderCSV->getData($chartConfiguration->getDataFile());
+        $csvContents = $this->fileReaderCSV->getData($chartConfiguration?->getDataFile());
 
         $highlightsString = str_replace(["\n", ',', ';'], ',', $contentObjectData['denacharts_highlights']);
         $highlights = GeneralUtility::trimExplode(',', $highlightsString, true);
 
         $dataTable = $this->dataTableFactory->fromArray($csvContents, $highlights);
 
-        $builderConfiguration = $this->settings['chartJsDefaults'][$chartConfiguration->getType()];
+        $builderConfiguration = $this->settings['chartJsDefaults'][$chartConfiguration?->getType()];
+        /** @var ChartBuilder $builder */
         $builder = GeneralUtility::makeInstance($builderConfiguration['builder']);
         $chartJsChart = $builder->buildForConfiguration(
             $chartConfiguration,
@@ -61,13 +65,13 @@ class ChartController extends ActionController
             $builderConfiguration,
         );
 
-        $pngDownloadBaseName = $contentObjectData['denacharts_download_filename'] ?: $chartConfiguration->getDataFile()->getNameWithoutExtension();
+        $pngDownloadBaseName = $contentObjectData['denacharts_download_filename'] ?: $chartConfiguration?->getDataFile()->getNameWithoutExtension();
         $pngDownloadFileName = $pngDownloadBaseName . '.png';
 
         $this->view->assignMultiple([
             'chart' => $chartJsChart,
             'uid' => $uid,
-            'chartRatio' => $chartConfiguration->getAspectRatio(),
+            'chartRatio' => $chartConfiguration?->getAspectRatio(),
             'dataTable' => $dataTable,
             'allowDownload' => (bool) $contentObjectData['denacharts_allow_download'],
             'pngDownloadFilename' => $pngDownloadFileName,
@@ -88,6 +92,7 @@ class ChartController extends ActionController
         }
 
         $source = $contentObjectData['denacharts_source'];
+        /** @var ChartConfiguration $chartConfiguration */
         $chartConfiguration = $this->chartConfigurationRepository->findByUid($contentObjectUid);
         $file = $chartConfiguration->getDataFile();
 

@@ -57,7 +57,7 @@ class DataTable
      * Gets the rows
      * @return ObjectStorage<DataRow>
      */
-    public function getRows()
+    public function getRows(): ObjectStorage
     {
         return $this->rows;
     }
@@ -85,7 +85,7 @@ class DataTable
      *
      * @return ObjectStorage<\CPSIT\DenaCharts\Domain\Model\DataColumn>
      */
-    public function getColumns()
+    public function getColumns(): ObjectStorage
     {
         return $this->columns;
     }

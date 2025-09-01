@@ -33,8 +33,7 @@ class LineChartBuilder extends ChartBuilder
         $chart = parent::process($chartConfiguration, $chart);
         $chart = $this->axisTitleProcessor->process($chartConfiguration, $chart);
         $chart = $this->zoomAspect->process($chartConfiguration, $chart);
-        $chart = $this->processShowPoints($chartConfiguration, $chart);
-        return $chart;
+        return $this->processShowPoints($chartConfiguration, $chart);
     }
 
     protected function processShowPoints(ChartConfiguration $chartConfiguration, Chart $chart): Chart
@@ -50,7 +49,7 @@ class LineChartBuilder extends ChartBuilder
         return $chart->withOptions($options);
     }
 
-    protected function convertCell(DataCell $dataCell)
+    protected function convertCell(DataCell $dataCell): array
     {
         return [
             'x' => $dataCell->getRow()->getLabel(),

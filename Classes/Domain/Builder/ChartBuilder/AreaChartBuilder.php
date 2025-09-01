@@ -11,7 +11,6 @@ use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
 use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
-use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class AreaChartBuilder extends ChartBuilder
@@ -60,11 +59,10 @@ class AreaChartBuilder extends ChartBuilder
 
         $chart = $chart->withData($data)->withOptions($options);
         $chart = $this->addSecondYAxis($chartConfiguration, $chart);
-        $chart = $this->zoomAspect->process($chartConfiguration, $chart);
-        return $chart;
+        return $this->zoomAspect->process($chartConfiguration, $chart);
     }
 
-    protected function convertCell(DataCell $dataCell)
+    protected function convertCell(DataCell $dataCell): array
     {
         return [
             'x' => $dataCell->getRow()->getLabel(),
@@ -114,7 +112,6 @@ class AreaChartBuilder extends ChartBuilder
         $data['datasets'] = array_reverse($data['datasets']);
         $options = ArrayUtility::setValueByPath($options, ['plugins', 'legend', 'reverse'], true);
 
-        $chart = $chart->withData($data)->withOptions($options);
-        return $chart;
+        return $chart->withData($data)->withOptions($options);
     }
 }

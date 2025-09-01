@@ -26,7 +26,7 @@ class DataColumn
     protected string $label = '';
 
     /** @var DataCell[] */
-    protected $cells = [];
+    protected array $cells = [];
 
     /**
      * @param int $index

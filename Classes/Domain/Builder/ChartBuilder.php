@@ -8,6 +8,7 @@ use CPSIT\DenaCharts\Domain\Model\Chart;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
+use Locale;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 
 class ChartBuilder
@@ -18,7 +19,7 @@ class ChartBuilder
 
     protected ColorsAspect $colorsProcessor;
 
-    public function __construct(\CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect $colorsProcessor)
+    public function __construct(ColorsAspect $colorsProcessor)
     {
         $this->colorsProcessor = $colorsProcessor;
     }
@@ -31,9 +32,7 @@ class ChartBuilder
     ): Chart {
         $options = $builderConfiguration['options'];
         $locale = $language->getLocale();
-        if (!empty($locale)) {
-            $options['locale'] = implode('-', \Locale::parseLocale($locale));
-        }
+        $options['locale'] = implode('-', Locale::parseLocale($locale));
 
         $aspectRatio = $chartConfiguration->getAspectRatio();
         if (!empty($aspectRatio)) {
@@ -93,15 +92,15 @@ class ChartBuilder
 
     /**
      * @param ChartConfiguration $chartConfiguration
-     * @param SiteLanguage $language
+     * @param Chart $chart
+     * @return Chart
      */
     protected function process(ChartConfiguration $chartConfiguration, Chart $chart): Chart
     {
-        $chart = $this->colorsProcessor->process($chartConfiguration, $chart);
-        return $chart;
+        return $this->colorsProcessor->process($chartConfiguration, $chart);
     }
 
-    protected function convertCell(DataCell $dataCell)
+    protected function convertCell(DataCell $dataCell): float|array
     {
         return $dataCell->getValue();
     }

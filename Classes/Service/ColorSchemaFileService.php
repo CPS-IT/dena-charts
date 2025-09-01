@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Service;
 
+use Throwable;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -30,7 +31,7 @@ final class ColorSchemaFileService
 
         try {
             return GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($page);
-        } catch (\Exception $e) {
+        } catch (Throwable) {
             return null;
         }
     }

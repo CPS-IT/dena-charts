@@ -41,7 +41,7 @@ class Chart
         return $this->data;
     }
 
-    public function withData(array $data)
+    public function withData(array $data): Chart
     {
         return new Chart(
             $this->type,
