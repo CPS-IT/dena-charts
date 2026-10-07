@@ -1,3 +1,10 @@
+2026-10-07         [RELEASE] Release of dena-charts 2.1.0 (Vladimir Falcón Piva)
+2026-10-07 4168a94 [TASK] Load color schemes from allowed path in ColorSchemeRepositoryTest (Vladimir Falcón Piva)
+2026-10-07 b97889d [TASK] Make unit tests PHPUnit 10 and typo3/testing-framework compatible (Vladimir Falcón Piva)
+
+2025-06-30         [RELEASE] Release of dena-charts 2.0.1 (Benjamin)
+2025-06-30 b7ca0ba fix missing return type (Benjamin)
+
 2025-04-17         [RELEASE] Release of dena-charts 2.0.0 (Dirk Wenzel)
 2025-04-17 6b45c56 [TASK]  code cleanup (Dirk Wenzel)
 2024-07-26 50e2c53 BUGFIX - Typed property CPSIT\DenaCharts\Domain\Builder\ChartBuilder::$colorsProcessor must not be accessed before initialization (Krzysztof Napora)
