@@ -16,7 +16,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'dirk.wenzel@cps-it.de',
     'author_company' => '',
     'state' => 'beta',
-    'version' => '1.1.0',
+    'version' => '2.1.0',
     'constraints' =>
         [
             'depends' =>
