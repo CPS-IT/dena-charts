@@ -6,11 +6,12 @@ namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
 use CPSIT\DenaCharts\Domain\Model\Color;
 use CPSIT\DenaCharts\Domain\Model\ColorScheme;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ColorSchemeTest extends TestCase
 {
-    public function colorDataProvider(): array
+    public static function colorDataProvider(): array
     {
         return [
             [[]],
@@ -18,9 +19,7 @@ class ColorSchemeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider colorDataProvider
-     */
+    #[DataProvider('colorDataProvider')]
     public function testGetAllColors(array $colors): void
     {
         $colorScheme = new ColorScheme('test', $colors);
@@ -28,7 +27,7 @@ class ColorSchemeTest extends TestCase
         self::assertCount(count($colors), $resultColors);
     }
 
-    public function someColorsDataProvider(): array
+    public static function someColorsDataProvider(): array
     {
         return [
             [
@@ -42,9 +41,7 @@ class ColorSchemeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider someColorsDataProvider
-     */
+    #[DataProvider('someColorsDataProvider')]
     public function testGetSomeColors(array $colors, array $idsToGet): void
     {
         $colorScheme = new ColorScheme('test', $colors);
