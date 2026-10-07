@@ -27,7 +27,7 @@
 	},
 	"require-dev": {
 		"mikey179/vfsstream": "~1.6.0",
-		"nimut/testing-framework": "^6.0"
+		"typo3/testing-framework": "^8.3"
 	},
 	"autoload": {
 		"psr-4": {

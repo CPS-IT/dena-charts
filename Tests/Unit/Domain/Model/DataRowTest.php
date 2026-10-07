@@ -26,7 +26,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 class DataRowTest extends UnitTestCase
 {
     /**
-     * @var DataRow|\PHPUnit_Framework_MockObject_MockObject
+     * @var DataRow
      */
     protected $subject;
 
@@ -35,6 +35,7 @@ class DataRowTest extends UnitTestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
         $this->subject = new DataRow(
             42,
             'Label',

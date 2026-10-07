@@ -6,6 +6,8 @@ use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -29,7 +31,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class DataTableTest extends UnitTestCase
 {
     /**
-     * @var DataTable|\PHPUnit_Framework_MockObject_MockObject
+     * @var DataTable
      */
     protected $subject;
 
@@ -38,9 +40,8 @@ class DataTableTest extends UnitTestCase
      */
     public function setUp(): void
     {
-        $this->subject = $this->getMockBuilder(DataTable::class)
-            ->setMethods(['dummy'])
-            ->getMock();
+        parent::setUp();
+        $this->subject = new DataTable();
     }
 
     /**
@@ -118,7 +119,7 @@ class DataTableTest extends UnitTestCase
         );
     }
 
-    public function provideCasesForCellsById()
+    public static function provideCasesForCellsById(): array
     {
         return [
             ['B2', 1.0],
@@ -130,10 +131,8 @@ class DataTableTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider provideCasesForCellsById
-     */
+    #[Test]
+    #[DataProvider('provideCasesForCellsById')]
     public function findsCellById(string $id, float $value): void
     {
         $rows = [
