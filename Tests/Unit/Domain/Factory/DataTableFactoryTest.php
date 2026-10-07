@@ -32,7 +32,7 @@ class DataTableFactoryTest extends UnitTestCase
     use ResetSingletonInstancesMacro;
 
     /**
-     * @var DataTableFactory|\PHPUnit_Framework_MockObject_MockObject
+     * @var DataTableFactory
      */
     protected $subject;
 
@@ -41,6 +41,7 @@ class DataTableFactoryTest extends UnitTestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
         $this->setResetSingletonInstances();
         $this->subject = new DataTableFactory();
     }

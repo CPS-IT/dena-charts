@@ -14,17 +14,17 @@ class ColorSchemeRepositoryTest extends UnitTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->colorSchemeRepository = new ColorSchemeRepository();
+        $this->colorSchemeRepository = new class () extends ColorSchemeRepository {
+            public function getColorSchemesFilePath(): string
+            {
+                return dirname(__DIR__, 4) . '/Resources/Private/colorschemes.json';
+            }
+        };
     }
 
 
     public function testFindAll(): void
     {
-        $this->markTestSkipped(
-            'Skipped test, because of `ValueError: Path cannot be empty` due to `EXT:dena_charts/Resources/Private/colorschemes.json`
-            is not available in UnitTest context of not running real TYPO3'
-        );
-        
         $colorSchemes = $this->colorSchemeRepository->findAll();
         self::assertCount(5, $colorSchemes);
         self::arrayHasKey('dena-corporate-design', $colorSchemes);

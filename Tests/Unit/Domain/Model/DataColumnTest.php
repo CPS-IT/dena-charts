@@ -4,6 +4,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
+use PHPUnit\Framework\Attributes\DataProvider;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
@@ -26,7 +27,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 class DataColumnTest extends UnitTestCase
 {
     /**
-     * @var DataColumn|\PHPUnit_Framework_MockObject_MockObject
+     * @var DataColumn
      */
     protected $subject;
 
@@ -35,6 +36,7 @@ class DataColumnTest extends UnitTestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
         $this->subject = new DataColumn(
             32,
             'label',
@@ -64,7 +66,7 @@ class DataColumnTest extends UnitTestCase
         );
     }
 
-    public function provideIndexForLettersTestCases(): array
+    public static function provideIndexForLettersTestCases(): array
     {
         return [
             ['A', 0],
@@ -75,7 +77,7 @@ class DataColumnTest extends UnitTestCase
         ];
     }
 
-    /** @dataProvider provideIndexForLettersTestCases */
+    #[DataProvider('provideIndexForLettersTestCases')]
     public function testGetIndexForLetters(string $columnLetters, int $expectedIndex): void
     {
         $result = DataColumn::getColumnIndexForLetters($columnLetters);

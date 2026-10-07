@@ -3,6 +3,8 @@
 namespace CPSIT\DenaCharts\Tests\Unit\Service;
 
 use CPSIT\DenaCharts\Service\FileReaderCSV;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileReference;
 
@@ -25,7 +27,7 @@ use TYPO3\CMS\Core\Resource\FileReference;
 class FileReaderCSVTest extends UnitTestCase
 {
     /**
-     * @var FileReaderCSV|\PHPUnit_Framework_MockObject_MockObject
+     * @var FileReaderCSV
      */
     protected $subject;
 
@@ -34,13 +36,14 @@ class FileReaderCSVTest extends UnitTestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
         $this->subject = new FileReaderCSV();
     }
 
     /**
      * provides data for processing file content
      */
-    public function processConvertsFileContentToArrayDataProvider()
+    public static function processConvertsFileContentToArrayDataProvider(): array
     {
         $contentWithWhiteSpace = <<<FCC
 "label 1"
@@ -77,17 +80,13 @@ BIE;
         ];
     }
 
-    /**
-     * @test
-     * @param string $fileContent
-     * @param array $expectedRecords
-     * @dataProvider processConvertsFileContentToArrayDataProvider
-     */
-    public function processConvertsFileContentToArray($fileContent, $expectedRecords): void
+    #[Test]
+    #[DataProvider('processConvertsFileContentToArrayDataProvider')]
+    public function processConvertsFileContentToArray(string $fileContent, array $expectedRecords): void
     {
         $mockFile = $this->getMockBuilder(FileReference::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getContents'])
+            ->onlyMethods(['getContents'])
             ->getMock();
         $mockFile->expects($this->once())->method('getContents')
             ->will($this->returnValue($fileContent));
