@@ -7,7 +7,7 @@ use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
-use DWenzel\T3extensionTools\Traits\UnitTests\ResetSingletonInstancesMacro;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
@@ -29,7 +29,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class DataTableFactoryTest extends UnitTestCase
 {
-    use ResetSingletonInstancesMacro;
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @var DataTableFactory
@@ -42,13 +42,10 @@ class DataTableFactoryTest extends UnitTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->setResetSingletonInstances();
         $this->subject = new DataTableFactory();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayReturnsDataTable(): void
     {
         $data = [];
@@ -58,9 +55,7 @@ class DataTableFactoryTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayGeneratesColumnsFromFirstRow(): void
     {
         $data = [
@@ -90,9 +85,7 @@ class DataTableFactoryTest extends UnitTestCase
     }
 
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayGeneratesRowsFromDataRows(): void
     {
         $data = [
@@ -127,9 +120,7 @@ class DataTableFactoryTest extends UnitTestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayReadsRowLabelsFromFirstColumn(): void
     {
         $data = [

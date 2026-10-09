@@ -44,9 +44,7 @@ class DataTableTest extends UnitTestCase
         $this->subject = new DataTable();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getRowInitiallyReturnsEmptyObjectStorage(): void
     {
         $emptyStorage = new ObjectStorage();
@@ -56,9 +54,7 @@ class DataTableTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setRowsForObjectStorageSetsRows(): void
     {
         $rows = new ObjectStorage();
@@ -70,9 +66,7 @@ class DataTableTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addRowForObjectAddsRow(): void
     {
         $newRow = new DataRow(
@@ -88,9 +82,7 @@ class DataTableTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function rowCanBeAddedOnlyOnce(): void
     {
         $row = new DataRow(
@@ -108,9 +100,7 @@ class DataTableTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getColumnsInitiallyReturnsEmptyObjectStorage(): void
     {
         $this->assertInstanceOf(

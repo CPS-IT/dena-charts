@@ -5,6 +5,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
@@ -44,9 +45,7 @@ class DataColumnTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLabelInitiallyReturnsString(): void
     {
         $this->assertSame(
@@ -55,9 +54,7 @@ class DataColumnTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLettersReturnsLetterCode(): void
     {
         $this->assertSame(

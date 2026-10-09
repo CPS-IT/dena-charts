@@ -4,6 +4,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
@@ -43,9 +44,7 @@ class DataRowTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDataReturnsData(): void
     {
         $this->assertEquals(
@@ -54,9 +53,7 @@ class DataRowTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLabelReturnsLabel(): void
     {
         $this->assertSame(
