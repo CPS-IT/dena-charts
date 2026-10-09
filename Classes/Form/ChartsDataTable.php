@@ -7,17 +7,11 @@ use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use CPSIT\DenaCharts\Service\DataTableService;
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Backend\Form\NodeFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ChartsDataTable extends AbstractNode
 {
-    protected DataTableService $dataTableService;
-
-    public function __construct(NodeFactory $nodeFactory, array $data)
+    public function __construct(protected readonly DataTableService $dataTableService)
     {
-        parent::__construct($nodeFactory, $data);
-        $this->dataTableService = GeneralUtility::makeInstance(DataTableService::class);
     }
 
     public function render(): array
