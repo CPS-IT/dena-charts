@@ -89,7 +89,7 @@ BIE;
             ->onlyMethods(['getContents'])
             ->getMock();
         $mockFile->expects($this->once())->method('getContents')
-            ->will($this->returnValue($fileContent));
+            ->willReturn($fileContent);
 
         $data = $this->subject->getData($mockFile);
 
