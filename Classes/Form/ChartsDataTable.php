@@ -20,7 +20,7 @@ class ChartsDataTable extends AbstractNode
         $this->dataTableService = GeneralUtility::makeInstance(DataTableService::class);
     }
 
-    public function render()
+    public function render(): array
     {
         try {
             $rowUid = (int)$this->data['databaseRow']['uid'];
