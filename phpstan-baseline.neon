@@ -1,24 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Call to an undefined method TYPO3\\CMS\\Extbase\\DomainObject\\DomainObjectInterface\:\:getAspectRatio\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: Classes/Controller/ChartController.php
-
-		-
-			message: '#^Call to an undefined method TYPO3\\CMS\\Extbase\\DomainObject\\DomainObjectInterface\:\:getDataFile\(\)\.$#'
-			identifier: method.notFound
-			count: 3
-			path: Classes/Controller/ChartController.php
-
-		-
-			message: '#^Call to an undefined method TYPO3\\CMS\\Extbase\\DomainObject\\DomainObjectInterface\:\:getType\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: Classes/Controller/ChartController.php
-
-		-
 			message: '#^Unable to resolve the template type T in call to static method TYPO3\\CMS\\Core\\Utility\\GeneralUtility\:\:makeInstance\(\)$#'
 			identifier: argument.templateType
 			count: 1
@@ -401,18 +383,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: Tests/Unit/Domain/Model/DataTableTest.php
-
-		-
-			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertIsArray\(\) with array\<CPSIT\\DenaCharts\\Domain\\Model\\Color\> will always evaluate to true\.$#'
-			identifier: staticMethod.alreadyNarrowedType
-			count: 1
-			path: Tests/Unit/Domain/Repository/ColorSchemeRepositoryTest.php
-
-		-
-			message: '#^Static method PHPUnit\\Framework\\Assert\:\:arrayHasKey\(\) invoked with 2 parameters, 1 required\.$#'
-			identifier: arguments.count
-			count: 2
-			path: Tests/Unit/Domain/Repository/ColorSchemeRepositoryTest.php
 
 		-
 			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Service\\FileReaderCSVTest\:\:processConvertsFileContentToArray\(\) has parameter \$expectedRecords with no value type specified in iterable type array\.$#'
