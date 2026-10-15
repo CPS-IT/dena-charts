@@ -41,7 +41,7 @@ class FileReaderCSV
         $enclosure = '"';
         $escape = '\\';
 
-        $rows = array_filter(str_getcsv($fileContent, "\n"));
+        $rows = array_filter(str_getcsv($fileContent, "\n", $enclosure, $escape));
 
         $records = array_map(function ($d) use ($delimiter, $enclosure, $escape) {
             return str_getcsv($d, $delimiter, $enclosure, $escape);
