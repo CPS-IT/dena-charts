@@ -5,8 +5,8 @@ namespace CPSIT\DenaCharts\Tests\Unit\Service;
 use CPSIT\DenaCharts\Service\FileReaderCSV;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileReference;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
  *  Copyright notice
@@ -57,26 +57,25 @@ FCC;
 1"
 BIE;
 
-
         return [
             // fileContent, expectedRecords
             'empty file, empty result array' => [
-                '', []
+                '', [],
             ],
             'white space' => [
                 $contentWithWhiteSpace,
                 [
                     ['label 1'],
-                    ['content 1']
-                ]
+                    ['content 1'],
+                ],
             ],
             'line break in enclosure' => [
                 $contentWithLineBreakInEnclosure,
                 [
                     ['label 1'],
-                    ['content '. PHP_EOL . '1']
-                ]
-            ]
+                    ['content ' . PHP_EOL . '1'],
+                ],
+            ],
         ];
     }
 
@@ -93,6 +92,6 @@ BIE;
 
         $data = $this->subject->getData($mockFile);
 
-        $this->assertSame($expectedRecords, $data);
+        self::assertSame($expectedRecords, $data);
     }
 }

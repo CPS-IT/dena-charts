@@ -3,8 +3,8 @@
 namespace CPSIT\DenaCharts\Domain\Builder;
 
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;

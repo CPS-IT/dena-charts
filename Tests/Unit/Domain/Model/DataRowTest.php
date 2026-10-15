@@ -40,14 +40,14 @@ class DataRowTest extends UnitTestCase
         $this->subject = new DataRow(
             42,
             'Label',
-            array_map(fn ($value) => new DataCell($value), [0.4, 1.2, 2]),
+            array_map(fn($value) => new DataCell($value), [0.4, 1.2, 2]),
         );
     }
 
     #[Test]
     public function getDataReturnsData(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             [0.4, 1.2, 2],
             $this->subject->getData()
         );
@@ -56,7 +56,7 @@ class DataRowTest extends UnitTestCase
     #[Test]
     public function getLabelReturnsLabel(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'Label',
             $this->subject->getLabel()
         );

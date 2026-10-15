@@ -1,0 +1,427 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to an undefined method TYPO3\\CMS\\Extbase\\DomainObject\\DomainObjectInterface\:\:getAspectRatio\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Classes/Controller/ChartController.php
+
+		-
+			message: '#^Call to an undefined method TYPO3\\CMS\\Extbase\\DomainObject\\DomainObjectInterface\:\:getDataFile\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: Classes/Controller/ChartController.php
+
+		-
+			message: '#^Call to an undefined method TYPO3\\CMS\\Extbase\\DomainObject\\DomainObjectInterface\:\:getType\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Classes/Controller/ChartController.php
+
+		-
+			message: '#^Unable to resolve the template type T in call to static method TYPO3\\CMS\\Core\\Utility\\GeneralUtility\:\:makeInstance\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: Classes/Controller/ChartController.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\Aspect\\AxisTitleAspect\:\:setAxis\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/Aspect/AxisTitleAspect.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\Aspect\\AxisTitleAspect\:\:setAxis\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/Aspect/AxisTitleAspect.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\Aspect\\ColorsAspect\:\:applyColorsToX\(\) has parameter \$colors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/Aspect/ColorsAspect.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\Aspect\\ColorsAspect\:\:applyColorsToY\(\) has parameter \$colors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/Aspect/ColorsAspect.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\Aspect\\ZoomAspect\:\:process\(\) has parameter \$primaryZoomAxes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/Aspect/ZoomAspect.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\Aspect\\ZoomAspect\:\:process\(\) has parameter \$secondaryZoomAxes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/Aspect/ZoomAspect.php
+
+		-
+			message: '#^Binary operation "/" between string and string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\:\:buildForConfiguration\(\) has parameter \$builderConfiguration with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\:\:convertCell\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\:\:createDataSets\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\:\:getChartData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$language$#'
+			identifier: parameter.notFound
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$column DataRow\)\: Unexpected token "\$column", expected type at offset 21 on line 2$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Property CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\:\:\$data type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Property CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\:\:\$options type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Variable \$locale in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\\AreaChartBuilder\:\:convertCell\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder/AreaChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\\LineChartBuilder\:\:convertCell\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder/LineChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\\PieChartBuilder\:\:transposeData\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder/PieChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Builder\\ChartBuilder\\PieChartBuilder\:\:transposeData\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: Classes/Domain/Builder/ChartBuilder/PieChartBuilder.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Factory\\DataTableFactory\:\:fromArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Factory/DataTableFactory.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Factory\\DataTableFactory\:\:fromArray\(\) has parameter \$highlightFieldIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Factory/DataTableFactory.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:__construct\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:getData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:getOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:withData\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:withData\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:withOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Property CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:\$data type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Property CPSIT\\DenaCharts\\Domain\\Model\\Chart\:\:\$options type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/Chart.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\ColorScheme\:\:getColorsById\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/ColorScheme.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\DataColumn\:\:getCells\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/DataColumn.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\DataRow\:\:__construct\(\) has parameter \$cells with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/DataRow.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\DataRow\:\:getCells\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/DataRow.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\DataRow\:\:getData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Domain/Model/DataRow.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\DataTable\:\:getColumns\(\) should return TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\DataColumn\> but returns TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataColumn\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Domain\\Model\\DataTable\:\:getRows\(\) should return TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\DataRow\> but returns TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataRow\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Offset int on TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\DataRow\> in isset\(\) does not exist\.$#'
+			identifier: isset.offset
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Parameter \#1 \$object of method TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataColumn\>\:\:attach\(\) expects CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataColumn, CPSIT\\DenaCharts\\Domain\\Model\\DataColumn given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Parameter \#1 \$object of method TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataRow\>\:\:attach\(\) expects CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataRow, CPSIT\\DenaCharts\\Domain\\Model\\DataRow given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Parameter \$columns of method CPSIT\\DenaCharts\\Domain\\Model\\DataTable\:\:setColumns\(\) has invalid type CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataColumn\.$#'
+			identifier: class.notFound
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Parameter \$rows of method CPSIT\\DenaCharts\\Domain\\Model\\DataTable\:\:setRows\(\) has invalid type CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataRow\.$#'
+			identifier: class.notFound
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Property CPSIT\\DenaCharts\\Domain\\Model\\DataTable\:\:\$columns has unknown class CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataColumn as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Property CPSIT\\DenaCharts\\Domain\\Model\\DataTable\:\:\$rows has unknown class CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataRow as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Variable \$row in PHPDoc tag @var does not exist\.$#'
+			identifier: varTag.variableNotFound
+			count: 1
+			path: Classes/Domain/Model/DataTable.php
+
+		-
+			message: '#^Class CPSIT\\DenaCharts\\Domain\\Repository\\ChartConfigurationRepository extends generic class TYPO3\\CMS\\Extbase\\Persistence\\Repository but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: Classes/Domain/Repository/ChartConfigurationRepository.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Form\\ChartsDataTable\:\:render\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Form/ChartsDataTable.php
+
+		-
+			message: '#^Parameter \#1 \$string of function htmlentities expects string, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Form/ChartsDataTable.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Form\\ColorSchemeSelectorItemProvider\:\:getRecordPid\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Form/ColorSchemeSelectorItemProvider.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Form\\ColorSchemeSelectorItemProvider\:\:provideColorSchemeSelectorItems\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: Classes/Form/ColorSchemeSelectorItemProvider.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Form\\ColorSchemeSelectorItemProvider\:\:provideColorSelectorItems\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: Classes/Form/ColorSchemeSelectorItemProvider.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Form\\ColumnSelectorItemProvider\:\:provideColumnSelectorItems\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: Classes/Form/ColumnSelectorItemProvider.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Service\\FileReaderCSV\:\:getData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Service/FileReaderCSV.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Domain\\Model\\ColorSchemeTest\:\:colorDataProvider\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Domain/Model/ColorSchemeTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Domain\\Model\\ColorSchemeTest\:\:someColorsDataProvider\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Domain/Model/ColorSchemeTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Domain\\Model\\ColorSchemeTest\:\:testGetAllColors\(\) has parameter \$colors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Domain/Model/ColorSchemeTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Domain\\Model\\ColorSchemeTest\:\:testGetSomeColors\(\) has parameter \$colors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Domain/Model/ColorSchemeTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Domain\\Model\\ColorSchemeTest\:\:testGetSomeColors\(\) has parameter \$idsToGet with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Domain/Model/ColorSchemeTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Domain\\Model\\DataColumnTest\:\:provideIndexForLettersTestCases\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Domain/Model/DataColumnTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Domain\\Model\\DataTableTest\:\:provideCasesForCellsById\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Domain/Model/DataTableTest.php
+
+		-
+			message: '#^Parameter \#1 \$rows of method CPSIT\\DenaCharts\\Domain\\Model\\DataTable\:\:setRows\(\) expects TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<CPSIT\\DenaCharts\\Domain\\Model\\CPSIT\\DenaCharts\\Domain\\Model\\DataRow\>, TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<object\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/Domain/Model/DataTableTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertIsArray\(\) with array\<CPSIT\\DenaCharts\\Domain\\Model\\Color\> will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: Tests/Unit/Domain/Repository/ColorSchemeRepositoryTest.php
+
+		-
+			message: '#^Static method PHPUnit\\Framework\\Assert\:\:arrayHasKey\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: Tests/Unit/Domain/Repository/ColorSchemeRepositoryTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Service\\FileReaderCSVTest\:\:processConvertsFileContentToArray\(\) has parameter \$expectedRecords with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Service/FileReaderCSVTest.php
+
+		-
+			message: '#^Method CPSIT\\DenaCharts\\Tests\\Unit\\Service\\FileReaderCSVTest\:\:processConvertsFileContentToArrayDataProvider\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Tests/Unit/Service/FileReaderCSVTest.php

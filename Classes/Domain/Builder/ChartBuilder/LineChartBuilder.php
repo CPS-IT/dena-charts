@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 
+use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ZoomAspect;
 use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
-use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 
 class LineChartBuilder extends ChartBuilder

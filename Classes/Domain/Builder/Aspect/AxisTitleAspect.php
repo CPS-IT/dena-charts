@@ -2,8 +2,8 @@
 
 namespace CPSIT\DenaCharts\Domain\Builder\Aspect;
 
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class AxisTitleAspect implements ChartBuilderAspect

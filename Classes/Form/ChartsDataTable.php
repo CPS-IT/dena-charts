@@ -10,9 +10,7 @@ use TYPO3\CMS\Backend\Form\AbstractNode;
 
 class ChartsDataTable extends AbstractNode
 {
-    public function __construct(protected readonly DataTableService $dataTableService)
-    {
-    }
+    public function __construct(protected readonly DataTableService $dataTableService) {}
 
     public function render(): array
     {
@@ -39,7 +37,7 @@ class ChartsDataTable extends AbstractNode
         }
 
         $headerRowsHtml = implode('', array_map(function (array $header) {
-            $wrapped = array_map(fn (string $content) => '<th>' . htmlentities($content) . '</th>', $header);
+            $wrapped = array_map(fn(string $content) => '<th>' . htmlentities($content) . '</th>', $header);
             return '<tr>' . implode('', $wrapped) . '</tr>';
         }, $headerRows));
         $headerHtml = '<thead>' . $headerRowsHtml . '</thead>';
@@ -47,7 +45,7 @@ class ChartsDataTable extends AbstractNode
         $bodyRowsHtml = implode('', array_map(function (DataRow $dataRow) {
             $header = '<th>' . $dataRow->getNumber() . '</th>' . '<th>' . $dataRow->getLabel() . '</th>';
             $wrapped = array_map(
-                fn (DataCell $cell) => sprintf(
+                fn(DataCell $cell) => sprintf(
                     '<td title="%s %s %s">%s</td>',
                     $cell->getId(),
                     htmlentities($cell->getRow()->getLabel()),

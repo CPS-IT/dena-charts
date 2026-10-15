@@ -37,3 +37,35 @@ settings:
 ...
 ```
 
+## Code quality
+
+Run the commands in the package's DDEV project (see Tests):
+
+```
+ddev composer lint   # composer.json, EditorConfig, PHP-CS-Fixer, TypoScript
+ddev composer fix    # fix the findings that can be fixed automatically
+ddev composer sca    # PHPStan, level 6
+```
+
+## Tests
+
+Tests and code quality tools run in the package's own DDEV project
+(`.ddev/config.yaml`: PHP 8.4, MariaDB 10.11). The functional tests use the
+database named in the `typo3Database*` variables of the DDEV config.
+
+```
+ddev start
+ddev composer install
+```
+
+### Unit Tests
+
+```
+ddev composer test:unit
+```
+
+### Functional Tests
+
+```
+ddev composer test:functional
+```

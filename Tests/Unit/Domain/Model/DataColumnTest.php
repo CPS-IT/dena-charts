@@ -41,14 +41,14 @@ class DataColumnTest extends UnitTestCase
         $this->subject = new DataColumn(
             32,
             'label',
-            array_map(fn ($value) => new DataCell($value), [1, 2, 3])
+            array_map(fn($value) => new DataCell($value), [1, 2, 3])
         );
     }
 
     #[Test]
     public function getLabelInitiallyReturnsString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'label',
             $this->subject->getLabel()
         );
@@ -57,7 +57,7 @@ class DataColumnTest extends UnitTestCase
     #[Test]
     public function getLettersReturnsLetterCode(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'AF',
             $this->subject->getLetters(),
         );
@@ -78,6 +78,6 @@ class DataColumnTest extends UnitTestCase
     public function testGetIndexForLetters(string $columnLetters, int $expectedIndex): void
     {
         $result = DataColumn::getColumnIndexForLetters($columnLetters);
-        $this->assertEquals($expectedIndex, $result);
+        self::assertEquals($expectedIndex, $result);
     }
 }

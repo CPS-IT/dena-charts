@@ -3,15 +3,14 @@
 namespace CPSIT\DenaCharts\Controller;
 
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Repository\ChartConfigurationRepository;
 use CPSIT\DenaCharts\Service\ChartDownloadService;
 use CPSIT\DenaCharts\Service\FileReaderCSV;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\NullResponse;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Http\NullResponse;
 
 class ChartController extends ActionController
 {
@@ -69,12 +68,12 @@ class ChartController extends ActionController
             'uid' => $uid,
             'chartRatio' => $chartConfiguration->getAspectRatio(),
             'dataTable' => $dataTable,
-            'allowDownload' => (bool) $contentObjectData['denacharts_allow_download'],
+            'allowDownload' => (bool)$contentObjectData['denacharts_allow_download'],
             'pngDownloadFilename' => $pngDownloadFileName,
-            'description' => (string) $contentObjectData['bodytext'],
-            'showDataTable' => (bool) $contentObjectData['denacharts_show_datatable'],
-            'source' => (string) $contentObjectData['denacharts_source'],
-            'sourceLink' => (string) $contentObjectData['denacharts_source_link'],
+            'description' => (string)$contentObjectData['bodytext'],
+            'showDataTable' => (bool)$contentObjectData['denacharts_show_datatable'],
+            'source' => (string)$contentObjectData['denacharts_source'],
+            'sourceLink' => (string)$contentObjectData['denacharts_source_link'],
         ]);
         return $this->htmlResponse();
     }

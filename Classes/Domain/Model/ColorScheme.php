@@ -62,7 +62,7 @@ class ColorScheme
     {
         $colorsById = [];
         foreach ($this->getColors() as $color) {
-            $colorsById[(string) $color->getId()] = $color;
+            $colorsById[(string)$color->getId()] = $color;
         }
         return $colorsById;
     }

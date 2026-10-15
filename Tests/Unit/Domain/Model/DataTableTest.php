@@ -8,8 +8,8 @@ use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
  *  Copyright notice
@@ -48,7 +48,7 @@ class DataTableTest extends UnitTestCase
     public function getRowInitiallyReturnsEmptyObjectStorage(): void
     {
         $emptyStorage = new ObjectStorage();
-        $this->assertEquals(
+        self::assertEquals(
             $emptyStorage,
             $this->subject->getRows()
         );
@@ -60,7 +60,7 @@ class DataTableTest extends UnitTestCase
         $rows = new ObjectStorage();
         $this->subject->setRows($rows);
 
-        $this->assertSame(
+        self::assertSame(
             $rows,
             $this->subject->getRows()
         );
@@ -72,11 +72,11 @@ class DataTableTest extends UnitTestCase
         $newRow = new DataRow(
             1,
             'rowLabel',
-            array_map(fn ($value) => new DataCell($value), [1, 2, 3]),
+            array_map(fn($value) => new DataCell($value), [1, 2, 3]),
         );
 
         $this->subject->addRow($newRow);
-        $this->assertContains(
+        self::assertContains(
             $newRow,
             $this->subject->getRows()
         );
@@ -88,13 +88,13 @@ class DataTableTest extends UnitTestCase
         $row = new DataRow(
             1,
             'rowLabel',
-            array_map(fn ($value) => new DataCell($value), [1, 2, 3]),
+            array_map(fn($value) => new DataCell($value), [1, 2, 3]),
         );
 
         $this->subject->addRow($row);
         $this->subject->addRow($row);
 
-        $this->assertCount(
+        self::assertCount(
             1,
             $this->subject->getRows()
         );
@@ -103,7 +103,7 @@ class DataTableTest extends UnitTestCase
     #[Test]
     public function getColumnsInitiallyReturnsEmptyObjectStorage(): void
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObjectStorage::class,
             $this->subject->getColumns()
         );

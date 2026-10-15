@@ -36,8 +36,8 @@ class ColorSchemeTest extends TestCase
                     new Color('A2', 'green'),
                     new Color('A3', 'red'),
                 ],
-                ['A1', 'A2']
-            ]
+                ['A1', 'A2'],
+            ],
         ];
     }
 
@@ -48,9 +48,9 @@ class ColorSchemeTest extends TestCase
 
         $resultColors = $colorScheme->getColors($idsToGet);
 
-        $this->assertCount(count($idsToGet), $resultColors);
+        self::assertCount(count($idsToGet), $resultColors);
         foreach ($idsToGet as $index => $id) {
-            $this->assertEquals($id, $resultColors[$index]->getId());
+            self::assertEquals($id, $resultColors[$index]->getId());
         }
     }
 

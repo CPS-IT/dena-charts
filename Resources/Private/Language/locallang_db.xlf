@@ -110,10 +110,10 @@ C5,D5</source>
 				<source>Stack</source>
 			</trans-unit>
 
-            <trans-unit id="wizards.newContentElement.chartsTabTitle" xml:space="preserve">
+			<trans-unit id="wizards.newContentElement.chartsTabTitle" xml:space="preserve">
 				<source>Charts</source>
-            </trans-unit>
-            <trans-unit id="tabs.chart" xml:space="preserve">
+			</trans-unit>
+			<trans-unit id="tabs.chart" xml:space="preserve">
 				<source>Chart</source>
 			</trans-unit>
 			<trans-unit id="tabs.chartdata">

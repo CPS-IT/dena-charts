@@ -8,7 +8,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class ColorSchemaFileService
 {
-    const DEFAULT_PATH = 'EXT:dena_charts/Resources/Private/colorschemes.json';
+    public const DEFAULT_PATH = 'EXT:dena_charts/Resources/Private/colorschemes.json';
 
     public function getColorScheme(int $page = 0): string
     {
@@ -37,7 +37,7 @@ final class ColorSchemaFileService
 
     private function getSiteFromRequest(): ?Site
     {
-        if(!isset($GLOBALS['TYPO3_REQUEST'])) {
+        if (!isset($GLOBALS['TYPO3_REQUEST'])) {
             return null;
         }
 

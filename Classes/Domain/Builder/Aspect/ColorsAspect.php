@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\Aspect;
 
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Repository\ColorSchemeRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

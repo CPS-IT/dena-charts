@@ -55,7 +55,7 @@ class DataRow
 
     public function getData(): array
     {
-        return array_map(fn (DataCell $cell) => $cell->getValue(), $this->cells);
+        return array_map(fn(DataCell $cell) => $cell->getValue(), $this->cells);
     }
 
     public function getLabel(): string

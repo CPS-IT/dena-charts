@@ -20,9 +20,7 @@ class ColorSchemeRepositoryTest extends UnitTestCase
         copy(dirname(__DIR__, 4) . '/Resources/Private/colorschemes.json', $target);
         $this->testFilesToDelete[] = $target;
         $this->colorSchemeRepository = new class ($target) extends ColorSchemeRepository {
-            public function __construct(private readonly string $file)
-            {
-            }
+            public function __construct(private readonly string $file) {}
 
             public function getColorSchemesFilePath(): string
             {
@@ -30,7 +28,6 @@ class ColorSchemeRepositoryTest extends UnitTestCase
             }
         };
     }
-
 
     public function testFindAll(): void
     {
@@ -40,13 +37,13 @@ class ColorSchemeRepositoryTest extends UnitTestCase
         self::arrayHasKey('dena-orange', $colorSchemes);
 
         $cd = $colorSchemes['dena-corporate-design'];
-        $this->assertEquals('dena-corporate-design', $cd->getId());
+        self::assertEquals('dena-corporate-design', $cd->getId());
         $cdColors = $cd->getColors();
         self::assertIsArray($cdColors);
         self::assertCount(9, $cdColors);
 
         $firstCdColor = $cdColors[0];
-        $this->assertEquals('Helles Orange', $firstCdColor->getId());
-        $this->assertEquals('#fbba00', $firstCdColor->getValue());
+        self::assertEquals('Helles Orange', $firstCdColor->getId());
+        self::assertEquals('#fbba00', $firstCdColor->getValue());
     }
 }

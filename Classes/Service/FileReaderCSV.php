@@ -39,7 +39,7 @@ class FileReaderCSV
         $fileContent = $this->fixEncoding($fileContentRaw);
         $delimiter = ';';
         $enclosure = '"';
-        $escape = "\\";
+        $escape = '\\';
 
         $rows = array_filter(str_getcsv($fileContent, "\n"));
 
@@ -56,8 +56,8 @@ class FileReaderCSV
      */
     protected function fixEncoding(string $fileContentRaw)
     {
-        $encoding = \mb_detect_encoding($fileContentRaw, 'UTF-8, ISO-8859-1', true);
-        $fileContent = \mb_convert_encoding($fileContentRaw, 'UTF-8', $encoding);
+        $encoding = mb_detect_encoding($fileContentRaw, 'UTF-8, ISO-8859-1', true);
+        $fileContent = mb_convert_encoding($fileContentRaw, 'UTF-8', $encoding);
         return $fileContent;
     }
 }

@@ -70,8 +70,8 @@ class DataColumn
     public function getLetters(): string
     {
         $residue = $this->getNumber() - 1;
-        for ($result = ''; $residue >= 0; $residue = intval($residue / 26) - 1) {
-            $result = chr($residue%26 + 0x41) . $result;
+        for ($result = ''; $residue >= 0; $residue = (int)($residue / 26) - 1) {
+            $result = chr($residue % 26 + 0x41) . $result;
         }
         return $result;
     }
