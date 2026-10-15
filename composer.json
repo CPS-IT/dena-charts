@@ -23,7 +23,10 @@
 	],
 	"require": {
 		"maennchen/zipstream-php": "^3.0",
-		"typo3/cms-core": "^13.4"
+		"typo3/cms-backend": "^13.4",
+		"typo3/cms-core": "^13.4",
+		"typo3/cms-extbase": "^13.4",
+		"typo3/cms-frontend": "^13.4"
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.2",
@@ -66,7 +69,7 @@
 		"post-autoload-dump": [
 			"mkdir -p .Build/Web/typo3conf/ext/",
 			"mkdir -p .Build/log/coverage/",
-			"[ -L .Build/Web/typo3conf/ext/dena_charts || ln -snvf ../../../../. .Build/Web/typo3conf/ext/dena_charts"
+			"[ -L .Build/Web/typo3conf/ext/dena_charts ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/dena_charts"
 		],
 		"fix": [
 			"@fix:composer",
