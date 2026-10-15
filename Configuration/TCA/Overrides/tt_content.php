@@ -189,7 +189,6 @@
         'config' => [
             'type' => 'none',
             'renderType' => 'dena-charts-data-table',
-            'pass_content' => true,
         ],
     ],
     'denacharts_highlights' => [
@@ -236,8 +235,8 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 
     $GLOBALS['TCA']['tt_content']['types'][$cType] = [
         'showitem' => '
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.general;general,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.header;header,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.general;general,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.header;header,
           --div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chart,
             denacharts_data_file,
             denacharts_color_scheme,
@@ -247,12 +246,12 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
             --palette--;;chart_imagesize,
             --palette--;;chart_download,
             denacharts_show_datatable,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.access,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.visibility;visibility,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.access;access,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.extended
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.extended
         ',
         'columnsOverrides' => [
             'bodytext' => [
