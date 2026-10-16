@@ -23,7 +23,6 @@ use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
-use NumberFormatter;
 
 /**
  * Class DataTableFactory
@@ -33,8 +32,8 @@ class DataTableFactory
     /**
      * Builds a DataTable from array
      *
-     * @param array $data Two dimensional array to build data table from
-     * @param array $highlightFieldIds List of fields ids of fields to highlight
+     * @param array<int, array<int, string|int|float>> $data Two dimensional array to build data table from
+     * @param string[] $highlightFieldIds List of fields ids of fields to highlight
      * @return DataTable
      */
     public function fromArray(array $data, array $highlightFieldIds = []): DataTable
@@ -48,7 +47,7 @@ class DataTableFactory
         array_shift($columnHeaders);
         $rowHeaders = array_column($data, 0);
 
-        $numberFormatter = NumberFormatter::create('de_DE', NumberFormatter::DECIMAL);
+        $numberFormatter = \NumberFormatter::create('de_DE', \NumberFormatter::DECIMAL);
         $cells = array_map(function (array $values) use ($numberFormatter): array {
             array_shift($values);
             return array_map(function (string $formattedValue) use ($numberFormatter) {

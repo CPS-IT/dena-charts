@@ -5,6 +5,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\Domain\Model;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
@@ -40,32 +41,31 @@ class DataColumnTest extends UnitTestCase
         $this->subject = new DataColumn(
             32,
             'label',
-            array_map(fn ($value) => new DataCell($value), [1, 2, 3])
+            array_map(fn($value) => new DataCell($value), [1, 2, 3])
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLabelInitiallyReturnsString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'label',
             $this->subject->getLabel()
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLettersReturnsLetterCode(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'AF',
             $this->subject->getLetters(),
         );
     }
 
+    /**
+     * @return array<int, array{string, int}>
+     */
     public static function provideIndexForLettersTestCases(): array
     {
         return [
@@ -81,6 +81,6 @@ class DataColumnTest extends UnitTestCase
     public function testGetIndexForLetters(string $columnLetters, int $expectedIndex): void
     {
         $result = DataColumn::getColumnIndexForLetters($columnLetters);
-        $this->assertEquals($expectedIndex, $result);
+        self::assertEquals($expectedIndex, $result);
     }
 }

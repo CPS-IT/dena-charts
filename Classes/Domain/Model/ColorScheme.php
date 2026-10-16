@@ -56,13 +56,13 @@ class ColorScheme
     }
 
     /**
-     * @return array
+     * @return array<string, Color>
      */
     protected function getColorsById(): array
     {
         $colorsById = [];
         foreach ($this->getColors() as $color) {
-            $colorsById[(string) $color->getId()] = $color;
+            $colorsById[(string)$color->getId()] = $color;
         }
         return $colorsById;
     }
