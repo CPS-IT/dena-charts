@@ -3,8 +3,8 @@
 namespace CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 
 use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 
 class PieChartBuilder extends ChartBuilder
 {
@@ -21,8 +21,8 @@ class PieChartBuilder extends ChartBuilder
                     'y' => [
                         'unit' => $yUnit,
                         'display' => false,
-                    ]
-                ]
+                    ],
+                ],
             ]);
             $chart = $chart->withOptions($options);
         }
@@ -30,7 +30,11 @@ class PieChartBuilder extends ChartBuilder
         return $chart;
     }
 
-    protected function transposeData($data)
+    /**
+     * @param array{labels: array<int, string>, datasets: array<int, array{label: string, data: array<int, mixed>}>} $data
+     * @return array<string, mixed>
+     */
+    protected function transposeData(array $data): array
     {
         $result = [];
 

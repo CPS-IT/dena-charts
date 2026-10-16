@@ -46,12 +46,11 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
         $params = ['row' => ['pid' => 0]];
         $this->colorSchemeSelectorItemProvider->provideColorSchemeSelectorItems($params);
 
-        $this->assertEquals([
+        self::assertEquals([
             ['testscheme A', 'testscheme A'],
             ['testscheme B', 'testscheme B'],
         ], $params['items']);
     }
-
 
     public function testProvideColorSelectorItems(): void
     {
@@ -59,9 +58,9 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
 
         $this->colorSchemeSelectorItemProvider->provideColorSelectorItems($params);
 
-        $this->assertIsArray($params['items']);
-        $this->assertCount(2, ($params['items']));
-        $this->assertEquals('B2', ($params['items'][1][1]));
-        $this->assertEquals('B2 (yellow)', ($params['items'][1][0]));
+        self::assertIsArray($params['items']);
+        self::assertCount(2, ($params['items']));
+        self::assertEquals('B2', ($params['items'][1][1]));
+        self::assertEquals('B2 (yellow)', ($params['items'][1][0]));
     }
 }

@@ -27,12 +27,12 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class DataTable
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<CPSIT\DenaCharts\Domain\Model\DataRow>
+     * @var ObjectStorage<DataRow>
      */
     protected ObjectStorage $rows;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<CPSIT\DenaCharts\Domain\Model\DataColumn>
+     * @var ObjectStorage<DataColumn>
      */
     protected ObjectStorage $columns;
 
@@ -64,7 +64,7 @@ class DataTable
 
     /**
      * Sets the rows
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<CPSIT\DenaCharts\Domain\Model\DataRow> $rows
+     * @param ObjectStorage<DataRow> $rows
      */
     public function setRows(ObjectStorage $rows): void
     {
@@ -83,7 +83,7 @@ class DataTable
     /**
      * Gets the columns
      *
-     * @return ObjectStorage<\CPSIT\DenaCharts\Domain\Model\DataColumn>
+     * @return ObjectStorage<DataColumn>
      */
     public function getColumns()
     {
@@ -91,7 +91,7 @@ class DataTable
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<CPSIT\DenaCharts\Domain\Model\DataColumn> $columns
+     * @param ObjectStorage<DataColumn> $columns
      */
     public function setColumns(ObjectStorage $columns): void
     {
@@ -120,11 +120,11 @@ class DataTable
 
         $rowIndex = ((int)$matches[2]) - 1;
 
-        /** @var DataRow $row */
-        if (!isset($this->getRows()[$rowIndex - 1])) {
+        $rows = $this->getRows()->toArray();
+        if (!isset($rows[$rowIndex - 1])) {
             return null;
         }
-        $row = $this->getRows()[$rowIndex - 1];
+        $row = $rows[$rowIndex - 1];
 
         if (!isset($row->getCells()[$columnIndex - 1])) {
             return null;

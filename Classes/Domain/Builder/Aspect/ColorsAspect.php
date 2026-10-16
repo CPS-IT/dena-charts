@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\Aspect;
 
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
+use CPSIT\DenaCharts\Domain\Model\Color;
 use CPSIT\DenaCharts\Domain\Repository\ColorSchemeRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -34,6 +35,9 @@ class ColorsAspect implements ChartBuilderAspect
         return $chart;
     }
 
+    /**
+     * @param Color[] $colors
+     */
     protected function applyColorsToX(Chart $chart, array $colors): Chart
     {
         $data = $chart->getData();
@@ -50,6 +54,9 @@ class ColorsAspect implements ChartBuilderAspect
         return $chart;
     }
 
+    /**
+     * @param Color[] $colors
+     */
     protected function applyColorsToY(Chart $chart, array $colors): Chart
     {
         $data = $chart->getData();

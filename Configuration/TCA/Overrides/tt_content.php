@@ -10,13 +10,13 @@
     'denacharts_data_file' => [
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_data_file',
         'config' => [
-            ### !!! Watch out for fieldName different from columnName
+            //## !!! Watch out for fieldName different from columnName
             'type' => 'file',
             'allowed' => 'csv',
             'minitems' => 1,
             'maxitems' => 1,
             'required' => true,
-        ]
+        ],
     ],
     'denacharts_allow_download' => [
         'exclude' => 0,
@@ -25,7 +25,7 @@
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'default' => 1,
-        ]
+        ],
     ],
     'denacharts_download_filename' => [
         'exclude' => 0,
@@ -34,35 +34,35 @@
         'config' => [
             'type' => 'input',
             'eval' => 'trim,alphanum_x',
-        ]
+        ],
     ],
     'denacharts_axis_x_title' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_x_title',
         'config' => [
             'type' => 'input',
-        ]
+        ],
     ],
     'denacharts_axis_x_unit' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_x_unit',
         'config' => [
             'type' => 'input',
-        ]
+        ],
     ],
     'denacharts_axis_y_title' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y_title',
         'config' => [
             'type' => 'input',
-        ]
+        ],
     ],
     'denacharts_axis_y_unit' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y_unit',
         'config' => [
             'type' => 'input',
-        ]
+        ],
     ],
     'denacharts_axis_y2_first_column' => [
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_first_column',
@@ -78,14 +78,14 @@
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_title',
         'config' => [
             'type' => 'input',
-        ]
+        ],
     ],
     'denacharts_axis_y2_unit' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_axis_y2_unit',
         'config' => [
             'type' => 'input',
-        ]
+        ],
     ],
     'denacharts_aspect_ratio' => [
         'exclude' => 0,
@@ -111,7 +111,7 @@
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'default' => 1,
-        ]
+        ],
     ],
     'denacharts_source' => [
         'exclude' => 0,
@@ -120,14 +120,14 @@
             'type' => 'input',
             'eval' => 'trim',
             'required' => true,
-        ]
+        ],
     ],
     'denacharts_source_link' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_source_link',
         'config' => [
             'type' => 'link',
-        ]
+        ],
     ],
     'denacharts_show_gridlines' => [
         'exclude' => 0,
@@ -136,7 +136,7 @@
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'default' => 1,
-        ]
+        ],
     ],
     'denacharts_show_points' => [
         'exclude' => 0,
@@ -145,7 +145,7 @@
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'default' => 1,
-        ]
+        ],
     ],
     'denacharts_show_datatable' => [
         'exclude' => 0,
@@ -154,7 +154,7 @@
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'default' => 0,
-        ]
+        ],
     ],
     'denacharts_stack' => [
         'exclude' => 0,
@@ -162,7 +162,7 @@
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
-        ]
+        ],
     ],
     'denacharts_color_scheme' => [
         'exclude' => 0,
@@ -189,14 +189,13 @@
         'config' => [
             'type' => 'none',
             'renderType' => 'dena-charts-data-table',
-            'pass_content' => true,
         ],
     ],
     'denacharts_highlights' => [
         'label' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_highlights',
         'description' => 'LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tt_content.denacharts_highlights.description',
         'config' => [
-            'type' => 'text'
+            'type' => 'text',
         ],
     ],
 ]);
@@ -207,7 +206,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['chart_axis'] = [
 ];
 
 $GLOBALS['TCA']['tt_content']['palettes']['chart_download'] = [
-    'showitem' => 'denacharts_allow_download,denacharts_download_filename'
+    'showitem' => 'denacharts_allow_download,denacharts_download_filename',
 ];
 
 $GLOBALS['TCA']['tt_content']['palettes']['chart_imagesize'] = [
@@ -236,8 +235,8 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 
     $GLOBALS['TCA']['tt_content']['types'][$cType] = [
         'showitem' => '
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.general;general,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.header;header,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.general;general,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.header;header,
           --div--;LLL:EXT:dena_charts/Resources/Private/Language/locallang_db.xlf:tabs.chart,
             denacharts_data_file,
             denacharts_color_scheme,
@@ -247,12 +246,12 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
             --palette--;;chart_imagesize,
             --palette--;;chart_download,
             denacharts_show_datatable,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.appearance,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.frames;frames,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.access,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.visibility;visibility,
-             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:palette.access;access,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xml:tabs.extended
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
+             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,
+          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.extended
         ',
         'columnsOverrides' => [
             'bodytext' => [
@@ -268,7 +267,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     '--palette--;;chart_axis',
-    implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+    implode(',', array_map(fn(string $chartType) => 'denacharts_chart_' . $chartType, [
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_AREA,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_BAR,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
@@ -280,7 +279,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     'denacharts_axis_y_unit',
-    implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+    implode(',', array_map(fn(string $chartType) => 'denacharts_chart_' . $chartType, [
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_DOUGHNUT,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_PIE,
     ])),
@@ -290,7 +289,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     'denacharts_enable_zoom',
-    implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+    implode(',', array_map(fn(string $chartType) => 'denacharts_chart_' . $chartType, [
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_AREA,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_BAR,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
@@ -326,7 +325,7 @@ foreach (\CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPES as $char
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     'denacharts_stack',
-    implode(',', array_map(fn (string $chartType) => 'denacharts_chart_' . $chartType, [
+    implode(',', array_map(fn(string $chartType) => 'denacharts_chart_' . $chartType, [
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_COLUMN,
         \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::CHART_TYPE_BAR,
     ])),

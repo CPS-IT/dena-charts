@@ -5,8 +5,8 @@ namespace CPSIT\DenaCharts\Tests\Unit\Service;
 use CPSIT\DenaCharts\Service\FileReaderCSV;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Core\Resource\FileReference;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
  *  Copyright notice
@@ -43,6 +43,9 @@ class FileReaderCSVTest extends UnitTestCase
     /**
      * provides data for processing file content
      */
+    /**
+     * @return array<string, array{string, array<int, array<int, string>>}>
+     */
     public static function processConvertsFileContentToArrayDataProvider(): array
     {
         $contentWithWhiteSpace = <<<FCC
@@ -57,29 +60,31 @@ FCC;
 1"
 BIE;
 
-
         return [
             // fileContent, expectedRecords
             'empty file, empty result array' => [
-                '', []
+                '', [],
             ],
             'white space' => [
                 $contentWithWhiteSpace,
                 [
                     ['label 1'],
-                    ['content 1']
-                ]
+                    ['content 1'],
+                ],
             ],
             'line break in enclosure' => [
                 $contentWithLineBreakInEnclosure,
                 [
                     ['label 1'],
-                    ['content '. PHP_EOL . '1']
-                ]
-            ]
+                    ['content ' . PHP_EOL . '1'],
+                ],
+            ],
         ];
     }
 
+    /**
+     * @param array<int, array<int, string>> $expectedRecords
+     */
     #[Test]
     #[DataProvider('processConvertsFileContentToArrayDataProvider')]
     public function processConvertsFileContentToArray(string $fileContent, array $expectedRecords): void
@@ -89,10 +94,10 @@ BIE;
             ->onlyMethods(['getContents'])
             ->getMock();
         $mockFile->expects($this->once())->method('getContents')
-            ->will($this->returnValue($fileContent));
+            ->willReturn($fileContent);
 
         $data = $this->subject->getData($mockFile);
 
-        $this->assertSame($expectedRecords, $data);
+        self::assertSame($expectedRecords, $data);
     }
 }

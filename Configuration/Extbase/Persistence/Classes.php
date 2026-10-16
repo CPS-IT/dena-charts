@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 return [
     \CPSIT\DenaCharts\Domain\Model\ChartConfiguration::class => [
@@ -9,7 +10,7 @@ return [
                 'fieldName' => 'CType',
             ],
             'dataFile' => [
-                'fieldName' => 'denacharts_data_file'
+                'fieldName' => 'denacharts_data_file',
             ],
             'axisXTitle' => [
                 'fieldName' => 'denacharts_axis_x_title',

@@ -7,7 +7,7 @@ use CPSIT\DenaCharts\Domain\Model\DataCell;
 use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
-use DWenzel\T3extensionTools\Traits\UnitTests\ResetSingletonInstancesMacro;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /***************************************************************
@@ -29,7 +29,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class DataTableFactoryTest extends UnitTestCase
 {
-    use ResetSingletonInstancesMacro;
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @var DataTableFactory
@@ -42,100 +42,90 @@ class DataTableFactoryTest extends UnitTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->setResetSingletonInstances();
         $this->subject = new DataTableFactory();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayReturnsDataTable(): void
     {
         $data = [];
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             DataTable::class,
             $this->subject->fromArray($data)
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayGeneratesColumnsFromFirstRow(): void
     {
         $data = [
-            ['foo', 'bar']
+            ['foo', 'bar'],
         ];
         $firstRow = $data[0];
 
         $dataTable = $this->subject->fromArray($data);
         $columns = $dataTable->getColumns();
 
-        $this->assertCount(
-            count($firstRow)-1,
+        self::assertCount(
+            count($firstRow) - 1,
             $columns
         );
         /** @var DataColumn $column */
         foreach ($columns->toArray() as $index => $column) {
-            $this->assertInstanceOf(
+            self::assertInstanceOf(
                 DataColumn::class,
                 $column
             );
-            $this->assertEquals($index + 2, $column->getNumber());
-            $this->assertContains(
+            self::assertEquals($index + 2, $column->getNumber());
+            self::assertContains(
                 $column->getLabel(),
                 $firstRow
             );
         }
     }
 
-
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayGeneratesRowsFromDataRows(): void
     {
         $data = [
             ['', 'foo', 'bar'],
             [1995, 1, 2],
-            [1996, 3, 5]
+            [1996, 3, 5],
         ];
 
         $dataTable = $this->subject->fromArray($data);
         $rows = $dataTable->getRows();
 
         $rowCount = count($data) - 1;
-        $this->assertSame(
+        self::assertSame(
             $rowCount,
             $rows->count()
         );
 
         /** @var DataRow $row */
         foreach ($rows->toArray() as $index => $row) {
-            $this->assertInstanceOf(
+            self::assertInstanceOf(
                 DataRow::class,
                 $row
             );
             $position = $rows->getPosition($row);
-            $this->assertEquals($index + 2, $row->getNumber());
+            self::assertEquals($index + 2, $row->getNumber());
             $expected = $data[$position];
             array_shift($expected);
-            $this->assertSame(
-                array_map(fn (DataCell $dataCell) => $dataCell->getValue(), $row->getCells()),
-                array_map(fn ($number) => (float)$number, $expected)
+            self::assertSame(
+                array_map(fn(DataCell $dataCell) => $dataCell->getValue(), $row->getCells()),
+                array_map(fn($number) => (float)$number, $expected)
             );
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArrayReadsRowLabelsFromFirstColumn(): void
     {
         $data = [
             ['baz', 'foo', 'bar'],
             ['label 1', 1, 2],
-            ['label 2', 3, 5]
+            ['label 2', 3, 5],
         ];
 
         $dataTable = $this->subject->fromArray($data);
@@ -146,15 +136,15 @@ class DataTableFactoryTest extends UnitTestCase
             $position = $rows->getPosition($row);
             $rawRow = $data[$position];
 
-            $this->assertSame(
+            self::assertSame(
                 $rawRow[0],
                 $row->getLabel()
             );
 
             array_shift($rawRow);
-            $this->assertSame(
-                array_map(fn (DataCell $dataCell) => $dataCell->getValue(), $row->getCells()),
-                array_map(fn ($number) => (float)$number, $rawRow)
+            self::assertSame(
+                array_map(fn(DataCell $dataCell) => $dataCell->getValue(), $row->getCells()),
+                array_map(fn($number) => (float)$number, $rawRow)
             );
         }
     }

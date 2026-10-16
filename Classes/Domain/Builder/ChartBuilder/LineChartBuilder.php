@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 
+use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ZoomAspect;
 use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
-use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
 
 class LineChartBuilder extends ChartBuilder
@@ -50,7 +50,10 @@ class LineChartBuilder extends ChartBuilder
         return $chart->withOptions($options);
     }
 
-    protected function convertCell(DataCell $dataCell)
+    /**
+     * @return array{x: string, y: float, highlight: bool}
+     */
+    protected function convertCell(DataCell $dataCell): array
     {
         return [
             'x' => $dataCell->getRow()->getLabel(),

@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 
+use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ZoomAspect;
 use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
-use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
-use CPSIT\DenaCharts\Domain\Model\DataColumn;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class AreaChartBuilder extends ChartBuilder
@@ -49,7 +48,7 @@ class AreaChartBuilder extends ChartBuilder
         $options['pointHitRadius'] = 20;
 
         // Stack on Y axis
-        $options = ArrayUtility::setValueByPath($options, ['scales','y','stacked'], true);
+        $options = ArrayUtility::setValueByPath($options, ['scales', 'y', 'stacked'], true);
 
         // Respect the 'show grid lines' setting
         $options = ArrayUtility::setValueByPath(
@@ -64,7 +63,10 @@ class AreaChartBuilder extends ChartBuilder
         return $chart;
     }
 
-    protected function convertCell(DataCell $dataCell)
+    /**
+     * @return array{x: string, y: float, highlight: bool}
+     */
+    protected function convertCell(DataCell $dataCell): array
     {
         return [
             'x' => $dataCell->getRow()->getLabel(),

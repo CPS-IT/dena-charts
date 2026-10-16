@@ -7,20 +7,15 @@ use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use CPSIT\DenaCharts\Service\DataTableService;
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Backend\Form\NodeFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ChartsDataTable extends AbstractNode
 {
-    protected DataTableService $dataTableService;
+    public function __construct(protected readonly DataTableService $dataTableService) {}
 
-    public function __construct(NodeFactory $nodeFactory, array $data)
-    {
-        parent::__construct($nodeFactory, $data);
-        $this->dataTableService = GeneralUtility::makeInstance(DataTableService::class);
-    }
-
-    public function render()
+    /**
+     * @return array<string, mixed>
+     */
+    public function render(): array
     {
         try {
             $rowUid = (int)$this->data['databaseRow']['uid'];
@@ -45,7 +40,7 @@ class ChartsDataTable extends AbstractNode
         }
 
         $headerRowsHtml = implode('', array_map(function (array $header) {
-            $wrapped = array_map(fn (string $content) => '<th>' . htmlentities($content) . '</th>', $header);
+            $wrapped = array_map(fn(string $content) => '<th>' . htmlentities($content) . '</th>', $header);
             return '<tr>' . implode('', $wrapped) . '</tr>';
         }, $headerRows));
         $headerHtml = '<thead>' . $headerRowsHtml . '</thead>';
@@ -53,12 +48,12 @@ class ChartsDataTable extends AbstractNode
         $bodyRowsHtml = implode('', array_map(function (DataRow $dataRow) {
             $header = '<th>' . $dataRow->getNumber() . '</th>' . '<th>' . $dataRow->getLabel() . '</th>';
             $wrapped = array_map(
-                fn (DataCell $cell) => sprintf(
+                fn(DataCell $cell) => sprintf(
                     '<td title="%s %s %s">%s</td>',
                     $cell->getId(),
                     htmlentities($cell->getRow()->getLabel()),
                     htmlentities($cell->getColumn()->getLabel()),
-                    htmlentities($cell->getValue())
+                    htmlentities((string)$cell->getValue())
                 ),
                 $dataRow->getCells()
             );

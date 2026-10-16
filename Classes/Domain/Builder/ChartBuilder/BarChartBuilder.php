@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 
+use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
 use CPSIT\DenaCharts\Domain\Builder\Aspect\ZoomAspect;
 use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
-use CPSIT\DenaCharts\Domain\Builder\Aspect\AxisTitleAspect;
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class BarChartBuilder extends ChartBuilder
@@ -20,7 +20,7 @@ class BarChartBuilder extends ChartBuilder
 
     public function __construct(
         ColorsAspect $colorsProcessor,
-        AxisTitleAspect  $axisTitleProcessor,
+        AxisTitleAspect $axisTitleProcessor,
         ZoomAspect $zoomAspect
     ) {
         parent::__construct($colorsProcessor);

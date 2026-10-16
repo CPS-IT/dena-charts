@@ -7,6 +7,10 @@ use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 
 class ZoomAspect
 {
+    /**
+     * @param string[] $primaryZoomAxes
+     * @param string[] $secondaryZoomAxes
+     */
     public function process(
         ChartConfiguration $chartConfiguration,
         Chart $chart,
