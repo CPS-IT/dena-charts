@@ -142,11 +142,11 @@ C5,D5</target>
 				<target>Datenreihen stapeln</target>
 			</trans-unit>
 
-            <trans-unit id="wizards.newContentElement.chartsTabTitle" xml:space="preserve">
+			<trans-unit id="wizards.newContentElement.chartsTabTitle" xml:space="preserve">
 				<source>Charts</source>
 				<target>Diagramme</target>
-            </trans-unit>
-            <trans-unit id="tabs.chart" xml:space="preserve">
+			</trans-unit>
+			<trans-unit id="tabs.chart" xml:space="preserve">
 				<source>Chart</source>
 				<target>Diagramm</target>
 			</trans-unit>

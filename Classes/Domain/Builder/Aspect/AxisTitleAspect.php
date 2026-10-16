@@ -2,8 +2,8 @@
 
 namespace CPSIT\DenaCharts\Domain\Builder\Aspect;
 
-use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\Chart;
+use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class AxisTitleAspect implements ChartBuilderAspect
@@ -17,6 +17,10 @@ class AxisTitleAspect implements ChartBuilderAspect
         return $chart->withOptions($options);
     }
 
+    /**
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
     public function setAxis(array $options, string $axis, string $title, string $unit): array
     {
         $axisTitle = $title;

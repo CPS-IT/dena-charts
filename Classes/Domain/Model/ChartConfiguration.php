@@ -2,26 +2,25 @@
 
 namespace CPSIT\DenaCharts\Domain\Model;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class ChartConfiguration extends AbstractEntity
 {
-    const CHART_TYPE_AREA = 'area';
+    public const CHART_TYPE_AREA = 'area';
 
-    const CHART_TYPE_BAR = 'bar';
+    public const CHART_TYPE_BAR = 'bar';
 
-    const CHART_TYPE_COLUMN = 'column';
+    public const CHART_TYPE_COLUMN = 'column';
 
-    const CHART_TYPE_DOUGHNUT = 'doughnut';
+    public const CHART_TYPE_DOUGHNUT = 'doughnut';
 
-    const CHART_TYPE_LINE = 'line';
+    public const CHART_TYPE_LINE = 'line';
 
-    const CHART_TYPE_PIE = 'pie';
+    public const CHART_TYPE_PIE = 'pie';
 
-    const CHART_TYPES = [
+    public const CHART_TYPES = [
         self::CHART_TYPE_AREA,
         self::CHART_TYPE_BAR,
         self::CHART_TYPE_COLUMN,

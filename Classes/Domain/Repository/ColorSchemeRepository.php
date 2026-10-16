@@ -7,6 +7,7 @@ namespace CPSIT\DenaCharts\Domain\Repository;
 use CPSIT\DenaCharts\Domain\Model\Color;
 use CPSIT\DenaCharts\Domain\Model\ColorScheme;
 use CPSIT\DenaCharts\Service\ColorSchemaFileService;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ColorSchemeRepository
@@ -15,6 +16,8 @@ class ColorSchemeRepository
      * @var string
      */
     protected string $colorSchemesFilePath = '';
+
+    public function __construct(private readonly ColorSchemaFileService $colorSchemaFileService) {}
 
     /**
      * @return ColorScheme[]
@@ -48,9 +51,8 @@ class ColorSchemeRepository
         return $this->colorSchemesFilePath;
     }
 
-    public function setColorSchemesFilePath(int $pid = 0): void
+    public function setColorSchemesFilePath(int $pid = 0, ?ServerRequestInterface $request = null): void
     {
-        $colorSchemaFileService = GeneralUtility::makeInstance(ColorSchemaFileService::class);
-        $this->colorSchemesFilePath = $colorSchemaFileService->getColorScheme($pid);
+        $this->colorSchemesFilePath = $this->colorSchemaFileService->getColorScheme($pid, $request);
     }
 }

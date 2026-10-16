@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 class ColorSchemeTest extends TestCase
 {
+    /**
+     * @return array<int, array<int, Color[]>>
+     */
     public static function colorDataProvider(): array
     {
         return [
@@ -19,6 +22,9 @@ class ColorSchemeTest extends TestCase
         ];
     }
 
+    /**
+     * @param Color[] $colors
+     */
     #[DataProvider('colorDataProvider')]
     public function testGetAllColors(array $colors): void
     {
@@ -27,6 +33,9 @@ class ColorSchemeTest extends TestCase
         self::assertCount(count($colors), $resultColors);
     }
 
+    /**
+     * @return array<int, array{Color[], string[]}>
+     */
     public static function someColorsDataProvider(): array
     {
         return [
@@ -36,11 +45,15 @@ class ColorSchemeTest extends TestCase
                     new Color('A2', 'green'),
                     new Color('A3', 'red'),
                 ],
-                ['A1', 'A2']
-            ]
+                ['A1', 'A2'],
+            ],
         ];
     }
 
+    /**
+     * @param Color[] $colors
+     * @param string[] $idsToGet
+     */
     #[DataProvider('someColorsDataProvider')]
     public function testGetSomeColors(array $colors, array $idsToGet): void
     {
@@ -48,9 +61,9 @@ class ColorSchemeTest extends TestCase
 
         $resultColors = $colorScheme->getColors($idsToGet);
 
-        $this->assertCount(count($idsToGet), $resultColors);
+        self::assertCount(count($idsToGet), $resultColors);
         foreach ($idsToGet as $index => $id) {
-            $this->assertEquals($id, $resultColors[$index]->getId());
+            self::assertEquals($id, $resultColors[$index]->getId());
         }
     }
 

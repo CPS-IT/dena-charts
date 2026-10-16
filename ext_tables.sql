@@ -21,4 +21,3 @@ denacharts_color_scheme tinytext,
 denacharts_colors text,
 denacharts_highlights text,
 );
-

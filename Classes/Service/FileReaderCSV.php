@@ -31,7 +31,7 @@ class FileReaderCSV
      * Returns the raw data from the data file (a CSV file) as array
      *
      * @param FileReference $file
-     * @return array Array of records. First row contains headers.
+     * @return array<int, array<int, string|null>> Array of records. First row contains headers.
      */
     public function getData(FileReference $file): array
     {
@@ -39,9 +39,9 @@ class FileReaderCSV
         $fileContent = $this->fixEncoding($fileContentRaw);
         $delimiter = ';';
         $enclosure = '"';
-        $escape = "\\";
+        $escape = '\\';
 
-        $rows = array_filter(str_getcsv($fileContent, "\n"));
+        $rows = array_filter(str_getcsv($fileContent, "\n", $enclosure, $escape));
 
         $records = array_map(function ($d) use ($delimiter, $enclosure, $escape) {
             return str_getcsv($d, $delimiter, $enclosure, $escape);
@@ -56,8 +56,8 @@ class FileReaderCSV
      */
     protected function fixEncoding(string $fileContentRaw)
     {
-        $encoding = \mb_detect_encoding($fileContentRaw, 'UTF-8, ISO-8859-1', true);
-        $fileContent = \mb_convert_encoding($fileContentRaw, 'UTF-8', $encoding);
+        $encoding = mb_detect_encoding($fileContentRaw, 'UTF-8, ISO-8859-1', true);
+        $fileContent = mb_convert_encoding($fileContentRaw, 'UTF-8', $encoding);
         return $fileContent;
     }
 }
