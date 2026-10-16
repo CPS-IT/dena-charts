@@ -30,6 +30,9 @@ class DataRow
      */
     protected array $cells = [];
 
+    /**
+     * @param DataCell[] $cells
+     */
     public function __construct(int $index, string $label, array $cells)
     {
         // @extensionScannerIgnoreLine
@@ -48,11 +51,17 @@ class DataRow
         return $this->number;
     }
 
+    /**
+     * @return DataCell[]
+     */
     public function getCells(): array
     {
         return $this->cells;
     }
 
+    /**
+     * @return float[]
+     */
     public function getData(): array
     {
         return array_map(fn(DataCell $cell) => $cell->getValue(), $this->cells);

@@ -17,7 +17,10 @@ class ColorSchemeSelectorItemProvider
         $this->colorSchemeRepository = $colorSchemeRepository;
     }
 
-    public function provideColorSchemeSelectorItems(&$params): void
+    /**
+     * @param array<string, mixed> $params
+     */
+    public function provideColorSchemeSelectorItems(array &$params): void
     {
         $pid = $this->getRecordPid($params['row']);
         $this->colorSchemeRepository->setColorSchemesFilePath($pid);
@@ -27,7 +30,10 @@ class ColorSchemeSelectorItemProvider
         ));
     }
 
-    public function provideColorSelectorItems(&$params): void
+    /**
+     * @param array<string, mixed> $params
+     */
+    public function provideColorSelectorItems(array &$params): void
     {
         $pid = $this->getRecordPid($params['row']);
         $this->colorSchemeRepository->setColorSchemesFilePath($pid);
@@ -46,6 +52,9 @@ class ColorSchemeSelectorItemProvider
 
     /**
      * See TYPO3 Bug https://forge.typo3.org/issues/95814
+     */
+    /**
+     * @param array<string, mixed> $row
      */
     private function getRecordPid(array $row): int
     {

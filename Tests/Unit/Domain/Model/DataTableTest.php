@@ -57,6 +57,7 @@ class DataTableTest extends UnitTestCase
     #[Test]
     public function setRowsForObjectStorageSetsRows(): void
     {
+        /** @var ObjectStorage<DataRow> $rows */
         $rows = new ObjectStorage();
         $this->subject->setRows($rows);
 
@@ -109,6 +110,9 @@ class DataTableTest extends UnitTestCase
         );
     }
 
+    /**
+     * @return array<int, array{string, float}>
+     */
     public static function provideCasesForCellsById(): array
     {
         return [

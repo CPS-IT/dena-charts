@@ -12,6 +12,9 @@ class ChartsDataTable extends AbstractNode
 {
     public function __construct(protected readonly DataTableService $dataTableService) {}
 
+    /**
+     * @return array<string, mixed>
+     */
     public function render(): array
     {
         try {
@@ -50,7 +53,7 @@ class ChartsDataTable extends AbstractNode
                     $cell->getId(),
                     htmlentities($cell->getRow()->getLabel()),
                     htmlentities($cell->getColumn()->getLabel()),
-                    htmlentities($cell->getValue())
+                    htmlentities((string)$cell->getValue())
                 ),
                 $dataRow->getCells()
             );

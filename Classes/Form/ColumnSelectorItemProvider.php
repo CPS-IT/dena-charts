@@ -16,7 +16,10 @@ class ColumnSelectorItemProvider
         $this->dataTableService = $dataTableService;
     }
 
-    public function provideColumnSelectorItems(&$params): void
+    /**
+     * @param array<string, mixed> $params
+     */
+    public function provideColumnSelectorItems(array &$params): void
     {
         $row = $params['row'];
         $rowUid = (int)$row['uid'];

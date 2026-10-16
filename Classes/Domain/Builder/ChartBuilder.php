@@ -6,14 +6,16 @@ use CPSIT\DenaCharts\Domain\Builder\Aspect\ColorsAspect;
 use CPSIT\DenaCharts\Domain\Model\Chart;
 use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Model\DataCell;
-use CPSIT\DenaCharts\Domain\Model\DataRow;
 use CPSIT\DenaCharts\Domain\Model\DataTable;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 
 class ChartBuilder
 {
     protected string $type;
+    /** @var array<string, mixed> */
     protected array $options;
+
+    /** @var array<string, mixed> */
     protected array $data;
 
     protected ColorsAspect $colorsProcessor;
@@ -23,22 +25,23 @@ class ChartBuilder
         $this->colorsProcessor = $colorsProcessor;
     }
 
+    /**
+     * @param array{type: string, options: array<string, mixed>, builder?: class-string} $builderConfiguration
+     */
     public function buildForConfiguration(
         ChartConfiguration $chartConfiguration,
         DataTable $dataTable,
         SiteLanguage $language,
-        $builderConfiguration
+        array $builderConfiguration
     ): Chart {
         $options = $builderConfiguration['options'];
         $locale = $language->getLocale();
-        if (!empty($locale)) {
-            $options['locale'] = implode('-', \Locale::parseLocale($locale));
-        }
+        $options['locale'] = implode('-', \Locale::parseLocale((string)$locale));
 
         $aspectRatio = $chartConfiguration->getAspectRatio();
         if (!empty($aspectRatio)) {
             $splits = explode(':', $aspectRatio);
-            $options['aspectRatio'] = $splits[0] / $splits[1];
+            $options['aspectRatio'] = (float)$splits[0] / (float)$splits[1];
         }
 
         $chart = new Chart(
@@ -50,6 +53,9 @@ class ChartBuilder
         return $this->process($chartConfiguration, $chart);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function getChartData(DataTable $dataTable): array
     {
         $dataSets = $this->createDataSets($dataTable);
@@ -71,15 +77,12 @@ class ChartBuilder
      * There structure is specific for Chartjs
      *
      * @param DataTable $dataTable
-     * @return array
+     * @return array<int, array{label: string, data: array<int, mixed>}>
      */
     protected function createDataSets(DataTable $dataTable): array
     {
         $dataColumns = $dataTable->getColumns();
         $dataSets = [];
-        /**
-         * @var  $column DataRow
-         */
         foreach ($dataColumns as $column) {
             $dataSets[] = [
                 // label might not be appropriate for all chart types
@@ -91,17 +94,13 @@ class ChartBuilder
         return $dataSets;
     }
 
-    /**
-     * @param ChartConfiguration $chartConfiguration
-     * @param SiteLanguage $language
-     */
     protected function process(ChartConfiguration $chartConfiguration, Chart $chart): Chart
     {
         $chart = $this->colorsProcessor->process($chartConfiguration, $chart);
         return $chart;
     }
 
-    protected function convertCell(DataCell $dataCell)
+    protected function convertCell(DataCell $dataCell): mixed
     {
         return $dataCell->getValue();
     }

@@ -17,6 +17,10 @@ class AxisTitleAspect implements ChartBuilderAspect
         return $chart->withOptions($options);
     }
 
+    /**
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
     public function setAxis(array $options, string $axis, string $title, string $unit): array
     {
         $axisTitle = $title;

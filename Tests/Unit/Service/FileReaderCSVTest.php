@@ -43,6 +43,9 @@ class FileReaderCSVTest extends UnitTestCase
     /**
      * provides data for processing file content
      */
+    /**
+     * @return array<string, array{string, array<int, array<int, string>>}>
+     */
     public static function processConvertsFileContentToArrayDataProvider(): array
     {
         $contentWithWhiteSpace = <<<FCC
@@ -79,6 +82,9 @@ BIE;
         ];
     }
 
+    /**
+     * @param array<int, array<int, string>> $expectedRecords
+     */
     #[Test]
     #[DataProvider('processConvertsFileContentToArrayDataProvider')]
     public function processConvertsFileContentToArray(string $fileContent, array $expectedRecords): void

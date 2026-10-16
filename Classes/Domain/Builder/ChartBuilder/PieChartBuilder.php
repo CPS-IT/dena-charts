@@ -30,7 +30,11 @@ class PieChartBuilder extends ChartBuilder
         return $chart;
     }
 
-    protected function transposeData($data)
+    /**
+     * @param array{labels: array<int, string>, datasets: array<int, array{label: string, data: array<int, mixed>}>} $data
+     * @return array<string, mixed>
+     */
+    protected function transposeData(array $data): array
     {
         $result = [];
 

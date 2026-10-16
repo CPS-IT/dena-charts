@@ -31,7 +31,7 @@ class FileReaderCSV
      * Returns the raw data from the data file (a CSV file) as array
      *
      * @param FileReference $file
-     * @return array Array of records. First row contains headers.
+     * @return array<int, array<int, string|null>> Array of records. First row contains headers.
      */
     public function getData(FileReference $file): array
     {

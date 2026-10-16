@@ -62,6 +62,9 @@ class DataColumn
         return $this->label;
     }
 
+    /**
+     * @return DataCell[]
+     */
     public function getCells(): array
     {
         return $this->cells;

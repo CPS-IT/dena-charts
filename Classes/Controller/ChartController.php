@@ -2,6 +2,7 @@
 
 namespace CPSIT\DenaCharts\Controller;
 
+use CPSIT\DenaCharts\Domain\Builder\ChartBuilder;
 use CPSIT\DenaCharts\Domain\Factory\DataTableFactory;
 use CPSIT\DenaCharts\Domain\Model\ChartConfiguration;
 use CPSIT\DenaCharts\Domain\Repository\ChartConfigurationRepository;
@@ -56,7 +57,14 @@ class ChartController extends ActionController
         $this->colorSchemeRepository->setColorSchemesFilePath(0, $this->request);
 
         $builderConfiguration = $this->settings['chartJsDefaults'][$chartConfiguration->getType()];
-        $builder = GeneralUtility::makeInstance($builderConfiguration['builder']);
+        $builderClass = $builderConfiguration['builder'];
+        if (!is_a($builderClass, ChartBuilder::class, true)) {
+            throw new \UnexpectedValueException(
+                sprintf('Chart builder "%s" must extend %s', $builderClass, ChartBuilder::class),
+                1760600001
+            );
+        }
+        $builder = GeneralUtility::makeInstance($builderClass);
         $chartJsChart = $builder->buildForConfiguration(
             $chartConfiguration,
             $dataTable,

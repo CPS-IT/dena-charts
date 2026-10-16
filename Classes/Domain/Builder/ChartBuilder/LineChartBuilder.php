@@ -50,7 +50,10 @@ class LineChartBuilder extends ChartBuilder
         return $chart->withOptions($options);
     }
 
-    protected function convertCell(DataCell $dataCell)
+    /**
+     * @return array{x: string, y: float, highlight: bool}
+     */
+    protected function convertCell(DataCell $dataCell): array
     {
         return [
             'x' => $dataCell->getRow()->getLabel(),

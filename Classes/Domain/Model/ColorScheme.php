@@ -56,7 +56,7 @@ class ColorScheme
     }
 
     /**
-     * @return array
+     * @return array<string, Color>
      */
     protected function getColorsById(): array
     {

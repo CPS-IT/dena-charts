@@ -63,6 +63,9 @@ class DataColumnTest extends UnitTestCase
         );
     }
 
+    /**
+     * @return array<int, array{string, int}>
+     */
     public static function provideIndexForLettersTestCases(): array
     {
         return [

@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 class ColorSchemeTest extends TestCase
 {
+    /**
+     * @return array<int, array<int, Color[]>>
+     */
     public static function colorDataProvider(): array
     {
         return [
@@ -19,6 +22,9 @@ class ColorSchemeTest extends TestCase
         ];
     }
 
+    /**
+     * @param Color[] $colors
+     */
     #[DataProvider('colorDataProvider')]
     public function testGetAllColors(array $colors): void
     {
@@ -27,6 +33,9 @@ class ColorSchemeTest extends TestCase
         self::assertCount(count($colors), $resultColors);
     }
 
+    /**
+     * @return array<int, array{Color[], string[]}>
+     */
     public static function someColorsDataProvider(): array
     {
         return [
@@ -41,6 +50,10 @@ class ColorSchemeTest extends TestCase
         ];
     }
 
+    /**
+     * @param Color[] $colors
+     * @param string[] $idsToGet
+     */
     #[DataProvider('someColorsDataProvider')]
     public function testGetSomeColors(array $colors, array $idsToGet): void
     {
