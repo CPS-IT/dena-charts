@@ -17,16 +17,18 @@ class ColorSchemeSelectorItemProviderTest extends UnitTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $colorSchemeRepository = $this->createMock(ColorSchemeRepository::class);
+        $colorSchemeRepository = self::createStub(ColorSchemeRepository::class);
         $colorSchemeRepository
             ->method('findById')
-            ->with('testscheme B')
-            ->willReturn(
-                new ColorScheme('testscheme B', [
-                    new Color('B1', 'black'),
-                    new Color('B2', 'yellow'),
-                ]),
-            );
+            ->willReturnMap([
+                [
+                    'testscheme B',
+                    new ColorScheme('testscheme B', [
+                        new Color('B1', 'black'),
+                        new Color('B2', 'yellow'),
+                    ]),
+                ],
+            ]);
         $colorSchemeRepository
             ->method('findAll')
             ->willReturn([

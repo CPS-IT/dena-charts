@@ -38,9 +38,12 @@ class ColorSchemaFileServiceTest extends UnitTestCase
     #[Test]
     public function returnsFileOfSiteFoundByPage(): void
     {
-        $this->siteFinder->method('getSiteByPageId')->with(7)->willReturn($this->createSite('EXT:site/page.json'));
+        $siteFinder = $this->createMock(SiteFinder::class);
+        $siteFinder->expects($this->once())->method('getSiteByPageId')->with(7)
+            ->willReturn($this->createSite('EXT:site/page.json'));
+        $subject = new ColorSchemaFileService($siteFinder);
 
-        self::assertSame('EXT:site/page.json', $this->subject->getColorScheme(7));
+        self::assertSame('EXT:site/page.json', $subject->getColorScheme(7));
     }
 
     #[Test]
