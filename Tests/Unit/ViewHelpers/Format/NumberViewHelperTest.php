@@ -39,8 +39,8 @@ class NumberViewHelperTest extends UnitTestCase
 
     private function createSubject(ServerRequestInterface $request, string $value): NumberViewHelper
     {
-        $renderingContext = $this->createMock(RenderingContextInterface::class);
-        $renderingContext->method('getAttribute')->with(ServerRequestInterface::class)->willReturn($request);
+        $renderingContext = self::createStub(RenderingContextInterface::class);
+        $renderingContext->method('getAttribute')->willReturnMap([[ServerRequestInterface::class, $request]]);
 
         $subject = new NumberViewHelper();
         $subject->setRenderingContext($renderingContext);

@@ -6,7 +6,7 @@ namespace CPSIT\DenaCharts\Tests\Unit\Service;
 
 use CPSIT\DenaCharts\Service\ColorSchemaFileService;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Http\ServerRequest;
@@ -16,31 +16,36 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class ColorSchemaFileServiceTest extends UnitTestCase
 {
-    private SiteFinder&MockObject $siteFinder;
+    private SiteFinder&Stub $siteFinder;
 
     private ColorSchemaFileService $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->siteFinder = $this->createMock(SiteFinder::class);
+        $this->siteFinder = self::createStub(SiteFinder::class);
         $this->subject = new ColorSchemaFileService($this->siteFinder);
     }
 
     #[Test]
     public function returnsDefaultPathWithoutPageAndRequest(): void
     {
-        $this->siteFinder->expects($this->never())->method('getSiteByPageId');
+        $siteFinder = $this->createMock(SiteFinder::class);
+        $siteFinder->expects($this->never())->method('getSiteByPageId');
+        $subject = new ColorSchemaFileService($siteFinder);
 
-        self::assertSame(ColorSchemaFileService::DEFAULT_PATH, $this->subject->getColorScheme());
+        self::assertSame(ColorSchemaFileService::DEFAULT_PATH, $subject->getColorScheme());
     }
 
     #[Test]
     public function returnsFileOfSiteFoundByPage(): void
     {
-        $this->siteFinder->method('getSiteByPageId')->with(7)->willReturn($this->createSite('EXT:site/page.json'));
+        $siteFinder = $this->createMock(SiteFinder::class);
+        $siteFinder->expects($this->once())->method('getSiteByPageId')->with(7)
+            ->willReturn($this->createSite('EXT:site/page.json'));
+        $subject = new ColorSchemaFileService($siteFinder);
 
-        self::assertSame('EXT:site/page.json', $this->subject->getColorScheme(7));
+        self::assertSame('EXT:site/page.json', $subject->getColorScheme(7));
     }
 
     #[Test]
