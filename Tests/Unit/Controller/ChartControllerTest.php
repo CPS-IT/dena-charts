@@ -14,7 +14,6 @@ use CPSIT\DenaCharts\Domain\Repository\ColorSchemeRepository;
 use CPSIT\DenaCharts\Service\ChartDownloadService;
 use CPSIT\DenaCharts\Service\FileReaderCSV;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Http\ResponseFactory;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Http\StreamFactory;
@@ -33,38 +32,36 @@ class ChartControllerTest extends UnitTestCase
 {
     protected bool $resetSingletonInstances = true;
 
-    private ColorSchemeRepository&MockObject $colorSchemeRepository;
-
     private ChartController $subject;
 
-    protected function setUp(): void
+    private function createSubject(ColorSchemeRepository $colorSchemeRepository): ChartController
     {
-        parent::setUp();
-        $configuration = $this->createMock(ChartConfiguration::class);
+        $configuration = self::createStub(ChartConfiguration::class);
         $configuration->method('getType')->willReturn('column');
         $configuration->method('getAspectRatio')->willReturn('');
-        $configuration->method('getDataFile')->willReturn($this->createMock(FileReference::class));
-        $configurationRepository = $this->createMock(ChartConfigurationRepository::class);
+        $configuration->method('getDataFile')->willReturn(self::createStub(FileReference::class));
+        $configurationRepository = self::createStub(ChartConfigurationRepository::class);
         $configurationRepository->method('findByUid')->willReturn($configuration);
-        $fileReader = $this->createMock(FileReaderCSV::class);
+        $fileReader = self::createStub(FileReaderCSV::class);
         $fileReader->method('getData')->willReturn([['', 'A'], ['x', '1']]);
-        $this->colorSchemeRepository = $this->createMock(ColorSchemeRepository::class);
-
-        $this->subject = new ChartController(
+        $subject = new ChartController(
             $configurationRepository,
             $fileReader,
             new DataTableFactory(),
-            $this->createMock(ChartDownloadService::class),
-            $this->colorSchemeRepository,
+            self::createStub(ChartDownloadService::class),
+            $colorSchemeRepository,
         );
-        $this->subject->injectResponseFactory(new ResponseFactory());
-        $this->subject->injectStreamFactory(new StreamFactory());
+        $subject->injectResponseFactory(new ResponseFactory());
+        $subject->injectStreamFactory(new StreamFactory());
+
+        return $subject;
     }
 
     #[Test]
     public function chartActionBuildsChartWithLanguageOfRequest(): void
     {
         $language = new SiteLanguage(1, 'de_DE.UTF-8', new Uri('/'), []);
+        $this->subject = $this->createSubject(self::createStub(ColorSchemeRepository::class));
         $this->prepareController($this->createRequest()->withAttribute('language', $language));
 
         $builder = $this->createMock(ChartBuilder::class);
@@ -84,10 +81,12 @@ class ChartControllerTest extends UnitTestCase
         $request = $this->createRequest()
             ->withAttribute('site', new Site('main', 1, []))
             ->withAttribute('language', new SiteLanguage(0, 'en_US.UTF-8', new Uri('/'), []));
+        $colorSchemeRepository = $this->createMock(ColorSchemeRepository::class);
+        $this->subject = $this->createSubject($colorSchemeRepository);
         $this->prepareController($request);
-        $this->colorSchemeRepository->expects($this->once())->method('setColorSchemesFilePath')
+        $colorSchemeRepository->expects($this->once())->method('setColorSchemesFilePath')
             ->with(0, self::identicalTo($this->getRequest()));
-        $builder = $this->createMock(ChartBuilder::class);
+        $builder = self::createStub(ChartBuilder::class);
         $builder->method('buildForConfiguration')->willReturn(new Chart('bar', [], []));
         GeneralUtility::addInstance(ChartBuilder::class, $builder);
 
@@ -116,7 +115,7 @@ class ChartControllerTest extends UnitTestCase
 
     private function prepareController(ServerRequest $serverRequest): void
     {
-        $view = $this->createMock(ViewInterface::class);
+        $view = self::createStub(ViewInterface::class);
         $view->method('render')->willReturn('<html></html>');
         $settings = ['chartJsDefaults' => ['column' => ['builder' => ChartBuilder::class, 'type' => 'bar', 'options' => []]]];
 
