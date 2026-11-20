@@ -73,6 +73,6 @@ class ColorSchemeRepositoryTest extends UnitTestCase
 
     private function createSubject(): ColorSchemeRepository
     {
-        return new ColorSchemeRepository(new ColorSchemaFileService($this->createMock(SiteFinder::class)));
+        return new ColorSchemeRepository(new ColorSchemaFileService(self::createStub(SiteFinder::class)));
     }
 }
